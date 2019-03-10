@@ -1,0 +1,18 @@
+/*universal selector: normalization 对于所有elements生效*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  //This defines how much 1rem is.
+  font-size: 62.5%;
+}
+
+/*body element selector*/
+body {
+  box-sizing: border-box;
+}
