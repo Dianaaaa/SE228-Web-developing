@@ -1,0 +1,30 @@
+.card{
+  height: 30rem;
+  background-color: rgba($color-white, .1);
+  padding: 2rem;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+  transition: transform .2s;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  &:hover {
+    transform: translateY(-1.5rem);
+    box-shadow: 0 3rem 4rem rgba($color-black, .2);
+  }
+  &__image {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    position: relative;
+    &-photo {
+      height: 25rem;
+      display: inline-block;
+
+    }
+  }
+  &__text {
+    writing-mode: vertical-rl;
+    float: right;
+    position: relative;
+    letter-spacing: 1.5rem;
+  }
+}

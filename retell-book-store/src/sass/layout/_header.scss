@@ -1,0 +1,24 @@
+.header {
+  margin-top: 0rem;
+  height: 80vh;
+  background-size: cover;
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+  }
+
+  &__logo {
+    height: 4rem;
+  }
+
+  &__text-box {
+    position: absolute; /*parent position 与relative配对*/
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*text-box position*/
+    text-align: center;
+  }
+}

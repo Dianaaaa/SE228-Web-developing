@@ -1,0 +1,8 @@
+.header {
+    background: linear-gradient(
+            to right bottom,
+            rgba(221,219,213,0.6),
+            rgba(218, 169, 147, 0.6)
+    ),
+    url('../retell-2.jpg') top;
+}

@@ -17,8 +17,8 @@ body {
   &--main {
     display: block;
     font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
+    font-weight: 200;
+    letter-spacing: 1rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -31,9 +31,9 @@ body {
 
   &--sub {
     display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.74rem;
+    font-size: 3rem;
+    font-weight: 200;
+    letter-spacing: 2rem;
 
     animation-name: moveInRight;
     animation-duration: 1s;
@@ -69,4 +69,11 @@ body {
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
+}
+
+.category-title {
+  font-size: 4rem;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+  color: $color-primary;
 }
