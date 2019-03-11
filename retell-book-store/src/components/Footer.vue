@@ -16,7 +16,7 @@
             </div>
             <div class="col-1-of-2">
                 <p class="footer__copyright">
-                    <a href="https://github.com/Dianaaaa" class="footer__link">Diana</a>
+                    <a href="https://github.com/Dianaaaa" class="footer__link">Xingyue Qian</a>
                 </p>
             </div>
         </div>

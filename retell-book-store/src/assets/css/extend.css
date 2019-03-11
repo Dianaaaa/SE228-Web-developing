@@ -6,3 +6,19 @@
     ),
     url('../retell-2.jpg') top;
 }
+.sectionblock {
+    background: linear-gradient(
+            to right bottom,
+            rgba(221,219,213,0.6),
+            rgba(218, 169, 147, 0.6)
+    ),
+    url('../retell-3.jpg') top;
+}
+
+/*css quotes style pagination*/
+div.quotes{padding:1rem;margin:1rem;text-align:center; font-size: 3rem;}
+div.quotes a{border:#DDDBD5 1px solid;padding:2px 5px;color:#aaa;margin:0 2px 0 0;}
+div.quotes a:hover{border:#DAA993 1px solid;padding:2px 5px;margin:0 2px 0 0;}
+div.quotes a:active{border:#DDC4B3 1px solid;padding:2px 5px;margin:0 2px 0 0;}
+div.quotes span.current{border:#DDC4B3 1px solid;padding:2px 5px;font-weight:bold;color:#aaa;margin:0 2px 0 0;background-color:#f0f0f0;}
+div.quotes span.disabled{border:#f3f3f3 1px solid;padding:2px 5px;color:#ccc;margin:0 2px 0 0;}
