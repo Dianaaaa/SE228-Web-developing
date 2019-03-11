@@ -4,7 +4,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -18,7 +18,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -32,7 +32,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -46,7 +46,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -61,7 +61,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-3.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-3.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -75,7 +75,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-4.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-4.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -89,7 +89,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-3.jpg" class="card__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-3.jpg" class="card__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -103,7 +103,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-4.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-4.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -118,7 +118,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -132,7 +132,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -146,7 +146,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-2.jpg" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>
@@ -160,7 +160,7 @@
             <div class="col-1-of-4">
                 <div class="bookcard">
                     <div class="bookcard__image">
-                        <a href="/view"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
+                        <a href="/detail"><img src="../assets/book-1.png" class="bookcard__image-photo"></a>
                     </div>
                     <div class="bookcard__text">
                         <ul>

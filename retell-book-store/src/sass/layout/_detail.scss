@@ -1,0 +1,31 @@
+.detail {
+
+  &__bgd {
+    background-color: $color-primary;
+    padding: 2rem 2rem 2rem 2rem;
+    height: 200rem;
+  }
+
+  &__box {
+    background-color: rgba($color-white, .8);
+    border-radius: 1rem;
+    //padding: 2rem 0 50rem 0;
+    height: 194rem;
+
+
+    &--img {
+      padding: 10rem;
+      float: left;
+      &-photo {
+      }
+    }
+
+    &--text {
+      padding: 7rem;
+      height:  90rem;
+      font-weight: 100;
+      font-size: 4rem;
+    }
+
+  }
+}
