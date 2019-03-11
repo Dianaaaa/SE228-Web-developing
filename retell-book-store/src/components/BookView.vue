@@ -172,7 +172,7 @@
             </div>
         </div>
         <div class="quotes">
-            <span class="disabled"> < </span>
+            <span class="disabled"> 《 </span>
             <span class="current">1</span>
             <a href="#?page=2">2</a>
             <a href="#?page=3">3</a>
@@ -182,7 +182,7 @@
             <a href="#?page=7">7</a>
             <a href="#?page=8">8</a>
             <a href="#?page=9">9</a>
-            <a href="#?page=2"> > </a>
+            <a href="#?page=2"> 》 </a>
         </div>
 
     </div>
