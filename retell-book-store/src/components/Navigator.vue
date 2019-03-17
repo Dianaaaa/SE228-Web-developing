@@ -12,7 +12,7 @@
 
         <nav class="navigation__nav">
             <ul class="navigation__list">
-                <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span>账户</a></li>
+                <li class="navigation__item"><router-link to="/signup"><a href="#" class="navigation__link"><span>01</span>账户</a></router-link></li>
                 <li class="navigation__item"><a href="#" class="navigation__link"><span>02</span>订单</a></li>
                 <li class="navigation__item"><a href="#" class="navigation__link"><span>03</span>购物车</a></li>
                 <li class="navigation__item"><a href="#" class="navigation__link"><span>04</span>社区</a></li>

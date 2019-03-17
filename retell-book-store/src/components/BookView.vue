@@ -8,7 +8,7 @@
                     </div>
                     <div class="bookcard__text">
                         <ul>
-                            <li>书名</li>
+                            <li v-on:click="change_color" class="bookname">书名</li>
                             <li>作者</li>
                         </ul>
                     </div>
@@ -187,3 +187,23 @@
 
     </div>
 </template>
+
+<script>
+    export default {
+        data(){
+            return {
+                count: 1
+            }
+        },
+        methods: {
+            change_color() {
+                if (this.count % 2 === 0) {
+                    this.$refs.bookname.style.color='black';
+                } else {
+                    this.$refs.bookname.style.color = 'red';
+                }
+                this.count = this.count + 1;
+            }
+        }
+    }
+</script>

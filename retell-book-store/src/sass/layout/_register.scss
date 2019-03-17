@@ -1,0 +1,10 @@
+.register__box {
+  padding: 2rem 2rem 2rem 2rem;
+  height: 50rem;
+  padding: 8rem 0;
+  background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary);
+  &__form {
+    width: 50%;
+    padding: 0rem;
+  }
+}

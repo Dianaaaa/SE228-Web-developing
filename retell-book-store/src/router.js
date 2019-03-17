@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import ViewBooks from './views/ViewBooks'
 import BookDetail from './views/BookDetail'
+import SignUp from './views/SignUp'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
         path: '/detail',
           name: 'bookdetail',
           component: BookDetail
+      },
+      {
+        path: '/signup',
+          name: 'signup',
+          component: SignUp
       }
   ]
 })
