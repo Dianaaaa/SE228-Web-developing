@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home'
+import Signin from './containers/Signin'
 
 const areaList = [
   {name: '北京'},{name: '天津'},{name: '河北'},{name: '山西'},{name: '内蒙古'},
@@ -13,6 +14,8 @@ const areaList = [
   {name: '西藏'},{name: '陕西'},{name: '甘肃'},{name: '青海'},{name: '宁夏'},
   {name: '新疆'},{name: '台湾'},{name: '香港'},{name: '澳门'},{name: '钓鱼岛'},
 ]
+
+
 
 class App extends Component {        //react component 组件。
   state = {
@@ -59,6 +62,10 @@ class App extends Component {        //react component 组件。
           />
         )}/>
         
+        <Route exact path='/signin' render={() => (
+          <Signin
+          />
+        )}/>
       </div>
     );
   }

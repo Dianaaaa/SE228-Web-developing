@@ -1,0 +1,57 @@
+.retell-logo img{
+    width: 8rem;
+    height: auto;
+
+}
+
+.sign-in-box {
+    width: 50rem;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    border: 1px solid #ffaaaa;
+    padding: 2rem 2rem 0 0;
+    border-radius: 1rem;
+}
+
+.ant-form {
+    transform: translate(-10%, 0);
+}
+
+.ant-form button{
+    background-color: #8f1537;
+    border-color: #8f1537;
+    color: #fcfcfc;
+
+}
+
+.ant-form button:hover{
+    background-color: #fcfcfc;
+    border-color: #8f1537;
+    color: #8f1537;
+}
+
+.ant-checkbox-checked::after {
+    border: 1px solid #8f1537;
+}
+
+.sign-in-footer {
+    margin-top: 2.5rem;
+}
+
+.a-divider.a-divider-section .a-divider-inner {
+    height: 44px;
+    margin-bottom: -18px;
+    z-index: 0;
+    zoom: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.03) 3px, transparent);
+}
+.a-divider-inner::after, .a-color-base-background .a-divider.a-divider-section .a-divider-inner::after, .a-divider.a-divider-section .a-divider-inner::after {
+    display: block;
+    width: 100%;
+    height: 44px;
+    z-index: 1;
+    content: "";
+    background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0), rgb(255, 255, 255));
+}
