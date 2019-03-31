@@ -1,0 +1,43 @@
+
+.book-card {
+    width: 10rem;
+    height: auto;
+    transform:translate(40%,0);
+}
+
+.book-card-img {
+    width: 8rem;
+    height: 12rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-shrink: 0;
+    background-image: url('./../assets/imgs/book-4.jpg'); 
+}
+
+.book-card-detail p{
+    line-height: .2rem;
+}
+
+.book-card-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.book-card-writer {
+    color: #aaaaaa
+}
+
+.cur-cost {
+    color: #c7004c;
+    font-weight: 700;
+    margin-right: .3rem;
+    font-size: 1rem;
+}
+
+.prev-cost {
+    text-decoration: line-through;
+}

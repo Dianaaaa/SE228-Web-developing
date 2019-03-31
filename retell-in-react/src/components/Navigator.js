@@ -46,11 +46,13 @@ class Navigator extends Component {
             <Row>
                 <Breadcrumb>
                 <Col span={8}>
-                    <Dropdown overlay={areaMenu} >
-                        <Link className="ant-dropdown-link" to="/">
-                          地区：{curArea} <Icon type="down" />
-                        </Link>
-                    </Dropdown>
+                    <Breadcrumb.Item>
+                        <Dropdown overlay={areaMenu} >
+                            <Link className="ant-dropdown-link" to="/">
+                              地区：{curArea} <Icon type="down" />
+                            </Link>
+                        </Dropdown>
+                    </Breadcrumb.Item>
                 </Col>
                 <Col span={16}>
                     <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>

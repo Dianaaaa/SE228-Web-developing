@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import Navigator from './../components/Navigator'
 import Catagories from './../components/Catagories'
+import BookShow from './../components/BookShow'
 import { Carousel, Input, Row, Col } from 'antd';
 import './Home.css'
-import ad2 from './../assets/imgs/retell-2.jpg'
 
 class Home extends Component {
     
@@ -19,18 +19,16 @@ class Home extends Component {
                 />
 
                 <Carousel autoplay>
-                    <div style={{
-                        backgroundImage: `url(${ad2})")`
-                    }}>
+                    <div className='retell-home-add1'>
                         <h3>春季学期促销，教辅全场5折</h3>
                     </div>
-                    <div>
+                    <div className='retell-home-add2'>
                         <h3>高举启蒙的火把</h3>
                     </div>
-                    <div>
+                    <div className='retell-home-add3'>
                         <h3>你不知道的萨特</h3>
                     </div>
-                    <div>
+                    <div className='retell-home-add4'>
                         <h3>纪德三部曲</h3>
                     </div>
                 </Carousel>
@@ -40,7 +38,7 @@ class Home extends Component {
                         <Col span={4}>
                             <img src={require('./../assets/logo.png')} alt='logo' className='retell-logo'/>
                         </Col>
-                        <Col span={8} offset={8}>
+                        <Col span={6} offset={12}>
                             <Input.Search
                               placeholder="input search text"
                               onSearch={value => console.log(value)}
@@ -53,6 +51,11 @@ class Home extends Component {
                 <Row>
                     <Col span={8}>
                         <Catagories/>
+                    </Col>
+                    <Col span={16}>
+                        <div className='sell-book-show'>
+                            <BookShow/>
+                        </div>
                     </Col>
                 </Row>
 

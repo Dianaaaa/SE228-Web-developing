@@ -1,11 +1,29 @@
 .ant-carousel .slick-slide {
     text-align: center;
     height: auto;
-    line-height: 30vh;
-    background: #364d79;
+    line-height: 23rem;
+    background: #b8a7ab;
     overflow: hidden;
-    background-image: url('./../assets/imgs/retell-1.jpg');
+    vertical-align:middle;
+    
+    
   }
+
+.retell-home-add1 {
+    background-image: url('./../assets/imgs/retell-1.jpg'); 
+}
+
+.retell-home-add2 {
+    background-image: url('./../assets/imgs/retell-1.jpg'); 
+}
+
+.retell-home-add3 {
+    background-image: url('./../assets/imgs/retell-1.jpg'); 
+}
+
+.retell-home-add4 {
+    background-image: url('./../assets/imgs/retell-1.jpg'); 
+}
   
   .ant-carousel .slick-slide h3 {
     color: #444444;
@@ -45,4 +63,20 @@
 .ant-input:focus {
     border-color: #ffaaaa;
     box-shadow: #c7004c;
+}
+
+.sell-book-show .ant-carousel .slick-slide{
+    background: #fcfcfd
+}
+
+.ant-carousel .slick-dots li button{
+    background: #8f1537
+}
+
+.ant-carousel .slick-dots li.slick-active button{
+    background: #cdffeb
+}
+
+.ant-input-wrapper {
+    width: 30rem;
 }

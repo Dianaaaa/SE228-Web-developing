@@ -15,3 +15,11 @@
 .retell-catagory-header ul{
     width: 100%;
 }
+
+.ant-menu-submenu-title:hover {
+    color: #ffaaaa;
+}
+
+.ant-menu-submenu-arrow:hover {
+    color: #ffaaaa;
+}
