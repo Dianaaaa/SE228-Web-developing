@@ -1,12 +1,48 @@
-/* For demo */
 .ant-carousel .slick-slide {
     text-align: center;
-    height: 160px;
-    line-height: 160px;
+    height: auto;
+    line-height: 30vh;
     background: #364d79;
     overflow: hidden;
+    background-image: url('./../assets/imgs/retell-1.jpg');
   }
   
   .ant-carousel .slick-slide h3 {
-    color: #fff;
+    color: #444444;
+    font-size: 4rem;
+    font-weight: 300;
   }
+
+.retell-search-bar {
+    padding: 1rem, 0, 0, 1rem;
+    background: linear-gradient(to bottom, #fff, #f6f6f6f6);
+    height: 5rem;
+}
+
+.retell-logo {
+    height: 6rem;
+    width:auto;
+}
+
+.ant-input-search {
+    margin-top: 1.5rem;
+}
+
+.ant-input-search-button {
+    background-color: #8f1537;
+    border-color: #8f1537;
+}
+
+.ant-input-search-button:hover{
+    background-color: #c7004c;
+    border-color: #c7004c;
+}
+
+.ant-input:hover {
+    border-color: #ffaaaa;
+}
+
+.ant-input:focus {
+    border-color: #ffaaaa;
+    box-shadow: #c7004c;
+}

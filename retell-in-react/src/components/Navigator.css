@@ -1,6 +1,8 @@
+
+
 .ant-dropdown-menu {
     overflow: auto;
-    max-height: 75vh;
+    max-height: 45vh;
 }
 
 .ant-breadcrumb-link {
@@ -14,15 +16,30 @@
 }
 
 .ant-breadcrumb {
-    background-color: #d1dbbd;
-    background: linear-gradient(to bottom, #91aa9d, #d1dbbd);
-    height: 2rem;
+    margin: 0;
+    padding: .8rem 0 0 1rem;
+    font-size: 15px;
+    font-weight: 300;
+
+    background-color: #fcfcfcfc;
+    /* background: linear-gradient(to bottom, #fff, #aaaaaa); */
+    height: 3rem;
     
+    vertical-align: 50%;
+
     font-size: 1rem;
+    
+
+    
+}
+
+.ant-breadcrumb-link {
+    font-weight: 500;
 }
 
 .ant-breadcrumb a {
-    color: rgb(237, 240, 235);
+    color: #888888;
+    font-weight: 700;
 }
 
 .ant-breadcrumb a:hover {

@@ -1,0 +1,17 @@
+.retell-catagory-list {
+    margin-left: 5rem;
+}
+
+.retell-catagory-header {
+    background: #8f1537;
+    height: 3rem;
+    line-height: 3rem;
+    vertical-align:middle;
+    color: #fcfcfcfc;
+    font-size: 1.3rem;
+    font-weight: 100;
+}
+
+.retell-catagory-header ul{
+    width: 100%;
+}
