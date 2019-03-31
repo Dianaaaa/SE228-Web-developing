@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Navigator from './../components/Navigator'
 import Catagories from './../components/Catagories'
 import BookShow from './../components/BookShow'
+import BookTab from './../components/BookTab'
+import Footer from './../components/Footer'
 import { Carousel, Input, Row, Col } from 'antd';
 import './Home.css'
 
@@ -59,6 +61,13 @@ class Home extends Component {
                     </Col>
                 </Row>
 
+                <Row>
+                    <BookTab />
+                </Row>
+
+                <Row>
+                    <Footer />
+                </Row>
             </div>
         )
     }

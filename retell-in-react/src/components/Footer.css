@@ -1,0 +1,42 @@
+.retell-footer {
+    margin-top: 3rem;
+    
+}
+
+.foot-ad {
+    background: linear-gradient(to bottom, #fff, #bebebe);
+}
+
+.retell-footer svg{
+    width: 2rem;
+    height: auto;
+}
+
+.retell-footer i{
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.decoration-line {
+    background-color: #c7004c;
+    height: .2rem;
+}   
+
+.footer-nav {
+    background: #fcfcfcfc;
+    margin-bottom: 1.2rem;
+}
+
+.footer-nav h1{
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.footer-nav li{
+    list-style-type:none;
+}
+
+.footer-nav ul{
+    padding: 0 0 0 0;
+}

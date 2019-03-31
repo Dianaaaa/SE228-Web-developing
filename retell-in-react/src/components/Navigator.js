@@ -54,7 +54,7 @@ class Navigator extends Component {
                         </Dropdown>
                     </Breadcrumb.Item>
                 </Col>
-                <Col span={16}>
+                <Col span={8} offset={8}>
                     <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>
                         <Dropdown overlay={accountMenu} >

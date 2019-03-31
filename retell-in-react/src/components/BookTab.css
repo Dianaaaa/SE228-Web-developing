@@ -1,0 +1,24 @@
+.book-tab {
+    margin-top: 2rem;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    height: auto;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+    color: #ffaaaa;
+}
+
+.ant-tabs-nav .ant-tabs-tab:hover {
+    color: #ffaaaa;
+}
+
+.ant-tabs-nav-scroll {
+    background-color: #8f1537;
+
+    color: #cdffeb;
+}
+
+.ant-tabs-bar {
+    margin-bottom: 1.5rem;
+}
