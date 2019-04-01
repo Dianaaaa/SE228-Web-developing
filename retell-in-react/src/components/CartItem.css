@@ -1,0 +1,61 @@
+.cart-item {
+    /* background: #eeeeee; */
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-bottom: 2rem; */
+    padding: 1rem;
+}
+.cart-item .good img {
+    width: 9rem;
+}
+
+.cart-item .ant-divider-vertical {
+    height: 13rem;
+    margin-top: 1rem;
+    color: #000;
+    width: 3px;
+}
+
+.name,.cost {
+    margin-top: 5.5rem;
+}
+
+.cart-item p {
+    font-weight: 200;
+    font-size: 1.5rem;
+}
+
+.cost .cur-cost {
+    font-size: 1.5rem;
+}
+
+.amount .ant-btn-group .ant-btn-primary:last-child:not(:first-child), .ant-btn-group .ant-btn-primary + .ant-btn-primary {
+    border-left-color: #8f1537;
+}
+
+.amount .ant-btn-primary {
+    width: 3rem;
+    height: 3rem;
+}
+
+.amount .ant-input {
+    width: 3rem;
+    height: 3rem;
+}
+
+.amount {
+    margin-top: 5rem;
+}
+
+.amount-show {
+    padding: 2rem;
+    background: white;
+    display: inline;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.action p{
+    margin-top: 3rem;
+    font-size: 1rem;
+}

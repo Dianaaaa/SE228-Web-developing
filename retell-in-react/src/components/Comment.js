@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import { Rate, Row, Col } from 'antd'
 import './Comment.css'
+import { Rate, Row, Col } from 'antd'
 
 class Comment extends Component {
 
@@ -14,7 +14,7 @@ class Comment extends Component {
                 <div className='comment-body'>
                         <div className='user-rating'><Rate disabled defaultValue={5} /></div>
                         <div className='user-comment'>我太喜欢这本书了！</div>
-                </div>
+                </div> 
                 </Row>
             </div>
         )

@@ -1,0 +1,50 @@
+.shopping-cart .img-decoration img {
+    transform: translate(0, -22%);
+}
+
+.cart-items {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.cart-button {
+    background: #8f1537;
+    height: 5rem;
+}
+
+.cart-button .ant-btn-primary {
+    background-color: #cdffeb;
+    border-color: #cdffeb;
+    color: #c7004c;
+    width: 20rem;
+    height: 3rem;
+    margin-top: 1rem;
+    float: right;
+    margin-right: 10rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.cart-button .ant-btn-primary:hover {
+    background-color: #ffaaaa;
+    border-color: #ffaaaa;
+    color: #cdffeb;
+}
+
+.shopping-cart .retell-footer{
+    margin-top: 0;
+
+}
+
+.total {
+    float: right;
+    margin-right: 10rem;
+    color: #cdffeb;
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+
+.total .cur-cost{
+    color: #cdffeb;
+    font-size: 2rem;
+}
