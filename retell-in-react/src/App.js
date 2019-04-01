@@ -7,6 +7,8 @@ import Signin from './containers/Signin'
 import Login from './containers/Login'
 import BookView from './containers/BookView'
 import BookDetails from './containers/BookDetails'
+import ShoppingCart from './containers/ShoppingCart'
+
 
 
 const areaList = [
@@ -86,6 +88,14 @@ class App extends Component {        //react component 组件。
 
         <Route exact path='/book-details' render={() => (
           <BookDetails 
+          areas={areaList}
+          curArea={this.state.curArea}
+          onChangeArea={this.setArea}
+          />
+        )}/>
+        
+        <Route exact path='/cart' render={() => (
+          <ShoppingCart
           areas={areaList}
           curArea={this.state.curArea}
           onChangeArea={this.setArea}

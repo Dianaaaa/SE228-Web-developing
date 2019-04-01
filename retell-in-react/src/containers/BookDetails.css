@@ -1,0 +1,112 @@
+.buy-section {
+    /* background: red; */
+    /* height: 40rem; */
+    padding: 3rem;
+    border: 1px, solid, #8f1537;
+}
+
+.buy-section .book-img img {
+    width: 15rem;
+}
+
+.buy-section .book-title {
+    font-size: 2rem;
+}
+.buy-section p{
+    margin-bottom: .5rem;
+    text-align: left;
+}
+
+.buy-section .book-writer {
+    font-size:1rem;
+}
+
+.ad-section {
+    /* background: blue; */
+    height: 40rem;
+    padding: 2rem;
+}
+
+.ad-section img{
+    margin-bottom: 3rem;
+    width: 20rem;
+}
+
+.detail-section {
+    margin-bottom: 5rem;
+}
+
+.detail-section .ant-tabs-tabpane {
+    text-align: left;
+}
+
+.detail-section .ant-tabs-tabpane p{
+    font-size: 1rem;
+}
+
+.detail-section .ant-tabs {
+    width: 90%;
+    background: #fcfcfc;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-section .ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active{
+    color: #8f1537;
+}
+
+.detail-section .ant-tabs-tab {
+    text-align: left;
+    color: #8f1537;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+
+.book-cost {
+    background: #cdffeb;
+    padding: 0 1rem 0 1rem;
+    width: 90%;
+}
+
+.book-cost .cur-cost {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #c7004c;
+    margin-right: 3rem; 
+}
+
+.book-cost .prev-cost {
+    font-size: 2rem;
+}
+
+.book-buttons {
+    padding: 2rem;
+}
+
+.book-buttons .ant-input {
+    float:left;
+}
+
+.book-buttons .ant-btn {
+    margin-right: 2rem;
+}
+
+.ant-btn-primary {
+    font-size: 1rem;
+}
+.ant-btn-primary:active, .ant-btn-primary:focus,  .ant-btn-primary{
+    background-color: #8f1537;
+    border-color: #8f1537;
+}
+
+.ant-btn-primary:hover {
+    background-color: #ffaaaa;
+    border-color: #ffaaaa;
+}
+
+.book-details .ant-divider-vertical {
+    height: 110rem;
+    margin-top: 1rem;
+}

@@ -5,20 +5,20 @@
     height: auto;
 }
 
-.ant-tabs-nav .ant-tabs-tab-active {
+.book-tab .ant-tabs-nav .ant-tabs-tab-active {
     color: #ffaaaa;
 }
 
-.ant-tabs-nav .ant-tabs-tab:hover {
+.book-tab .ant-tabs-nav .ant-tabs-tab:hover {
     color: #ffaaaa;
 }
 
-.ant-tabs-nav-scroll {
+.book-tab .ant-tabs-nav-scroll {
     background-color: #8f1537;
 
     color: #cdffeb;
 }
 
-.ant-tabs-bar {
+.book-tab .ant-tabs-bar {
     margin-bottom: 1.5rem;
 }
