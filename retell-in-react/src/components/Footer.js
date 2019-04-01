@@ -7,7 +7,7 @@ class Footer extends Component {
         return (
             <div className='retell-footer'>
                 <div className='decoration-line'>&nbsp;</div>
-                <div class='foot-ad'>
+                <div className='foot-ad'>
                     <Row>
                         <Col span={4} offset={4}><Icon type="check-circle" /></Col>
                         <Col span={4}><Icon type="check-square" /></Col>

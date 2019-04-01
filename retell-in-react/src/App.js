@@ -5,6 +5,9 @@ import './App.css';
 import Home from './containers/Home'
 import Signin from './containers/Signin'
 import Login from './containers/Login'
+import BookView from './containers/BookView'
+import BookDetails from './containers/BookDetails'
+
 
 const areaList = [
   {name: '北京'},{name: '天津'},{name: '河北'},{name: '山西'},{name: '内蒙古'},
@@ -70,6 +73,22 @@ class App extends Component {        //react component 组件。
 
         <Route exact path='/login' render={() => (
           <Login
+          />
+        )}/>
+
+        <Route exact path='/book-view' render={() => (
+          <BookView 
+          areas={areaList}
+          curArea={this.state.curArea}
+          onChangeArea={this.setArea}
+          />
+        )}/>
+
+        <Route exact path='/book-details' render={() => (
+          <BookDetails 
+          areas={areaList}
+          curArea={this.state.curArea}
+          onChangeArea={this.setArea}
           />
         )}/>
       </div>

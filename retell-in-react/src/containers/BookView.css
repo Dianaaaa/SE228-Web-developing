@@ -1,0 +1,35 @@
+.retell-view-search-bar {
+    padding: 1rem, 0, 0, 1rem;
+    background: linear-gradient(to bottom, #fff, #f6f6f6f6);
+    height: 5rem;
+}
+
+.img-decoration {
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
+}
+
+.img-decoration img {
+  width: 100%;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+}
+
+.book-view-area {
+    margin-left: 2rem;
+}
+
+.book-show-pages {
+    height: 50rem;
+    /* background: red; */
+}
+
+.ant-divider-vertical {
+    height: 160rem;
+    margin-top: 1rem;
+}

@@ -12,6 +12,10 @@ class Navigator extends Component {
         console.log(e.target.innerHTML)
     }
 
+    pvtDefault = (e) => {
+        e.preventDefault()
+    }
+
     render () {
 
         const { areas, curArea} = this.props
@@ -48,9 +52,9 @@ class Navigator extends Component {
                 <Col span={8}>
                     <Breadcrumb.Item>
                         <Dropdown overlay={areaMenu} >
-                            <Link className="ant-dropdown-link" to="/">
+                            <a className="ant-dropdown-link" href="https://github.com/Dianaaaa" onClick={this.pvtDefault}>
                               地区：{curArea} <Icon type="down" />
-                            </Link>
+                            </a>
                         </Dropdown>
                     </Breadcrumb.Item>
                 </Col>
