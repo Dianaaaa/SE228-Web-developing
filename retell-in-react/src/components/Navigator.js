@@ -58,7 +58,7 @@ class Navigator extends Component {
                     <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
                     <Breadcrumb.Item>
                         <Dropdown overlay={accountMenu} >
-                            <Link className="ant-dropdown-link" to="/signin">
+                            <Link className="ant-dropdown-link" to="/login">
                               我的RETELL <Icon type="down" />
                             </Link>
                         </Dropdown>

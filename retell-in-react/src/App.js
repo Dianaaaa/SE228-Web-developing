@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home'
 import Signin from './containers/Signin'
+import Login from './containers/Login'
 
 const areaList = [
   {name: '北京'},{name: '天津'},{name: '河北'},{name: '山西'},{name: '内蒙古'},
@@ -64,6 +65,11 @@ class App extends Component {        //react component 组件。
         
         <Route exact path='/signin' render={() => (
           <Signin
+          />
+        )}/>
+
+        <Route exact path='/login' render={() => (
+          <Login
           />
         )}/>
       </div>

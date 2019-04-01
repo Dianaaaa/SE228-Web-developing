@@ -231,7 +231,7 @@ class RegistrationForm extends React.Component {
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
           })(
-            <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+            <Checkbox>I have read the <a href="https://github.com">agreement</a></Checkbox>
           )}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
