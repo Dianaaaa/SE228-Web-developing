@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Menu, Icon } from 'antd';
 import './Catagories.css'
 
@@ -18,7 +19,7 @@ class Catagories extends Component {
             <div className='retell-catagory-list'>
                 <div className='retell-catagory-header'>图书分类</div>
                 <Menu onClick={handleClick} mode="vertical">
-                    <SubMenu key="sub1" title={<span><Icon type="read" /><span>小说</span></span>}>
+                    <SubMenu key="sub1" title={<span><Icon type="read" /><Link to='/book-view'><span>小说</span></Link></span>}>
                       <MenuItemGroup title="Item 1">
                         <Menu.Item key="1">Option 1</Menu.Item>
                         <Menu.Item key="2">Option 2</Menu.Item>

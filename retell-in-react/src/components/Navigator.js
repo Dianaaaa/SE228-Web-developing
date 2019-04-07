@@ -67,8 +67,8 @@ class Navigator extends Component {
                             </Link>
                         </Dropdown>
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to="/react"><Icon type="shopping-cart" /></Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to="/react">卖家中心</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to="/cart"><Icon type="shopping-cart" /></Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to="/admin">卖家中心</Link></Breadcrumb.Item>
                 </Col>
                 </Breadcrumb>
             </Row>

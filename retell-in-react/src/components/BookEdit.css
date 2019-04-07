@@ -1,0 +1,26 @@
+.book-edit-search {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.books-info {
+    margin-right: 2rem;
+}
+
+.books-list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.books-list-item {
+    margin-bottom: 1rem;
+}
+
+.books-list-item-img img {
+    width: 5rem;
+}

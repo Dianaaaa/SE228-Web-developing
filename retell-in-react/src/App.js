@@ -8,6 +8,7 @@ import Login from './containers/Login'
 import BookView from './containers/BookView'
 import BookDetails from './containers/BookDetails'
 import ShoppingCart from './containers/ShoppingCart'
+import Admin from './containers/Admin'
 
 
 
@@ -96,6 +97,14 @@ class App extends Component {        //react component 组件。
         
         <Route exact path='/cart' render={() => (
           <ShoppingCart
+          areas={areaList}
+          curArea={this.state.curArea}
+          onChangeArea={this.setArea}
+          />
+        )}/>
+
+        <Route exact path='/admin' render={() => (
+          <Admin
           areas={areaList}
           curArea={this.state.curArea}
           onChangeArea={this.setArea}
