@@ -70,6 +70,7 @@ function formatNumber(value) {
   }
   
   class NumericInputDemo extends React.Component {
+
     constructor(props) {
       super(props);
       this.state = { value: '' };
@@ -85,7 +86,44 @@ function formatNumber(value) {
   }
 
 class BookDetails extends Component {
+
+  state = {
+    book_name : '',
+    author : '',
+    prev_cost: '',
+    cur_cost: '',
+    book_detail: '',
+    author_detail: '',
+    img_url: './../assets/imgs/book-4.jpg'
+  }
+
+
+  componentDidMount() {
+  fetch(
+    'http://localhost:8080', {
+      method:'GET',
+      // body: {'name': "机器学习"},
+      // mode:'no-cors'
+    }).then((response) => {
+      response.json().then((data) => {
+        console.log(data);
+        this.setState(() => ({
+          book_name: data['book-name'],
+          author: data['author'],
+          prev_cost: data['prev-cost'],
+          cur_cost: data['cur-cost'],
+          book_detail: data['book-detail'],
+          author_detail: data['author-detail'],
+          img_url: data['img-url']
+        }))
+      });
+    })
+    .catch(e => console.log('错误:', e)
+    )
+  }
+
     render () {
+      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url } = this.state
         const { areas, curArea, onChangeArea } = this.props
         return (
             <div className='book-details'>
@@ -117,16 +155,16 @@ class BookDetails extends Component {
                             <Row>
                                 <Col span={8}>
                                     <div className='book-img'>
-                                        <img src={require('./../assets/imgs/book-4.jpg')} alt='book'/>
+                                        <img src={img_url} alt='book'/>
                                     </div>
                                 </Col>
                                 <Col span={16}>
                                     <div className='book-text'>
-                                        <span class='book-title'><p>偷书贼（The Book Thief）</p></span>
-                                        <span class='book-writer'><p>作者：Markus Zursak <Rate disabled defaultValue={4.5} /></p></span>
+                                        <span class='book-title'><p>{book_name}</p></span>
+                                        <span class='book-writer'><p>作者：{author} <Rate disabled defaultValue={4.5} /></p></span>
                                         <Divider />
                                         <div className= 'book-cost'>
-                                            <span className='cur-cost'>￥22.00</span><span className='prev-cost'>￥45.00</span>
+                                            <span className='cur-cost'>￥{cur_cost}</span><span className='prev-cost'>￥{prev_cost}</span>
                                         </div>
 
                                     </div>
@@ -144,18 +182,11 @@ class BookDetails extends Component {
                         <div className='detail-section'>
                         <Tabs type="card">
                           <TabPane tab="图书信息" key="1">
-                            <p>“Brilliant and hugely ambitious…Some will argue that a book so difficult and sad may not be appropriate for teenage readers…Adults will probably like it (this one did), but it’s a great young-adult novel…It’s the kind of book that can be life-changing, because without ever denying the essential amorality and randomness of the natural order, The Book Thief offers us a believable hard-won hope…The hope we see in Liesel is unassailable, the kind you can hang on to in the midst of poverty and war and violence. Young readers need such alternatives to ideological rigidity, and such explorations of how stories matter. And so, come to think of it, do adults.” -New York Times</p>
-                            <p>"The Book Thief is unsettling and unsentimental, yet ultimately poetic. Its grimness and tragedy run through the reader's mind like a black-and-white movie, bereft of the colors of life. Zusak may not have lived under Nazi domination, but The Book Thief deserves a place on the same shelf with The Diary of a Young Girl by Anne Frank and Elie Wiesel's Night. It seems poised to become a classic." -USA Today</p>
-                            <p>"Zusak doesn’t sugarcoat anything, but he makes his ostensibly gloomy subject bearable the same way Kurt Vonnegut did in Slaughterhouse-Five: with grim, darkly consoling humor.” -Time Magazine</p>
-                            <p>"Elegant, philosophical and moving...Beautiful and important." -Kirkus Reviews, Starred</p>
-                            <p>"This hefty volume is an achievement...a challenging book in both length and subject..." -Publisher's Weekly, Starred </p>
-                            <p>"One of the most highly anticipated young-adult books in years." -The Wall Street Journal</p>
-                            <p>"Exquisitely written and memorably populated, Zusak's poignant tribute to words, survival, and their curiously inevitable entwinement is a tour de force to be not just read but inhabited." -The Horn Book Magazine, Starred</p>
-                            <p>"An extraordinary narrative." -SLJ, Starred</p>
+                            <p>{book_detail}</p>
                           </TabPane>
                           <TabPane tab="作者信息" key="2">
-                            <p>Markus Zusak is the author of I Am the Messenger, a Printz Honor Book and Los Angeles Times Book Award Finalist, and the international bestseller, The Book Thief, which has been translated into over thirty languages and has sold nine million copies around the world. He is the recipient of the Margaret A. Edwards Award for significant and lasting contribution to writing for teens and lives in Sydney, Australia, with his wife and children.</p>
-                          </TabPane>
+                            <p>{author_detail}</p>
+                            </TabPane>
                         </Tabs>
                         </div>
                         <div className='comments-section'>

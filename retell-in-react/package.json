@@ -25,6 +25,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "antd": "^3.16.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0"
   }
