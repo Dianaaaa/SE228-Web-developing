@@ -100,11 +100,10 @@ class BookDetails extends Component {
 
   componentDidMount() {
   fetch(
-    'http://localhost:8080', {
+    'http://localhost:8080/book', {
       method:'GET',
-      // body: {'name': "机器学习"},
-      // mode:'no-cors'
     }).then((response) => {
+      console.log(response)
       response.json().then((data) => {
         console.log(data);
         this.setState(() => ({
