@@ -61,6 +61,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.flywaydb</groupId>-->
+            <!--<artifactId>flyway-core</artifactId>-->
+            <!--<version>5.0.3</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -68,6 +73,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.0.3</version>
+                <configuration>
+                    <user>root</user>
+                    <password></password>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost:3306/test2?serverTimezone=UTC</url>
+                    <baseDir>db/migration</baseDir>
+                </configuration>
             </plugin>
         </plugins>
     </build>
