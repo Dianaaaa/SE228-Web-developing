@@ -1,4 +1,28 @@
 package com.retell.retellbackend.controller;
 
+import com.retell.retellbackend.domain.User;
+import com.retell.retellbackend.service.UserService;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
 public class UserController {
+
+    @Autowired
+    public UserService service;
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseBody
+    @RequestMapping(value="/signin", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String getBook(@RequestBody User user){
+
+
+        JSONObject userinfo = new JSONObject();
+        userinfo.put("username", user.getUsername());
+        userinfo.put("password", user.getPassword());
+        userinfo.put("email", user.getEmail());
+        return userinfo.toJSONString();
+    }
 }

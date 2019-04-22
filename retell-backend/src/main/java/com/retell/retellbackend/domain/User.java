@@ -2,16 +2,16 @@ package com.retell.retellbackend.domain;
 
 public class User {
     private Integer ID;
-    private String name;
+    private String username;
     private String password;
     private String email;
     private Integer role;
 
     public User(){}
 
-    public User(Integer ID, String name, String password, String email, Integer role) {
+    public User(Integer ID, String username, String password, String email, Integer role) {
         this.ID = ID;
-        this.name = name;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -26,12 +26,12 @@ public class User {
         this.ID = ID;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

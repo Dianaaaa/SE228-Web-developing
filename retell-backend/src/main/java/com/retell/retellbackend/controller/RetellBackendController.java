@@ -13,17 +13,18 @@ import com.retell.retellbackend.service.BookService;
 
 import java.io.IOException;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class RetellBackendController {
 
     @Autowired
     public BookService service;
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
-    @RequestMapping(value="/book", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getBook(){
-        Book curBook = service.getBookByID(1);
+    @RequestMapping(value="/book/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String getBook(@PathVariable Integer ID){
+        Book curBook = service.getBookByID(ID);
         JSONObject book = new JSONObject();
         book.put("book-name", curBook.getName());
         book.put("author", curBook.getAuthor());
@@ -33,6 +34,11 @@ public class RetellBackendController {
         book.put("author-detail", curBook.getAuthorDetail());
         book.put("img-url", curBook.getFrontpage());
         return book.toJSONString();
+    }
+
+    @RequestMapping(value="/msg", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String msg(){
+        return "hello world";
     }
 
 

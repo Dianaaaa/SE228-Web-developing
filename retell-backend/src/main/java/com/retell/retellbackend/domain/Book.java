@@ -1,5 +1,7 @@
 package com.retell.retellbackend.domain;
 
+import java.math.BigDecimal;
+
 public class Book {
     private Integer ID;
     private String name;
@@ -7,15 +9,15 @@ public class Book {
     private String ISBN;
     private Integer stock;
     private String frontpage;
-    private String category;
-    private String curCost;
-    private String prevCost;
+    private Integer category;
+    private BigDecimal curCost;
+    private BigDecimal prevCost;
     private String bookDetail;
     private String authorDetail;
 
     public Book() { }
 
-    public Book(Integer ID, String name, String author, String ISBN, Integer stock, String frontpage, String category) {
+    public Book(Integer ID, String name, String author, String ISBN, Integer stock, String frontpage, Integer category) {
         this.ID = ID;
         this.name = name;
         this.author = author;
@@ -37,12 +39,12 @@ public class Book {
     public void setStock(Integer stock) {this.stock=stock;}
     public String getFrontpage() {return this.frontpage;}
     public void setFrontpage(String frontpage) {this.frontpage = frontpage;}
-    public String getCategory() {return this.category;}
-    public void setCategory(String category) {this.category=category;}
-    public String getCurCost() {return this.curCost;}
-    public void setCurCost(String curCost) {this.curCost=curCost;}
-    public String getPrevCost() {return this.prevCost;}
-    public void setPrevCost(String prevCost) {this.prevCost = prevCost;}
+    public Integer getCategory() {return this.category;}
+    public void setCategory(Integer category) {this.category=category;}
+    public BigDecimal getCurCost() {return this.curCost;}
+    public void setCurCost(BigDecimal curCost) {this.curCost=curCost;}
+    public BigDecimal getPrevCost() {return this.prevCost;}
+    public void setPrevCost(BigDecimal prevCost) {this.prevCost = prevCost;}
     public String getBookDetail() {return this.bookDetail;}
     public void setBookDetail(String bookDetail) {this.bookDetail = bookDetail;}
     public String getAuthorDetail() {return this.authorDetail;}
