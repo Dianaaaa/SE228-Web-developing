@@ -17,12 +17,20 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value="/signin", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String getBook(@RequestBody User user){
-
-
-        JSONObject userinfo = new JSONObject();
-        userinfo.put("username", user.getUsername());
-        userinfo.put("password", user.getPassword());
-        userinfo.put("email", user.getEmail());
-        return userinfo.toJSONString();
+        JSONObject result = new JSONObject();
+        Boolean check = service.checkUserName(user.getUsername());
+        if (!check) {
+            result.put("status", 400);
+            result.put("msg", "Username used already");
+            return result.toJSONString();
+        }
+//        JSONObject userinfo = new JSONObject();
+//        userinfo.put("username", user.getUsername());
+//        userinfo.put("password", user.getPassword());
+//        userinfo.put("email", user.getEmail());
+        service.createUser(user);
+        result.put("status", 200);
+        result.put("msg", "User created");
+        return result.toJSONString();
     }
 }

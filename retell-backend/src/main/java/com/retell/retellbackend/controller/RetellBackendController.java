@@ -25,6 +25,9 @@ public class RetellBackendController {
     @RequestMapping(value="/book/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String getBook(@PathVariable Integer ID){
         Book curBook = service.getBookByID(ID);
+        if (curBook == null) {
+            return "no such bool";
+        }
         JSONObject book = new JSONObject();
         book.put("book-name", curBook.getName());
         book.put("author", curBook.getAuthor());

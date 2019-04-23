@@ -16,6 +16,9 @@ public class BookService {
 
     public Book getBookByID(Integer ID) {
         String sql = "select * from book where ID = ?";
+        if (jdbc.queryForList(sql, ID).size() == 0 ) {
+            return null;
+        }
         Map<String, Object> result = jdbc.queryForMap(sql, ID);
 
         Book cur_book = new Book();
