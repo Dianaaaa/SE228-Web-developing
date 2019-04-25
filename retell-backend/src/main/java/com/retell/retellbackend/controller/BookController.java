@@ -51,12 +51,14 @@ public class BookController {
         JSONObject response = new JSONObject();
         List objects = new ArrayList();
         for (int i = 0; i < books.size(); i++) {
+            System.out.print(books.get(i));
             JSONObject result = new JSONObject();
             result.put("author", books.get(i).get("author"));
             result.put("prev_cost", books.get(i).get("prev_cost"));
             result.put("cur_cost", books.get(i).get("cur_cost"));
             result.put("front_page", books.get(i).get("front_page"));
             result.put("name", books.get(i).get("name"));
+            result.put("id", books.get(i).get("ID"));
 
             objects.add(result);
         }

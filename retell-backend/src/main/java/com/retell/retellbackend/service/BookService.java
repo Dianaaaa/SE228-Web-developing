@@ -44,7 +44,7 @@ public class BookService {
     }
 
     public List getBookCarousel() {
-        String sql = "SELECT name, author, prev_cost, cur_cost, front_page FROM book limit 16";
+        String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book limit 16";
         List<Map<String, Object>> results = jdbc.queryForList(sql);
 
         return results;

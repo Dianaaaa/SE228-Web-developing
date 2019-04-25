@@ -20,7 +20,7 @@
 }
 
 .book-card-detail p{
-    line-height: .2rem;
+    line-height: 1rem;
 }
 
 .book-card-name {
@@ -41,4 +41,13 @@
 
 .prev-cost {
     text-decoration: line-through;
+}
+
+.book-card-img-noback img {
+    width: 80%;
+    height:60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 1rem;
 }

@@ -5,19 +5,19 @@ import './Book.css'
 class Book extends Component {
     
     render () {
-        console.log(this.props)
+        const { name, author, front_page, cur_cost, prev_cost, id } = this.props
+        // console.log(id)
         return (
             <div className='book-card'>
-                <Link to='/book-details/1'>
-                <div className='book-card-img'
-                    style = {{
-                        // backgroundImage: `url()` 
-                    }}
-                >&nbsp;</div></Link>
+                <Link to={'/book-details/'+ id}>
+                <div className='book-card-img-noback'>
+                <img src={front_page} alt='book'/>
+                </div>
+                </Link>
                 <div className='book-card-detail'>
-                    <p className='book-card-name'><Link to='/book-details/1'>偷书贼</Link></p>
-                    <p className='book-card-writer'>Markus Zursak</p>
-                    <p className='book-card-cost'><span className='cur-cost'>￥22.00</span><span className='prev-cost'>￥45.00</span></p>
+                    <p className='book-card-name'><Link to={'/book-details/'+ id}>{name}</Link></p>
+                    <p className='book-card-writer'>{author}</p>
+                    <p className='book-card-cost'><span className='cur-cost'>{cur_cost}</span><span className='prev-cost'>{prev_cost}</span></p>
                 </div>
             </div>
         )
