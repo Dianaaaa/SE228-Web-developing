@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {
-    Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete
+    Form, Input,  Icon, Select, Checkbox, Button, AutoComplete
 } from 'antd';
 import './Signin.css'
 import logo from './../assets/logo.png'
@@ -9,29 +9,29 @@ import logo from './../assets/logo.png'
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
-const residences = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
+// const residences = [{
+//   value: 'zhejiang',
+//   label: 'Zhejiang',
+//   children: [{
+//     value: 'hangzhou',
+//     label: 'Hangzhou',
+//     children: [{
+//       value: 'xihu',
+//       label: 'West Lake',
+//     }],
+//   }],
+// }, {
+//   value: 'jiangsu',
+//   label: 'Jiangsu',
+//   children: [{
+//     value: 'nanjing',
+//     label: 'Nanjing',
+//     children: [{
+//       value: 'zhonghuamen',
+//       label: 'Zhong Hua Men',
+//     }],
+//   }],
+// }];
 
 class RegistrationForm extends React.Component {
   state = {
@@ -39,10 +39,38 @@ class RegistrationForm extends React.Component {
     autoCompleteResult: [],
   };
 
+  /* ajax here */
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        // let formData = values;
+        let path="http://localhost:8080/signin"
+        console.log(values);
+        fetch(
+          path, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method:'POST',
+            body: JSON.stringify(values),
+          }).then(response => response.json())
+          .then(responseJson => {
+            console.log(responseJson);
+              if (responseJson.status === 200) {
+                console.log(responseJson.msg)
+                alert("用户创建成功")
+                this.props.history.push(`/login`)
+
+              } else {
+                console.log(responseJson.msg)
+                alert(responseJson.msg)
+              }
+              return responseJson;
+          })
+          .catch(e => console.log('错误:', e)
+        )
+
         console.log('Received values of form: ', values);
       }
     });
@@ -82,7 +110,7 @@ class RegistrationForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
+    // const { autoCompleteResult } = this.state;
 
     const formItemLayout = {
       labelCol: {
@@ -106,34 +134,30 @@ class RegistrationForm extends React.Component {
         },
       },
     };
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    );
+    // const prefixSelector = getFieldDecorator('prefix', {
+    //   initialValue: '86',
+    // })(
+    //   <Select style={{ width: 70 }}>
+    //     <Option value="86">+86</Option>
+    //     <Option value="87">+87</Option>
+    //   </Select>
+    // );
 
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
+    // const websiteOptions = autoCompleteResult.map(website => (
+    //   <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
+    // ));
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item
-          label="E-mail"
+          label="username"
         >
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'Please input your E-mail!',
-            }],
-          })(
-            <Input />
-          )}
-        </Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+              <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+            )}
+          </Form.Item>
         <Form.Item
           label="Password"
         >
@@ -161,6 +185,19 @@ class RegistrationForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item
+          label="E-mail"
+        >
+          {getFieldDecorator('email', {
+            rules: [{
+              type: 'email', message: 'The input is not valid E-mail!',
+            }, {
+              required: true, message: 'Please input your E-mail!',
+            }],
+          })(
+            <Input />
+          )}
+        </Form.Item>
+        {/* <Form.Item
           label={(
             <span>
               Nickname&nbsp;
@@ -226,7 +263,7 @@ class RegistrationForm extends React.Component {
               <Button>Get captcha</Button>
             </Col>
           </Row>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item {...tailFormItemLayout}>
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
@@ -242,7 +279,7 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
+const WrappedRegistrationForm = withRouter(Form.create({ name: 'register' })(RegistrationForm));
 
 class Signin extends Component {
     
@@ -253,7 +290,8 @@ class Signin extends Component {
                     <Link to='/'><img src={logo} alt='Retell Logo'/></Link>
                 </div>
                 <div className='sign-in-box'>
-                    <WrappedRegistrationForm />
+                    <WrappedRegistrationForm 
+                    />
                 </div>
                 <div className='sign-in-footer'>
                     <div className="a-divider a-divider-section"><div className="a-divider-inner"></div></div>

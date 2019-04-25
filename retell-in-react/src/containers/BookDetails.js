@@ -100,7 +100,7 @@ class BookDetails extends Component {
 
   componentDidMount() {
   fetch(
-    'http://localhost:8080/book', {
+    'http://localhost:8080/book/1', {
       method:'GET',
     }).then((response) => {
       console.log(response)

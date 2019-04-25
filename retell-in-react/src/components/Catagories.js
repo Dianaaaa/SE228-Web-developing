@@ -4,6 +4,26 @@ import { Menu, Icon } from 'antd';
 import './Catagories.css'
 
 class Catagories extends Component {
+  state = {
+    cate: []
+  }
+
+  componentDidMount() {
+    fetch(
+      'http://localhost:8080/cate', {
+        method:'GET',
+      }).then((response) => {
+        console.log(response)
+        response.json().then((data) => {
+          console.log(data['cate']);
+          this.setState(() => ({
+            cate: data['cate']
+          }))
+        });
+      })
+      .catch(e => console.log('错误:', e)
+      )
+    }
 
     render() {
         const SubMenu = Menu.SubMenu;
@@ -13,13 +33,29 @@ class Catagories extends Component {
             console.log('click', e);
         }
 
+        const { cate } = this.state
+        
+
         return (
             
 
             <div className='retell-catagory-list'>
                 <div className='retell-catagory-header'>图书分类</div>
                 <Menu onClick={handleClick} mode="vertical">
-                    <SubMenu key="sub1" title={<span><Icon type="read" /><Link to='/book-view'><span>小说</span></Link></span>}>
+                    {
+                      cate.map((c) => (
+                        <SubMenu key={c} title={<span><Icon type="read" /><Link to='/book-view'><span>{c}</span></Link></span>}>
+                          {/* <MenuItemGroup title="Item 1">
+                            <Menu.Item key="1">Option 1</Menu.Item>
+                            <Menu.Item key="2">Option 2</Menu.Item>
+                          </MenuItemGroup>
+                          <MenuItemGroup title="Iteom 2">
+                            <Menu.Item key="3">Option 3</Menu.Item>
+                            <Menu.Item key="4">Option 4</Menu.Item>
+                          </MenuItemGroup> */}
+                        </SubMenu>
+                      ))
+                       /* <SubMenu key="sub1" title={<span><Icon type="read" /><Link to='/book-view'><span>小说</span></Link></span>}>
                       <MenuItemGroup title="Item 1">
                         <Menu.Item key="1">Option 1</Menu.Item>
                         <Menu.Item key="2">Option 2</Menu.Item>
@@ -60,7 +96,7 @@ class Catagories extends Component {
                       <Menu.Item key="10">Option 10</Menu.Item>
                       <Menu.Item key="11">Option 11</Menu.Item>
                       <Menu.Item key="12">Option 12</Menu.Item>
-                    </SubMenu>
+                    </SubMenu> */}
                 </Menu>
             </div>
         )
