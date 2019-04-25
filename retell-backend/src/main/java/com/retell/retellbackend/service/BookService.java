@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -40,5 +41,12 @@ public class BookService {
     public void createBook(Book book) {
         String sql = "insert into book (name, author, ISBN, stock, front_page, book_detail, author_detail, category, cur_cost, prev_cost) values(\"" + book.getName() + "\",\"" +  book.getAuthor() + "\",\"" + book.getISBN() + "\"," + book.getStock() + ",\"" + book.getFrontpage() + "\",\"" +  book.getBookDetail() + "\",\"" +  book.getAuthorDetail() + "\",\"" + book.getCategory() + "\"," +  book.getCurCost()  +  "," + book.getPrevCost() + ")";
         jdbc.execute(sql);
+    }
+
+    public List getBookCarousel() {
+        String sql = "SELECT name, author, prev_cost, cur_cost, front_page FROM book limit 16";
+        List<Map<String, Object>> results = jdbc.queryForList(sql);
+
+        return results;
     }
 }

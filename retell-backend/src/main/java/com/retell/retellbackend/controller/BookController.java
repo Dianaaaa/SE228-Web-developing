@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -37,23 +40,44 @@ public class BookController {
         return book.toJSONString();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseBody
+    @RequestMapping(value="/book/carousel", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String getBookCar(){
+        List<Map<String, Object>> books = service.getBookCarousel();
+        if (books.size() == 0) {
+            return "no books";
+        }
+        JSONObject response = new JSONObject();
+        List objects = new ArrayList();
+        for (int i = 0; i < books.size(); i++) {
+            JSONObject result = new JSONObject();
+            result.put("author", books.get(i).get("author"));
+            result.put("prev_cost", books.get(i).get("prev_cost"));
+            result.put("cur_cost", books.get(i).get("cur_cost"));
+            result.put("front_page", books.get(i).get("front_page"));
+            result.put("name", books.get(i).get("name"));
 
-    //待修理
+            objects.add(result);
+        }
+//        JSONObject book = new JSONObject();
+//        book.put("book-name", curBook.getName());
+//        book.put("author", curBook.getAuthor());
+//        book.put("prev-cost", curBook.getPrevCost());
+//        book.put("cur-cost", curBook.getCurCost());
+//        book.put("book-detail", curBook.getBookDetail());
+//        book.put("author-detail", curBook.getAuthorDetail());
+//        book.put("img-url", curBook.getFrontpage());
+        response.put("status", 200);
+        response.put("msg", "OK");
+        response.put("books", objects);
+        return response.toJSONString();
+    }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public String getBook(HttpServletRequest request, @RequestBody JSONObject s){
-
-//        JSONObject book_detail = new JSONObject();
-//        book_detail.put("name", book.getName());
-//        book_detail.put("author", book.getAuthor());
-//        book_detail.put("bookDetail", book.getBookDetail());
-//        book_detail.put("authorDetail", book.getAuthorDetail());
-//        book_detail.put("stock", book.getStock());
-//        book_detail.put("cur_cost", book.getCurCost());
-//        book_detail.put("prev_cost", book.getPrevCost());
-//        book_detail.put("category", book.getCategory());
-//        book_detail.put("front-page", book.getFrontpage());
         BigDecimal curCost = BigDecimal.valueOf((Double) s.get("cur_cost"));
         BigDecimal prevCost = BigDecimal.valueOf((Double) s.get("prev_cost"));
         Book book = new Book();

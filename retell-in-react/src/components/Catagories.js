@@ -27,6 +27,7 @@ class Catagories extends Component {
             <div className='retell-catagory-list'>
                 <div className='retell-catagory-header'>图书分类</div>
                 <Menu onClick={handleClick} mode="vertical">
+                <SubMenu key="全部" title={<span><Icon type="read" /><Link to='/book-view' onClick={this.setCateQuery}><span>全部</span></Link></span>}/>
                     {
                       cate.map((c) => (
                         <SubMenu key={c} title={<span><Icon type="read" /><Link to='/book-view' onClick={this.setCateQuery}><span>{c}</span></Link></span>}>
