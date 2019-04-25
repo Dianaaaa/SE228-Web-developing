@@ -24,12 +24,12 @@
 .ad-section {
     /* background: blue; */
     height: 40rem;
-    padding: 2rem;
+    padding: .5rem;
 }
 
 .ad-section img{
     margin-bottom: 3rem;
-    width: 20rem;
+    width: 100%;
 }
 
 .detail-section {

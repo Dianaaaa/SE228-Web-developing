@@ -8,17 +8,31 @@ import { Carousel, Input, Row, Col } from 'antd';
 import './Home.css'
 
 class Home extends Component {
+    state = {
+        cate: []
+      }
     
+      componentDidMount() {
+        fetch(
+          'http://localhost:8080/cate', {
+            method:'GET',
+          }).then((response) => {
+            console.log(response)
+            response.json().then((data) => {
+              console.log(data['cate']);
+              this.setState(() => ({
+                cate: data['cate']
+              }))
+            });
+          })
+          .catch(e => console.log('错误:', e)
+          )
+        }
 
     render () {
-        const { areas, curArea, onChangeArea } = this.props
+        const {cateQuery, onCateQuery } = this.props
         return (
             <div className="home">
-                <Navigator 
-                areas = {areas}
-                curArea = {curArea}
-                onChangeArea = {onChangeArea}
-                />
 
                 <Carousel autoplay>
                     <div className='retell-home-add1'>
@@ -52,7 +66,11 @@ class Home extends Component {
 
                 <Row>
                     <Col span={8}>
-                        <Catagories/>
+                        <Catagories
+                        cate = {this.state.cate}
+                        cateQuery = {cateQuery}
+                        onCateQuery = {onCateQuery}
+                        />
                     </Col>
                     <Col span={16}>
                         <div className='sell-book-show'>
@@ -62,7 +80,9 @@ class Home extends Component {
                 </Row>
 
                 <Row>
-                    <BookTab />
+                    <BookTab 
+                    cate = {this.state.cate}
+                    />
                 </Row>
 
                 <Row>

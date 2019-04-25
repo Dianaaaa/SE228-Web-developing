@@ -8,14 +8,14 @@ import './ShoppingCart.css'
 class ShoppingCart extends Component {
 
     render () {
-        const { areas, curArea, onChangeArea } = this.props
+        // const { areas, curArea, onChangeArea } = this.props
         return (
             <div className='shopping-cart'>
-                <Navigator 
+                {/* <Navigator 
                     areas = {areas}
                     curArea = {curArea}
                     onChangeArea = {onChangeArea}
-                />
+                /> */}
                 <div className='img-decoration'>
                     <img src={require('./../assets/imgs/cart.jpg')} alt='retell-2'/>
                 </div>

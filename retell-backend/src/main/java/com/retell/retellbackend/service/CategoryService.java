@@ -29,4 +29,11 @@ public class CategoryService {
         return result;
     }
 
+    public Integer getCateByName(String name) {
+        String sql = "SELECT ID FROM book_category where name = ?";
+        Map<String, Object> cate = jdbc.queryForMap(sql, name);
+
+        return (Integer)cate.get("ID");
+    }
+
 }

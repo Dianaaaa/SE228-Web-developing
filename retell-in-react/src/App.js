@@ -8,6 +8,7 @@ import Login from './containers/Login'
 import BookView from './containers/BookView'
 import BookDetails from './containers/BookDetails'
 import ShoppingCart from './containers/ShoppingCart'
+import Navigator from './components/Navigator'
 import Admin from './containers/Admin'
 
 
@@ -26,7 +27,8 @@ const areaList = [
 
 class App extends Component {        //react component 组件。
   state = {
-      curArea: '北京'
+      curArea: '北京',
+      cateQuery: ""
   }
   setArea = (name) => {
     // e.preventDefault()
@@ -36,14 +38,28 @@ class App extends Component {        //react component 组件。
     }))
   }
 
+  setCateQuery = (name) => {
+    // e.preventDefault()
+    // console.log(e)
+    this.setState(() => ({
+        cateQuery: name
+    }))
+  }
+
   componentDidUpdate(prevProps, prevState) {
         console.log("prevState.curArea", prevState.curArea);
         console.log("this.state.curArea", this.state.curArea);
+        console.log("this.state.cateQuery", this.state.cateQuery)
 }
   render() {
-    
     return (
       <div className="App">
+
+          <Navigator 
+          areas = {areaList}
+          curArea = {this.state.curArea}
+          onChangeArea = {this.setState}
+          />
         <Route exact path='/react' render={() => (
           <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -63,9 +79,8 @@ class App extends Component {        //react component 组件。
 
         <Route exact path='/' render={() => (
           <Home 
-          areas={areaList}
-          curArea={this.state.curArea}
-          onChangeArea={this.setArea}
+          cateQuery = {this.state.cateQuery}
+          onCateQuery = {this.setCateQuery}
           />
         )}/>
         
@@ -81,33 +96,21 @@ class App extends Component {        //react component 组件。
 
         <Route exact path='/book-view' render={() => (
           <BookView 
-          areas={areaList}
-          curArea={this.state.curArea}
-          onChangeArea={this.setArea}
           />
         )}/>
 
-        <Route exact path='/book-details' render={() => (
-          <BookDetails 
-          areas={areaList}
-          curArea={this.state.curArea}
-          onChangeArea={this.setArea}
-          />
-        )}/>
+        <Route exact path='/book-details/:id' component={BookDetails}/>
         
         <Route exact path='/cart' render={() => (
           <ShoppingCart
-          areas={areaList}
-          curArea={this.state.curArea}
-          onChangeArea={this.setArea}
           />
         )}/>
 
         <Route exact path='/admin' render={() => (
           <Admin
-          areas={areaList}
-          curArea={this.state.curArea}
-          onChangeArea={this.setArea}
+          // areas={areaList}
+          // curArea={this.state.curArea}
+          // onChangeArea={this.setArea}
           />
         )}/>
       </div>

@@ -100,7 +100,7 @@ class BookDetails extends Component {
 
   componentDidMount() {
   fetch(
-    'http://localhost:8080/book/1', {
+    'http://localhost:8080/book/' + this.props.match.params.id, {
       method:'GET',
     }).then((response) => {
       console.log(response)
@@ -124,13 +124,14 @@ class BookDetails extends Component {
     render () {
       const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url } = this.state
         const { areas, curArea, onChangeArea } = this.props
+        console.log(this.props);
         return (
             <div className='book-details'>
-                <Navigator 
+                {/* <Navigator 
                     areas = {areas}
                     curArea = {curArea}
                     onChangeArea = {onChangeArea}
-                />
+                /> */}
                 <div className='img-decoration'>
                     <img src={require('./../assets/imgs/retell-3.jpg')} alt='retell-2'/>
                 </div>
@@ -200,7 +201,7 @@ class BookDetails extends Component {
                     <Col span={1}>
                     <Divider type="vertical" />
                     </Col>
-                    <Col span={4}>
+                    <Col span={5}>
                         <div className='ad-section'>
                             <img alt='add-1' src={require('./../assets/imgs/ad-1.jpg')}/>
                             <img alt='add-2' src={require('./../assets/imgs/ad-2.jpg')}/>

@@ -8,6 +8,9 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class BookController {
@@ -39,24 +42,39 @@ public class BookController {
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String getBook(@RequestBody Book book){
-        JSONObject book_detail = new JSONObject();
-        book_detail.put("name", book.getName());
-        book_detail.put("author", book.getAuthor());
-        book_detail.put("bookDetail", book.getBookDetail());
-        book_detail.put("authorDetail", book.getAuthorDetail());
-        book_detail.put("stock", book.getStock());
-        book_detail.put("cur_cost", book.getCurCost());
-        book_detail.put("prev_cost", book.getPrevCost());
-        book_detail.put("category", book.getCategory());
-        book_detail.put("front-page", book.getFrontpage());
+    public String getBook(HttpServletRequest request, @RequestBody JSONObject s){
+
+//        JSONObject book_detail = new JSONObject();
+//        book_detail.put("name", book.getName());
+//        book_detail.put("author", book.getAuthor());
+//        book_detail.put("bookDetail", book.getBookDetail());
+//        book_detail.put("authorDetail", book.getAuthorDetail());
+//        book_detail.put("stock", book.getStock());
+//        book_detail.put("cur_cost", book.getCurCost());
+//        book_detail.put("prev_cost", book.getPrevCost());
+//        book_detail.put("category", book.getCategory());
+//        book_detail.put("front-page", book.getFrontpage());
+        BigDecimal curCost = BigDecimal.valueOf((Double) s.get("cur_cost"));
+        BigDecimal prevCost = BigDecimal.valueOf((Double) s.get("prev_cost"));
+        Book book = new Book();
+        book.setName((String) s.get("name"));
+        book.setAuthor((String) s.get("author"));
+        book.setBookDetail((String) s.get("book_detail"));
+        book.setAuthorDetail((String) s.get("author_detail"));
+        book.setStock((Integer) s.get("stock"));
+        book.setCurCost(curCost);
+        book.setPrevCost(prevCost);
+        book.setCategory((Integer) s.get("category"));
+        book.setFrontpage((String) s.get("front_page"));
+        book.setISBN((String) s.get("ISBN"));
+
         JSONObject result = new JSONObject();
-//        service.createBook(book);
+        service.createBook(book);
 
         result.put("status", 200);
-        result.put("msg", "User created");
+        result.put("msg", s);
 
-        return book_detail.toJSONString();
+        return result.toJSONString();
     }
 
     @RequestMapping(value="/msg", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")

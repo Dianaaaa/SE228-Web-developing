@@ -4,36 +4,21 @@ import { Menu, Icon } from 'antd';
 import './Catagories.css'
 
 class Catagories extends Component {
-  state = {
-    cate: []
-  }
-
-  componentDidMount() {
-    fetch(
-      'http://localhost:8080/cate', {
-        method:'GET',
-      }).then((response) => {
-        console.log(response)
-        response.json().then((data) => {
-          console.log(data['cate']);
-          this.setState(() => ({
-            cate: data['cate']
-          }))
-        });
-      })
-      .catch(e => console.log('错误:', e)
-      )
+    setCateQuery = (e) => {
+      this.props.onCateQuery(e.target.innerHTML)
+      console.log(e.target.innerHTML)
     }
+  
 
     render() {
         const SubMenu = Menu.SubMenu;
-        const MenuItemGroup = Menu.ItemGroup;
+        // const MenuItemGroup = Menu.ItemGroup;
 
         function handleClick(e) {
             console.log('click', e);
         }
 
-        const { cate } = this.state
+        const { cate } = this.props
         
 
         return (
@@ -44,7 +29,7 @@ class Catagories extends Component {
                 <Menu onClick={handleClick} mode="vertical">
                     {
                       cate.map((c) => (
-                        <SubMenu key={c} title={<span><Icon type="read" /><Link to='/book-view'><span>{c}</span></Link></span>}>
+                        <SubMenu key={c} title={<span><Icon type="read" /><Link to='/book-view' onClick={this.setCateQuery}><span>{c}</span></Link></span>}>
                           {/* <MenuItemGroup title="Item 1">
                             <Menu.Item key="1">Option 1</Menu.Item>
                             <Menu.Item key="2">Option 2</Menu.Item>

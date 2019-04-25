@@ -15,6 +15,8 @@ return <div><Row>{doms.map((dom)=><Col span={4} key={i}>{dom}</Col>)}</Row><Row>
 
 class BookTab extends Component {
     render () {
+        const {cate} = this.props
+
         return (
             <div className='book-tab'>
                 <Tabs
@@ -22,7 +24,13 @@ class BookTab extends Component {
                   tabPosition='top'
                 //   style={{ height: 220 }}
                 >
-                  <TabPane tab="Tab 1" key="1">
+                  {
+                  cate.map((c) => (
+                    <TabPane tab={c} key={c}>
+                      {generateBookRow(6)}
+                    </TabPane>
+                  ))
+                  /* <TabPane tab="Tab 1" key="1">
                     {generateBookRow(6)}
                   </TabPane>
                   <TabPane tab="Tab 2" key="2">
@@ -54,7 +62,7 @@ class BookTab extends Component {
                   </TabPane>
                   <TabPane tab="Tab 11" key="11">
                     {generateBookRow(6)}
-                  </TabPane>
+                  </TabPane> */}
                 </Tabs>
             </div>
         )
