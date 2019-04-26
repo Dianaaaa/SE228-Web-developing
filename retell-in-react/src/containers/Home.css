@@ -80,3 +80,7 @@
 .ant-input-wrapper {
     width: 30rem;
 }
+
+.ant-tabs .ant-tabs-top-content {
+    height: 40rem;
+}

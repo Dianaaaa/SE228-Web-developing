@@ -24,12 +24,8 @@
     margin-left: 2rem;
 }
 
-.book-show-pages {
-    height: 50rem;
-    /* background: red; */
-}
 
 .book-view .ant-divider-vertical {
-    height: 160rem;
+    height: 50rem;
     margin-top: 1rem;
 }

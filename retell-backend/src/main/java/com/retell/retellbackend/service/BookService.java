@@ -59,6 +59,13 @@ public class BookService {
         return results;
     }
 
+    public List getBookByCateID(Integer ID) {
+        String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book WHERE category = ?";
+        List<Map<String, Object>> results = jdbc.queryForList(sql, ID);
+        System.out.print(results);
+        return results;
+    }
+
 //    public List getBookByCateName(String name) {
 //        String sql = "SELECT ID from book_category where name = ?";
 //        Map<String, Object> ID = jdbc.queryForMap(sql, name);

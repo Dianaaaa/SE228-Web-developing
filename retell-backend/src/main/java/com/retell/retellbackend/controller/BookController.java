@@ -37,6 +37,7 @@ public class BookController {
         book.put("book-detail", curBook.getBookDetail());
         book.put("author-detail", curBook.getAuthorDetail());
         book.put("img-url", curBook.getFrontpage());
+        book.put("id", curBook.getID());
         return book.toJSONString();
     }
 
@@ -68,6 +69,21 @@ public class BookController {
         response.put("status", 200);
         response.put("msg", "OK");
         response.put("books", objects);
+        return response.toJSONString();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseBody
+    @RequestMapping(value="/book/cate/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String getBookByCate(@PathVariable Integer ID){
+        List<Map<String, Object>> books = service.getBookByCateID(ID);
+
+        List objects = service.bookDump(books);
+        JSONObject response = new JSONObject();
+
+        response.put("books", objects);
+        response.put("status", 200);
+        response.put("msg", "OK");
         return response.toJSONString();
     }
 

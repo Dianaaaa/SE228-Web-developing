@@ -30,7 +30,7 @@ class Catagories extends Component {
                 <SubMenu key="全部" title={<span><Icon type="read" /><Link to='/book-view' onClick={this.setCateQuery}><span>全部</span></Link></span>}/>
                     {
                       cate.map((c) => (
-                        <SubMenu key={c.id} title={<span><Icon type="read" /><Link to='/book-view' onClick={this.setCateQuery}><span data-hide={c.id}>{c.name}</span></Link></span>}>
+                        <SubMenu key={c.id} title={<span><Icon type="read" /><Link to={'/book-view/cate/' + c.id} onClick={this.setCateQuery}><span data-hide={c.id}>{c.name}</span></Link></span>}>
                           {/* <MenuItemGroup title="Item 1">
                             <Menu.Item key="1">Option 1</Menu.Item>
                             <Menu.Item key="2">Option 2</Menu.Item>

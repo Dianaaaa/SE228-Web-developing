@@ -7,29 +7,9 @@ import { Carousel, Input, Row, Col } from 'antd';
 import './Home.css'
 
 class Home extends Component {
-    state = {
-        cate: []
-      }
-    
-      componentDidMount() {
-        fetch(
-          'http://localhost:8080/cate', {
-            method:'GET',
-          }).then((response) => {
-            console.log(response)
-            response.json().then((data) => {
-              console.log(data['cate']);
-              this.setState(() => ({
-                cate: data['cate']
-              }))
-            });
-          })
-          .catch(e => console.log('错误:', e)
-          )
-        }
 
     render () {
-        const {cateQuery, onCateQuery } = this.props
+        const {cateQuery, onCateQuery, cate } = this.props
         return (
             <div className="home">
 
@@ -66,7 +46,7 @@ class Home extends Component {
                 <Row>
                     <Col span={8}>
                         <Catagories
-                        cate = {this.state.cate}
+                        cate = {cate}
                         cateQuery = {cateQuery}
                         onCateQuery = {onCateQuery}
                         />
@@ -80,7 +60,7 @@ class Home extends Component {
 
                 <Row>
                     <BookTab 
-                    cate = {this.state.cate}
+                    cate = {cate}
                     />
                 </Row>
 

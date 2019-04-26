@@ -28,7 +28,8 @@ const areaList = [
 class App extends Component {        //react component 组件。
   state = {
       curArea: '北京',
-      cateQuery: ""
+      cateQuery: "1",
+      cate: []
   }
   setArea = (name) => {
     // e.preventDefault()
@@ -45,6 +46,23 @@ class App extends Component {        //react component 组件。
         cateQuery: name
     }))
   }
+
+  componentDidMount() {
+    fetch(
+      'http://localhost:8080/cate', {
+        method:'GET',
+      }).then((response) => {
+        console.log(response)
+        response.json().then((data) => {
+          console.log(data['cate']);
+          this.setState(() => ({
+            cate: data['cate']
+          }))
+        });
+      })
+      .catch(e => console.log('错误:', e)
+      )
+    }
 
   componentDidUpdate(prevProps, prevState) {
         console.log("prevState.curArea", prevState.curArea);
@@ -81,6 +99,7 @@ class App extends Component {        //react component 组件。
           <Home 
           cateQuery = {this.state.cateQuery}
           onCateQuery = {this.setCateQuery}
+          cate = {this.state.cate}
           />
         )}/>
         
@@ -94,10 +113,14 @@ class App extends Component {        //react component 组件。
           />
         )}/>
 
-        <Route exact path='/book-view' render={() => (
+        <Route exact path='/book-view/cate/:id' component={BookView}/>
+         {/* render={() => (
           <BookView 
+          cate = {this.state.cate}
+          cateQuery = {this.state.cateQuery}
+          onCateQuery = {this.setCateQuery}
           />
-        )}/>
+        )}/> */}
 
         <Route exact path='/book-details/:id' component={BookDetails}/>
         

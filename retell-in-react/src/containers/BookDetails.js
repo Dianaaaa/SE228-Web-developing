@@ -93,7 +93,8 @@ class BookDetails extends Component {
     cur_cost: '',
     book_detail: '',
     author_detail: '',
-    img_url: './../assets/imgs/book-4.jpg'
+    img_url: './../assets/imgs/book-4.jpg',
+    comments: []
   }
 
 
@@ -104,7 +105,7 @@ class BookDetails extends Component {
     }).then((response) => {
       console.log(response)
       response.json().then((data) => {
-        console.log(data);
+        // console.log(data);
         this.setState(() => ({
           book_name: data['book-name'],
           author: data['author'],
@@ -114,14 +115,31 @@ class BookDetails extends Component {
           author_detail: data['author-detail'],
           img_url: data['img-url']
         }))
+
       });
-    })
+      fetch(
+        'http://localhost:8080/comment/' + this.props.match.params.id, {
+          method:'GET',
+        }).then((response) => {
+          console.log(response)
+          response.json().then((data) => {
+            console.log(data['comments']);
+            this.setState(() => ({
+              comments: data['comments']
+            }))
+          });
+        })
+        .catch(e => console.log('错误:', e)
+        )
+      })
     .catch(e => console.log('错误:', e)
     )
+
+    
   }
 
     render () {
-      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url } = this.state
+      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments } = this.state
         // console.log(this.props);
         return (
             <div className='book-details'>
@@ -158,8 +176,8 @@ class BookDetails extends Component {
                                 </Col>
                                 <Col span={16}>
                                     <div className='book-text'>
-                                        <span class='book-title'><p>{book_name}</p></span>
-                                        <span class='book-writer'><p>作者：{author} <Rate disabled defaultValue={4.5} /></p></span>
+                                        <span className='book-title'><p>{book_name}</p></span>
+                                        <span className='book-writer'>作者：{author} <Rate disabled defaultValue={4.5} /></span>
                                         <Divider />
                                         <div className= 'book-cost'>
                                             <span className='cur-cost'>￥{cur_cost}</span><span className='prev-cost'>￥{prev_cost}</span>
@@ -188,11 +206,19 @@ class BookDetails extends Component {
                         </Tabs>
                         </div>
                         <div className='comments-section'>
-                            <Comment />
-                            <Comment />
-                            <Comment />
-                            <Comment />
-                            <Comment />
+                        {
+                          comments.map((com) => (
+                            <Comment 
+                            content = {com.content}
+                            score = {com.score}
+                            time = {com.time}
+                            key = {com.ID}
+                            />
+                          ))
+                        }
+                            {/* <Comment 
+                            id = {this.props.match.params.id}
+                            /> */}
                         </div>
                         
                     </Col>
