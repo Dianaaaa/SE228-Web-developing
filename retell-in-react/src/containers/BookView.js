@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Navigator from './../components/Navigator'
 import BookShowPages from './../components/BookShowPages'
 import Footer from './../components/Footer'
 import {Col, Input, Row, Collapse, Divider} from 'antd'

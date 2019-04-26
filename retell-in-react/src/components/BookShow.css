@@ -1,7 +1,7 @@
 .book-show {
     margin-right: 5em;
     margin-left: 2rem;
-    margin-bottom: -8rem;
+    /* margin-bottom: -8rem; */
 }
 
 .carousel-control-next,
@@ -58,9 +58,5 @@ a {
 }
 
 .slick-dots {
-    transform: translateY(-10rem);
-}
-
-.slick-list {
-    /* margin-bottom: -8rem !important; */
+    transform: translateY(-5rem);
 }

@@ -6,14 +6,55 @@ import { Tabs, Row, Col } from 'antd';
 const TabPane = Tabs.TabPane;
 
 function generateBookRow(n) {
-    var doms = [];
-    for (var i = 0; i < n; i++) {
-      doms.push(<Book />);
+  let booksRow = []
+  // console.log("n", n)
+  // console.log(booksAll[n-1])
+  // console.log(booksAll[n-1].id)
+  // console.log(booksAll[n-1].books)
+  for (var i = 0; i < 9; i++) {
+    if (booksAll[i].id === n) {
+      booksRow = booksAll[i].books
     }
-return <div><Row>{doms.map((dom)=><Col span={4} key={i}>{dom}</Col>)}</Row><Row>{doms.map((dom)=><Col span={4} key={i}>{dom}</Col>)}</Row></div>;
+  }
+  
+  // console.log("bookRow", booksRow)
+  return <div><Row>{booksRow.map((book)=>(<Col span={4} key={book.id}><Book name = {book.name}
+  author = {book.author}
+  front_page = {book.front_page}
+  cur_cost = {book.cur_cost}
+  prev_cost = {book.prev_cost}
+  id = {book.id}
+  /></Col>))}</Row></div>
 }
 
+let booksAll = []
+
 class BookTab extends Component {
+    state = {
+      cateBooks: []
+    }
+    
+      componentWillMount() {
+        for (var i = 1; i <= 9; i++) {
+          let id = i
+          fetch(
+            'http://localhost:8080/book/cate/limit/' + i, {
+              method:'GET',
+            }).then((response) => {
+              // console.log(response)
+              response.json().then((data) => {
+                // console.log(data['books']);
+                let books = data['books']
+                booksAll.push({id: id, books: books})
+                // console.log(booksAll)
+              });
+            })
+            .catch(e => console.log('错误:', e)
+            )
+          }
+        }
+        
+
     render () {
         const {cate} = this.props
 
@@ -26,43 +67,10 @@ class BookTab extends Component {
                 >
                   {
                   cate.map((c) => (
-                    <TabPane tab={c} key={c}>
-                      {generateBookRow(6)}
+                    <TabPane tab={c.name} key={c.id}>
+                      {generateBookRow(c.id)}
                     </TabPane>
-                  ))
-                  /* <TabPane tab="Tab 1" key="1">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 2" key="2">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 3" key="3">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 4" key="4">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 5" key="5">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 6" key="6">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 7" key="7">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 8" key="8">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 9" key="9">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 10" key="10">
-                    {generateBookRow(6)}
-                  </TabPane>
-                  <TabPane tab="Tab 11" key="11">
-                    {generateBookRow(6)}
-                  </TabPane> */}
+                  ))}
                 </Tabs>
             </div>
         )

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {
-    Form, Input,  Icon, Select, Checkbox, Button, AutoComplete
+    Form, Input,  Icon, Checkbox, Button
 } from 'antd';
 import './Signin.css'
 import logo from './../assets/logo.png'
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+// const { Option } = Select;
+// const AutoCompleteOption = AutoComplete.Option;
 
 // const residences = [{
 //   value: 'zhejiang',

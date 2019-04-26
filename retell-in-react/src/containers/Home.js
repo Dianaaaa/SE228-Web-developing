@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navigator from './../components/Navigator'
 import Catagories from './../components/Catagories'
 import BookShow from './../components/BookShow'
 import BookTab from './../components/BookTab'

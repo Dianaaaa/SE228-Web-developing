@@ -49,27 +49,22 @@ public class BookController {
             return "no books";
         }
         JSONObject response = new JSONObject();
-        List objects = new ArrayList();
-        for (int i = 0; i < books.size(); i++) {
-            System.out.print(books.get(i));
-            JSONObject result = new JSONObject();
-            result.put("author", books.get(i).get("author"));
-            result.put("prev_cost", books.get(i).get("prev_cost"));
-            result.put("cur_cost", books.get(i).get("cur_cost"));
-            result.put("front_page", books.get(i).get("front_page"));
-            result.put("name", books.get(i).get("name"));
-            result.put("id", books.get(i).get("ID"));
+        List objects = service.bookDump(books);
+        response.put("status", 200);
+        response.put("msg", "OK");
+        response.put("books", objects);
+        return response.toJSONString();
+    }
 
-            objects.add(result);
-        }
-//        JSONObject book = new JSONObject();
-//        book.put("book-name", curBook.getName());
-//        book.put("author", curBook.getAuthor());
-//        book.put("prev-cost", curBook.getPrevCost());
-//        book.put("cur-cost", curBook.getCurCost());
-//        book.put("book-detail", curBook.getBookDetail());
-//        book.put("author-detail", curBook.getAuthorDetail());
-//        book.put("img-url", curBook.getFrontpage());
+    @CrossOrigin(origins = "http://localhost:3000")
+    @ResponseBody
+    @RequestMapping(value="/book/cate/limit/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public String getBookByCateLimit(@PathVariable Integer ID){
+        List<Map<String, Object>> books = service.getBookByCateIDLimited(ID);
+
+        List objects = service.bookDump(books);
+        JSONObject response = new JSONObject();
+
         response.put("status", 200);
         response.put("msg", "OK");
         response.put("books", objects);

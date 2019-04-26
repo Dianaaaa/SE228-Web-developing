@@ -31,15 +31,15 @@ class BookShow extends Component {
         'http://localhost:8080/book/carousel', {
           method:'GET',
         }).then((response) => {
-          console.log(response)
+          // console.log(response)
           response.json().then((data) => {
-            console.log(data);
+            // console.log(data);
             let list = data['books']
             let list1 = []
             let list2 = []
             let list3 = []
             let list4 = []
-            console.log(list)
+            // console.log(list)
             for (var i = 0; i < 16; i++) {
               if (i < 4) {
                 list1.push(list[i])
@@ -52,10 +52,10 @@ class BookShow extends Component {
                 list4.push(list[i])
               }
             }
-            console.log(list1)
-            console.log(list2)
-            console.log(list3)
-            console.log(list4)
+            // console.log(list1)
+            // console.log(list2)
+            // console.log(list3)
+            // console.log(list4)
             this.setState(() => ({
               booklist1: list1,
               booklist2: list2,
@@ -88,23 +88,11 @@ class BookShow extends Component {
                               </Col>
                             ))
                           }
-                          {/* <Col span={6}>
-                            <Book />
-                          </Col>
-                          <Col span={6}>
-                            <Book />
-                          </Col>
-                          <Col span={6}>
-                            <Book />
-                          </Col>
-                          <Col span={6}>
-                            <Book />
-                          </Col> */}
                       </Row>
                   </div>
                   <div className='show-row'>
                       <Row>
-                      {
+                          {
                             this.state.booklist2.map((book) => (
                               <Col span={6} key={book.name}>
                                 <Book 
@@ -122,7 +110,7 @@ class BookShow extends Component {
                   </div>
                   <div className='show-row'>
                       <Row>
-                      {
+                          {
                             this.state.booklist3.map((book) => (
                               <Col span={6} key={book.name}>
                                 <Book 
@@ -140,7 +128,7 @@ class BookShow extends Component {
                   </div>
                   <div className='show-row'>
                       <Row>
-                      {
+                          {
                             this.state.booklist4.map((book) => (
                               <Col span={6} key={book.name}>
                                 <Book 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navigator from './../components/Navigator'
 import Comment from './../components/Comment'
 import Footer from './../components/Footer'
 import {Col, Input, Row, Divider, Rate, Tooltip, Button, Tabs} from 'antd'
@@ -123,8 +122,7 @@ class BookDetails extends Component {
 
     render () {
       const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url } = this.state
-        const { areas, curArea, onChangeArea } = this.props
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div className='book-details'>
                 {/* <Navigator 

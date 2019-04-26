@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navigator from './../components/Navigator'
 import CartItem from './../components/CartItem'
 import Footer from './../components/Footer'
 import { Button, Icon, Col} from 'antd'

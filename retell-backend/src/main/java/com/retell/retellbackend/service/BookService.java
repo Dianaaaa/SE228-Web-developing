@@ -2,11 +2,13 @@ package com.retell.retellbackend.service;
 
 import com.retell.retellbackend.domain.Book;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -49,4 +51,39 @@ public class BookService {
 
         return results;
     }
+
+    public List getBookByCateIDLimited(Integer ID) {
+        String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book WHERE category = ? limit 8";
+        List<Map<String, Object>> results = jdbc.queryForList(sql, ID);
+        System.out.print(results);
+        return results;
+    }
+
+//    public List getBookByCateName(String name) {
+//        String sql = "SELECT ID from book_category where name = ?";
+//        Map<String, Object> ID = jdbc.queryForMap(sql, name);
+//        List<Map<String, Object>> results = getBookByCateIDLimited((Integer) ID.get("ID"));
+//
+//        return results;
+//    }
+    public List bookDump(List<Map<String, Object>> books) {
+        List objects = new ArrayList();
+        for (int i = 0; i < books.size(); i++) {
+            System.out.print(books.get(i));
+            JSONObject result = new JSONObject();
+            result.put("author", books.get(i).get("author"));
+            result.put("prev_cost", books.get(i).get("prev_cost"));
+            result.put("cur_cost", books.get(i).get("cur_cost"));
+            result.put("front_page", books.get(i).get("front_page"));
+            result.put("name", books.get(i).get("name"));
+            result.put("id", books.get(i).get("ID"));
+
+            objects.add(result);
+        }
+        return objects;
+    }
+
+//    public List getBookByCateID() {
+//
+//    }
 }

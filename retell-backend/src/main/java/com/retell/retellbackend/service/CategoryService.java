@@ -17,16 +17,19 @@ public class CategoryService {
     private JdbcTemplate jdbc;
 
     public List getCategory() {
-        String sql = "SELECT name FROM book_category";
+        String sql = "SELECT ID, name FROM book_category";
 
         List<Map<String, Object>> categories = jdbc.queryForList(sql);
-        List result = new ArrayList();
-//        System.out.print(categories.get(1).);
+        List objects = new ArrayList();
         for (int i = 0; i < categories.size(); i++) {
-            result.add(categories.get(i).get("name"));
+//            System.out.print(categories.get(i));
+            JSONObject result = new JSONObject();
+            result.put("name", categories.get(i).get("name"));
+            result.put("id", categories.get(i).get("ID"));
+
+            objects.add(result);
         }
-//        System.out.print(result);
-        return result;
+        return objects;
     }
 
     public Integer getCateByName(String name) {
