@@ -16,15 +16,27 @@ function generateBookRow(n) {
       booksRow = booksAll[i].books
     }
   }
+
+  let Rows = []
+  // console.log(booksRow.length)
+  for (var j = 0; j < ((booksRow.length)/6) + 1; j++) {
+    let row = []
+    for (var k = j * 6; (k < (j+1)*6 && k < booksRow.length); k++) {
+      row.push(booksRow[k])
+      // console.log(booksRow[k])
+    }
+    // console.log("row", row)
+    Rows.push({id: j,row: row})
+  }
   
   // console.log("bookRow", booksRow)
-  return <div><Row>{booksRow.map((book)=>(<Col span={4} key={book.id}><Book name = {book.name}
+  return <div>{Rows.map((row) => (<Row key={row.id}>{row.row.map((book)=>(<Col span={4} key={book.id}><Book name = {book.name}
   author = {book.author}
   front_page = {book.front_page}
   cur_cost = {book.cur_cost}
   prev_cost = {book.prev_cost}
   id = {book.id}
-  /></Col>))}</Row></div>
+  /></Col>))}</Row>))}</div>
 }
 
 let booksAll = []
