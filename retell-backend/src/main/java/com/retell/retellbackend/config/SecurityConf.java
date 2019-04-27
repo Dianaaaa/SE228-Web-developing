@@ -69,7 +69,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**", "/login").permitAll()
+                .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**").permitAll()
                 .antMatchers("/msg").hasRole("USER")
                 .and()
                 .formLogin().loginPage("/user")
@@ -119,8 +119,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 })
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .and().csrf().disable().cors();
+                .deleteCookies("JSESSIONID");
     }
 
     @Bean

@@ -47,7 +47,7 @@ let booksAll = []
 
 class BookTab extends Component {
     state = {
-      cateBooks: []
+      booksAllState: []
     }
     
       componentDidMount() {
@@ -62,6 +62,9 @@ class BookTab extends Component {
                 // console.log(data['books']);
                 let books = data['books']
                 booksAll.push({id: id, books: books})
+                this.setState(() => ({
+                  booksAllState: booksAll
+                }))
                 // console.log(booksAll)
               });
             })
@@ -87,6 +90,30 @@ class BookTab extends Component {
                       {generateBookRow(c.id)}
                     </TabPane>
                   ))}
+                  {/* <TabPane tab="计算机">
+
+                  </TabPane>
+                  <TabPane tab="小说">
+                  
+                  </TabPane>
+                  <TabPane tab="文学">
+                  
+                  </TabPane>
+                  <TabPane tab="人文社科">
+                  
+                  </TabPane>
+                  <TabPane tab="医学">
+                  
+                  </TabPane>
+                  <TabPane tab="教辅">
+                  
+                  </TabPane>
+                  <TabPane tab="艺术">
+                  
+                  </TabPane>
+                  <TabPane tab="生活">
+                  
+                  </TabPane> */}
                 </Tabs>
             </div>
         )

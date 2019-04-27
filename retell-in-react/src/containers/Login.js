@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import './Login.css'
 import logo from './../assets/logo.png'
 
@@ -13,6 +13,34 @@ import {
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          let username = values.userName
+          let password = values.password
+          console.log('username', username)
+          console.log('password', password)
+          let path = 'http://localhost:8080/login';
+          const formData = new URLSearchParams();
+          formData.append('username', username);
+          formData.append('password', password);
+          console.log(formData.toString())
+          console.log(path)
+          fetch(
+            path, {
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              method:'POST',
+              body: formData.toString(),
+              credentials: 'include'         //解决跨域问题
+            }).then((response) => {
+                console.log(response)
+                if (response.status === 200) {
+                  this.props.history.push("/")
+                } else {
+                    console.log("error")
+                }
+            })
+            .catch(e => console.log('错误:', e)
+            )
         }
       });
     }
@@ -53,7 +81,7 @@ import {
     }
   }
   
-  const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
+  const WrappedNormalLoginForm = withRouter(Form.create({ name: 'normal_login' })(NormalLoginForm));
   
 
 class Login extends Component {
