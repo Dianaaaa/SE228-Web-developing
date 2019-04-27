@@ -1,0 +1,7 @@
+.deal .img-decoration img {
+    transform: translate(0, -15%);
+    
+}
+.deal .img-decoration {
+    margin-bottom: 3rem;
+}

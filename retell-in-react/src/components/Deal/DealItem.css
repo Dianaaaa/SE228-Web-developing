@@ -1,0 +1,31 @@
+.dealitem {
+    width: 60%;
+    /* background-color: red; */
+    margin-left: auto;
+    margin-right: auto;
+    /* height: 50rem; */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.ant-card-bordered {
+    border-color:#8f1537;
+}
+
+.ant-card-head {
+    border-bottom: 1px solid #8f1537;
+}
+
+.info-row {
+    padding-left: 2rem;
+    font-weight: 400;
+    font-size: 1rem;
+}
+.info-row p {
+    text-align: left;
+    /* padding: 1rem; */
+}
+
+.info-row span {
+    font-size:1.5rem;
+
+}

@@ -10,6 +10,7 @@ import BookDetails from './containers/BookDetails'
 import ShoppingCart from './containers/ShoppingCart'
 import Navigator from './components/Navigator'
 import Admin from './containers/Admin'
+import Deal from './containers/Deal'
 import PrivateRoute from './utils/PrivateRoute'
 
 
@@ -89,6 +90,8 @@ class App extends Component {        //react component 组件。
         <Route exact path='/book-details/:id' component={BookDetails}/>
         
         <Route exact path='/cart' component={ShoppingCart}/>
+
+        <Route exact path='/deal' component={Deal}/>
 
         <Route exact path='/admin' render={() => (
           <Admin

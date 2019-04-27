@@ -1,0 +1,22 @@
+.book-item .ant-card-bordered{
+    border: 1px solid #e8e8e8;
+
+}
+
+.book-item img {
+    width: 50%;
+}
+
+.book-item .book-name {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.book-item .book-writer {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.book-item .name, .cost {
+    margin-top: 1rem;
+}

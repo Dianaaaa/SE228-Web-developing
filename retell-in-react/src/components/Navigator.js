@@ -38,7 +38,7 @@ class Navigator extends Component {
                     <a target="_blank" rel="noopener noreferrer" href="https://github.com/Dianaaaa">我的账户</a>
                 </Menu.Item>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/Dianaaaa">我的订单</a>
+                    <Link to="/deal">我的订单</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <a target="_blank" rel="noopener noreferrer" href="https://github.com/Dianaaaa">我的收藏</a>
