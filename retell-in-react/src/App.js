@@ -29,7 +29,8 @@ class App extends Component {        //react component 组件。
   state = {
       curArea: '北京',
       cateQuery: "1",
-      cate: []
+      cate: [],
+      isRegistered: 0
   }
   setArea = (name) => {
     // e.preventDefault()

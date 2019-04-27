@@ -1,9 +1,10 @@
 package com.retell.retellbackend.controller;
 
-import com.retell.retellbackend.domain.User;
+import com.retell.retellbackend.domain.UserEntity;
 import com.retell.retellbackend.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -16,7 +17,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/signin", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String signIn(@RequestBody User user){
+    public String signIn(@RequestBody UserEntity user){
         JSONObject result = new JSONObject();
         Boolean check = service.checkUserName(user.getUsername());
         if (!check) {
@@ -28,6 +29,9 @@ public class UserController {
 //        userinfo.put("username", user.getUsername());
 //        userinfo.put("password", user.getPassword());
 //        userinfo.put("email", user.getEmail());
+        String password = user.getPassword();
+        password = new BCryptPasswordEncoder().encode(password);
+        user.setPassword(password);
         service.createUser(user);
         result.put("status", 200);
         result.put("msg", "User created");
@@ -37,7 +41,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/login", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-        public String Login(@RequestBody User user){
+        public String Login(@RequestBody UserEntity user){
         JSONObject result = new JSONObject();
         result.put("status", 200);
         result.put("msg", "User created");

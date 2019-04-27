@@ -6,12 +6,16 @@ import { Tabs, Row, Col } from 'antd';
 const TabPane = Tabs.TabPane;
 
 function generateBookRow(n) {
+  
   let booksRow = []
   // console.log("n", n)
   // console.log(booksAll[n-1])
   // console.log(booksAll[n-1].id)
   // console.log(booksAll[n-1].books)
   for (var i = 0; i < 9; i++) {
+    if (typeof(booksAll[i]) == "undefined") {
+      return;
+    }
     if (booksAll[i].id === n) {
       booksRow = booksAll[i].books
     }
@@ -46,7 +50,7 @@ class BookTab extends Component {
       cateBooks: []
     }
     
-      componentWillMount() {
+      componentDidMount() {
         for (var i = 1; i <= 9; i++) {
           let id = i
           fetch(

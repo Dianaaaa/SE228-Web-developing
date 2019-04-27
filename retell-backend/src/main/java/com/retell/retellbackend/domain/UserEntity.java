@@ -1,6 +1,8 @@
 package com.retell.retellbackend.domain;
 
-public class User {
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+public class UserEntity {
     private Integer ID;
     private String username;
     private String password;
@@ -8,9 +10,9 @@ public class User {
     private String role;
     private Integer status;
 
-    public User(){}
+    public UserEntity(){}
 
-    public User(Integer ID, String username, String password, String email, String role, Integer status) {
+    public UserEntity(Integer ID, String username, String password, String email, String role, Integer status) {
         this.ID = ID;
         this.username = username;
         this.password = password;
