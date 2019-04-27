@@ -55,14 +55,14 @@ public class BookService {
     public List getBookByCateIDLimited(Integer ID) {
         String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book WHERE category = ? limit 8";
         List<Map<String, Object>> results = jdbc.queryForList(sql, ID);
-        System.out.print(results);
+//        System.out.print(results);
         return results;
     }
 
     public List getBookByCateID(Integer ID) {
         String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book WHERE category = ?";
         List<Map<String, Object>> results = jdbc.queryForList(sql, ID);
-        System.out.print(results);
+//        System.out.print(results);
         return results;
     }
 
@@ -76,7 +76,7 @@ public class BookService {
     public List bookDump(List<Map<String, Object>> books) {
         List objects = new ArrayList();
         for (int i = 0; i < books.size(); i++) {
-            System.out.print(books.get(i));
+//            System.out.print(books.get(i));
             JSONObject result = new JSONObject();
             result.put("author", books.get(i).get("author"));
             result.put("prev_cost", books.get(i).get("prev_cost"));

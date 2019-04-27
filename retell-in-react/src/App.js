@@ -10,6 +10,7 @@ import BookDetails from './containers/BookDetails'
 import ShoppingCart from './containers/ShoppingCart'
 import Navigator from './components/Navigator'
 import Admin from './containers/Admin'
+import PrivateRoute from './utils/PrivateRoute'
 
 
 
@@ -24,13 +25,9 @@ const areaList = [
 ]
 
 
-
 class App extends Component {        //react component 组件。
   state = {
-      curArea: '北京',
-      cateQuery: "1",
-      cate: [],
-      isRegistered: 0
+      curArea: '北京'
   }
   setArea = (name) => {
     // e.preventDefault()
@@ -40,30 +37,8 @@ class App extends Component {        //react component 组件。
     }))
   }
 
-  setCateQuery = (name) => {
-    // e.preventDefault()
-    // console.log(e)
-    this.setState(() => ({
-        cateQuery: name
-    }))
-  }
 
-  componentDidMount() {
-    fetch(
-      'http://localhost:8080/cate', {
-        method:'GET',
-      }).then((response) => {
-        console.log(response)
-        response.json().then((data) => {
-          console.log(data['cate']);
-          this.setState(() => ({
-            cate: data['cate']
-          }))
-        });
-      })
-      .catch(e => console.log('错误:', e)
-      )
-    }
+
 
   componentDidUpdate(prevProps, prevState) {
         console.log("prevState.curArea", prevState.curArea);
@@ -96,23 +71,11 @@ class App extends Component {        //react component 组件。
         </header>
         )}/>
 
-        <Route exact path='/' render={() => (
-          <Home 
-          cateQuery = {this.state.cateQuery}
-          onCateQuery = {this.setCateQuery}
-          cate = {this.state.cate}
-          />
-        )}/>
+        <Route exact path='/' component={Home}/>
         
-        <Route exact path='/signin' render={() => (
-          <Signin
-          />
-        )}/>
+        <Route exact path='/signin' component={Signin}/>
 
-        <Route exact path='/login' render={() => (
-          <Login
-          />
-        )}/>
+        <Route exact path='/login' component={Login}/>
 
         <Route exact path='/book-view/cate/:id' component={BookView}/>
          {/* render={() => (
@@ -125,10 +88,7 @@ class App extends Component {        //react component 组件。
 
         <Route exact path='/book-details/:id' component={BookDetails}/>
         
-        <Route exact path='/cart' render={() => (
-          <ShoppingCart
-          />
-        )}/>
+        <Route exact path='/cart' component={ShoppingCart}/>
 
         <Route exact path='/admin' render={() => (
           <Admin

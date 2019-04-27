@@ -1,25 +1,67 @@
 import React, {Component} from 'react'
 import './CartItem.css'
+import {Link} from 'react-router-dom'
 import {Row, Col, Divider, Button, Icon} from 'antd'
 
 class CartItem extends Component {
     state = {
-        amount: 1
+        cur_cost: this.props.cur_cost,
+        amount: this.props.ammount
     }
 
     incr = () => {
         if (this.state.amount < 99) {
+            this.props.setSum(this.state.cur_cost, 1)
             this.setState((currentState) => ({
                 amount: currentState.amount + 1
             }))
+            fetch(
+                "http://localhost:8080/cart/1/" + this.props.bookID + "/" + (this.state.amount+1), {
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                  },
+                  method:'POST',
+                //   body: formData.toString(),
+                  credentials: 'include'         //解决跨域问题
+                }).then((response) => {
+                    console.log(response)
+                    if (response.status === 200) {
+                        console.log("ok")
+                    //   this.props.history.push("/")
+                    } else {
+                        console.log("error")
+                    }
+                })
+                .catch(e => console.log('错误:', e)
+                )
         } 
     }
 
     decr = () => {
         if (this.state.amount > 1) {
+            this.props.setSum(this.state.cur_cost, 0)
             this.setState((currentState) => ({
                 amount: currentState.amount - 1
             }))
+            fetch(
+                "http://localhost:8080/cart/1/" + this.props.bookID + "/" + (this.state.amount-1), {
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                  },
+                  method:'POST',
+                //   body: formData.toString(),
+                //   credentials: 'include'         //解决跨域问题
+                }).then((response) => {
+                    console.log(response)
+                    if (response.status === 200) {
+                        console.log("ok")
+                    //   this.props.history.push("/")
+                    } else {
+                        console.log("error")
+                    }
+                })
+                .catch(e => console.log('错误:', e)
+                )
         } 
     }
 
@@ -34,29 +76,31 @@ class CartItem extends Component {
     }
 
     render () {
-        
+        const {bookID, cur_cost, name, author, front_page} = this.props
         return (
             <div className='cart-item'>
                 <Divider />
                 <Row>
                     
                     <Col span={4}>
+                        <Link to={'/book-details/'+ bookID}>
                         <div className='good'>
-                            <img src={require('./../assets/imgs/book-4.jpg')} alt='book'/>
+                            <img src={front_page} alt='book'/>
                         </div>
+                        </Link>
                     </Col>
                     <Col span={1}>
                         <Divider type="vertical" />
                     </Col>
                     <Col span={6}>
                         <div className='name'>
-                            <p>偷书贼（The Book Thief)</p>
-                            <span class='book-writer'>Markus Zusak</span>
+                            <p>{name}</p>
+                            <span className='book-writer'>{author}</span>
                         </div>
                     </Col>
                     <Col span={4}>
                         <div className='cost'>
-                            <p>单价: <span className='cur-cost'>￥22</span> </p>
+                            <p>单价: <span className='cur-cost'>{cur_cost}</span> </p>
                         </div>
                     </Col>
                     <Col span={6}>
@@ -65,7 +109,7 @@ class CartItem extends Component {
                               <Button type="primary" onClick={this.decr}>
                                 <Icon type="left" />
                               </Button>
-                              <div class='amount-show'>{this.state.amount}</div>
+                              <div className='amount-show'>{this.state.amount}</div>
                               <Button type="primary" onClick={this.incr}>
                                 <Icon type="right" />
                               </Button>
