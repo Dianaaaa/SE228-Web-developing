@@ -16,7 +16,7 @@ class CartItem extends Component {
                 amount: currentState.amount + 1
             }))
             fetch(
-                "http://localhost:8080/cart/1/" + this.props.bookID + "/" + (this.state.amount+1), {
+                "http://localhost:8080/cart/" + this.props.bookID + "/" + (this.state.amount+1), {
                   headers: {
                       'Content-Type': 'application/x-www-form-urlencoded'
                   },
@@ -50,7 +50,7 @@ class CartItem extends Component {
                   },
                   method:'POST',
                 //   body: formData.toString(),
-                //   credentials: 'include'         //解决跨域问题
+                  credentials: 'include'         //解决跨域问题
                 }).then((response) => {
                     console.log(response)
                     if (response.status === 200) {

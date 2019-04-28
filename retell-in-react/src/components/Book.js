@@ -17,7 +17,7 @@ class Book extends Component {
                 <div className='book-card-detail'>
                     <p className='book-card-name'><Link to={'/book-details/'+ id}>{name}</Link></p>
                     <p className='book-card-writer'>{author}</p>
-                    <p className='book-card-cost'><span className='cur-cost'>{cur_cost}</span><span className='prev-cost'>{prev_cost}</span></p>
+                    <p className='book-card-cost'><span className='cur-cost'>{cur_cost.toFixed(2)}</span><span className='prev-cost'>{prev_cost.toFixed(2)}</span></p>
                 </div>
             </div>
         )

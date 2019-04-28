@@ -76,9 +76,15 @@ public class BookController {
     @ResponseBody
     @RequestMapping(value="/book/cate/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String getBookByCate(@PathVariable Integer ID){
-        List<Map<String, Object>> books = service.getBookByCateID(ID);
+        List objects;
+        if (ID == 10086) {
+            List<Map<String, Object>> books = service.getAllBook();
+            objects = service.bookDump(books);
+        } else {
+            List<Map<String, Object>> books = service.getBookByCateID(ID);
+            objects = service.bookDump(books);
+        }
 
-        List objects = service.bookDump(books);
         JSONObject response = new JSONObject();
 
         response.put("books", objects);

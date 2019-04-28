@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import BookShowPages from './../components/BookShowPages'
 import Footer from './../components/Footer'
-import SearchBar from './../components/SearchBar'
 import {Col, Input, Row, Collapse, Divider} from 'antd'
 import './BookView.css'
 
@@ -10,7 +9,7 @@ import './BookView.css'
 const Panel = Collapse.Panel;
 
 
-class BookView extends Component {
+class BookSearchView extends Component {
   state = {
     booklist: [],
     cate: []
@@ -67,7 +66,18 @@ class BookView extends Component {
                 <div className='img-decoration'>
                     <img src={require('./../assets/imgs/retell-2.jpg')} alt='retell-2'/>
                 </div>
-                <SearchBar />
+                <div className='retell-view-search-bar'>
+                    <Col span={4}>
+                        <img src={require('./../assets/logo.png')} alt='logo' className='retell-logo'/>
+                    </Col>
+                    <Col span={4} offset={8}>
+                        <Input.Search
+                          placeholder="input search text"
+                          onSearch={value => console.log(value)}
+                          enterButton
+                        />
+                    </Col>
+                </div>
                 <div className='white-space'> &nbsp;</div>
 
                 <div className='book-view-area'>
@@ -108,4 +118,4 @@ class BookView extends Component {
     }
 }
 
-export default BookView
+export default BookSearchView

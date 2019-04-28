@@ -66,6 +66,12 @@ public class BookService {
         return results;
     }
 
+    public List getAllBook() {
+        String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book";
+        List<Map<String, Object>> results = jdbc.queryForList(sql);
+        return results;
+    }
+
 //    public List getBookByCateName(String name) {
 //        String sql = "SELECT ID from book_category where name = ?";
 //        Map<String, Object> ID = jdbc.queryForMap(sql, name);

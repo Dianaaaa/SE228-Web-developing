@@ -1,6 +1,8 @@
 package com.retell.retellbackend.controller;
 
+import java.security.Principal;
 import com.retell.retellbackend.service.CartService;
+import com.retell.retellbackend.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,15 @@ public class CartController {
     @Autowired
     public CartService service;
 
+    @Autowired
+    public UserService userService;
+
 
     @RequestMapping(value="/cart", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getCart(){
-        List items = service.getCartByUser(1);
+    public String getCart(Principal principal){
+        String username = principal.getName();
+        Integer userID = userService.getIDByName(username);
+        List items = service.getCartByUser(userID);
         JSONObject result = new JSONObject();
         result.put("status", 200);
         result.put("msg", "OK");
@@ -24,8 +31,11 @@ public class CartController {
         return result.toString();
     }
 
-    @RequestMapping(value="/cart/{userID}/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String changeAmmount(@PathVariable Integer userID, @PathVariable Integer bookID, @PathVariable Integer ammount){
+    @RequestMapping(value="/cart/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String changeAmmount(@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
+        String username = principal.getName();
+        Integer userID = userService.getIDByName(username);
+
         Boolean result = service.updateAmmount(userID, bookID, ammount);
         JSONObject res = new JSONObject();
         res.put("status", 200);
@@ -35,8 +45,11 @@ public class CartController {
     }
 
     @RequestMapping(value="/cart/add/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String changeAmmount(@PathVariable Integer bookID, @PathVariable Integer ammount){
-        service.addToCart(1, bookID, ammount);
+    public String addBookToCart(@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
+        String username = principal.getName();
+        Integer userID = userService.getIDByName(username);
+
+        service.addToCart(userID, bookID, ammount);
         JSONObject res = new JSONObject();
         res.put("status", 200);
         res.put("msg", "OK");

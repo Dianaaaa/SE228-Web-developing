@@ -6,28 +6,40 @@ import BookItem from "./BookItem"
 
 class DealItem extends Component {
     render() {
+        const {item} = this.props 
         return (
             <div className = "dealitem">
             <Card
-              title={"订单号："+ 1}
+              title={"订单号："+ item.ID}
             //   extra={<a href="#">More</a>}
             >
-              <BookItem />
-              <BookItem />
+                {
+                    item.books.map((book) => (
+                        <BookItem 
+                                bookID = {book.bookID}
+                                cur_cost = {book.cur_cost}
+                                name = {book.name}
+                                author = {book.author}
+                                ammount = {book.ammount}
+                                front_page = {book.front_page}
+                                key = {book.bookID}
+                                />
+                    ))
+                }
               <Divider dashed />
               <Row>
                   <div className="info-row">
                 <Col span={8}>
-                    <p>用户名：{"user"}</p>
-                    <p>手机：{"18217508975"}</p>
+                    <p>收件人：{item.receiver}</p>
+                    <p>手机：{item.phone}</p>
                    
                 </Col>
                 <Col span={8}>
-                    <p>地址：{"上海市闵行区东川路800号交通大学"}</p>
-                    <p>下单时间：{"2019-04-24 18:00:00"}</p>
+                    <p>地址：{item.address}</p>
+                    <p>下单时间：{item.time}</p>
                 </Col>
                 <Col span={8}>
-                    <span>总价:<span className='cur-cost'>{14}</span></span>
+                    <span>总价:<span className='cur-cost'>{item.total_price.toFixed(2)}</span></span>
                 </Col>
                 </div>
               </Row>

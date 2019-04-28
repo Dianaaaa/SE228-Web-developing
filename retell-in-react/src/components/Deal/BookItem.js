@@ -29,7 +29,7 @@ class BookItem extends Component {
                     </Col>
                     <Col span={4}>
                         <div className='cost'>
-                            <p>单价: <span className='cur-cost'>{cur_cost}</span> </p>
+                            <p>单价: <span className='cur-cost'>{cur_cost.toFixed(2)}</span> </p>
                         </div>
                     </Col>
                     <Col span={4}>

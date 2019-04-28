@@ -61,4 +61,10 @@ public class UserService {
         }
         return results;
     }
+
+    public Integer getIDByName(String username) {
+        String sql = "SELECT ID FROM user where username = ?";
+        Map<String, Object> usr = jdbc.queryForMap(sql, username);
+        return (Integer) usr.get("ID");
+    }
 }

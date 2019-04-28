@@ -10,18 +10,27 @@ class Comment extends Component {
     
     }
     render () {
-        const {content, score, time} = this.props
+        const {content, score, time, username} = this.props
         return (
             <div className='comment'>
                         <Row>
-                            <Col span={8}>
+                            <Col span={4}>
                         <div className='user-avatar'><img src={require('./../assets/imgs/avator2.jpg')} alt='avatar'/></div>
                         </Col>
+                        <Col span={4}>
+                            <div className="comment-username">
+                            <p>{username}</p>
+                            </div>
+                        </Col>
+                        <Col span={4}>
+                        </Col>
+                        <Col span={12}>
                         <div className='comment-body'>
                                 <div className='user-rating'><Rate disabled defaultValue={score} /></div>
                                 <div className='user-comment'>{content}</div>
                                 <div className='comment-time'>{time}</div>
                         </div> 
+                        </Col>
                         </Row>
                 
             </div>

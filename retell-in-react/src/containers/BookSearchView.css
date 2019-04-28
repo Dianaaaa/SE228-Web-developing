@@ -1,8 +1,8 @@
-/* .retell-view-search-bar {
+.retell-view-search-bar {
     padding: 1rem, 0, 0, 1rem;
     background: linear-gradient(to bottom, #fff, #f6f6f6f6);
     height: 5rem;
-} */
+}
 
 .img-decoration {
     width: 100%;
@@ -28,8 +28,4 @@
 .book-view .ant-divider-vertical {
     height: 50rem;
     margin-top: 1rem;
-}
-
-.book-view .retell-view-search-bar {
-    height: 3rem;
 }

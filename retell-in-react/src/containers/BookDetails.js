@@ -3,8 +3,10 @@ import Comment from './../components/Comment'
 import Footer from './../components/Footer'
 import {Col, Input, Row, Divider, Rate, Tooltip, Button, Tabs} from 'antd'
 import './BookDetails.css'
+import SearchBar from '../components/SearchBar';
 
 const TabPane = Tabs.TabPane;
+const { TextArea } = Input;
 window.backpath = "http://localhost:8080"
 
 function formatNumber(value) {
@@ -97,7 +99,9 @@ class BookDetails extends Component {
     author_detail: '',
     img_url: './../assets/imgs/book-4.jpg',
     comments: [],
-    ammount: 1
+    ammount: 1,
+    starvalue: 0,
+    content: ""
   }
 
   setammount = (value) => {
@@ -128,6 +132,42 @@ class BookDetails extends Component {
       .catch(e => console.log('错误:', e)
       )
 
+  }
+
+  handleComment = () => {
+    let bookID = this.props.match.params.id;
+    let score = this.state.starvalue
+    let content = this.state.content
+    const formData = JSON.stringify({"score": score, "bookID": bookID, "content": content})
+    fetch(
+      window.backpath + "/addcomment", {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method:'POST',
+        body: formData,
+        credentials: 'include'         //解决跨域问题
+      }).then((response) => {
+          console.log(response)
+          if (response.status === 200) {
+            // this.props.history.push("/")
+            alert("评论成功！")
+            window.location.href = window.location.href;
+          } else {
+              console.log("error")
+          }
+      })
+      .catch(e => console.log('错误:', e)
+      )
+
+  }
+
+  handleStarChange = (starvalue) => {
+    this.setState({ starvalue });
+  }
+
+  handleContentChange = (event) => {
+    this.setState({ content: event.target.value });
   }
 
 
@@ -172,7 +212,7 @@ class BookDetails extends Component {
   }
 
     render () {
-      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments } = this.state
+      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments, starvalue, content } = this.state
         // console.log(this.props);
         return (
             <div className='book-details'>
@@ -184,7 +224,8 @@ class BookDetails extends Component {
                 <div className='img-decoration'>
                     <img src={require('./../assets/imgs/retell-3.jpg')} alt='retell-2'/>
                 </div>
-                <div className='retell-view-search-bar'>
+                <SearchBar />
+                {/* <div className='retell-view-search-bar'>
                     <Col span={4}>
                         <img src={require('./../assets/logo.png')} alt='logo' className='retell-logo'/>
                     </Col>
@@ -195,7 +236,7 @@ class BookDetails extends Component {
                           enterButton
                         />
                     </Col>
-                </div>
+                </div> */}
                 <div className='white-space'> &nbsp;</div>
                 <Row>
                     <Col span={1}/>
@@ -247,6 +288,7 @@ class BookDetails extends Component {
                             content = {com.content}
                             score = {com.score}
                             time = {com.time}
+                            username = {com.username}
                             key = {com.ID}
                             />
                           ))
@@ -255,7 +297,25 @@ class BookDetails extends Component {
                             id = {this.props.match.params.id}
                             /> */}
                         </div>
-                        
+
+                        <div className="add-comment">
+                            <Row>
+                              <Col span={6}>
+                                <span className="add-comment-title">快来评论吧：</span>
+                              </Col>
+                              <Col span={12}>
+                                <Rate onChange={this.handleStarChange} value={starvalue}/>
+                                <br/>
+                                <TextArea rows={4} onChange={this.handleContentChange} value={content}/>
+                                
+                              </Col>
+                              <Col span={4}>
+                              <div className="comment-button">
+                              <Button onClick={this.handleComment}>提交评论</Button>
+                              </div>
+                              </Col>
+                            </Row>
+                        </div>
                     </Col>
                     <Col span={1}>
                     <Divider type="vertical" />

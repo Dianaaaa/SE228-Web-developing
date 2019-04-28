@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
+import { BackTop } from 'antd';
 import logo from './logo.svg';
 import './App.css';
 import Home from './containers/Home'
 import Signin from './containers/Signin'
 import Login from './containers/Login'
 import BookView from './containers/BookView'
+import BookSearchView from './containers/BookSearchView'
 import BookDetails from './containers/BookDetails'
 import ShoppingCart from './containers/ShoppingCart'
 import Navigator from './components/Navigator'
@@ -50,6 +52,7 @@ class App extends Component {        //react component 组件。
   render() {
     return (
       <div className="App">
+          <BackTop />
 
           <Navigator 
           areas = {areaList}
@@ -87,6 +90,7 @@ class App extends Component {        //react component 组件。
           onCateQuery = {this.setCateQuery}
           />
         )}/> */}
+        <Route exact path='/book-view/:key' component={BookSearchView}/>
 
         <Route exact path='/book-details/:id' component={BookDetails}/>
         

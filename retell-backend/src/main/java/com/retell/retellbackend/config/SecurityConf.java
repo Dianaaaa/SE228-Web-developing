@@ -69,8 +69,8 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**", "/cart/**", "/deal/**").permitAll()
-                .antMatchers("/msg").hasRole("USER")
+                .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**").permitAll()
+                .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment").hasRole("USER")
                 .and()
                 .formLogin().loginPage("/user")
                 .successHandler(new AuthenticationSuccessHandler() {

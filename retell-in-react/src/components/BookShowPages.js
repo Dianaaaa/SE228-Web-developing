@@ -5,12 +5,13 @@ import Book from './Book'
 
 function BookRow(booklist) {
     let Rows = []
-    // console.log(booksRow.length)
-    for (var j = 0; j < ((booklist.length)/4) + 1; j++) {
+    console.log("booklist",booklist.length)
+    for (var j = 0; j < ((booklist.length-1)/4) + 1; j++) {
       let row = []
-      for (var k = j * 6; (k < (j+1)*4 && k < booklist.length); k++) {
+      // console.log("j",j)
+      for (var k = j * 4; (k < (j+1)*4 && k < booklist.length); k++) {
         row.push(booklist[k])
-        // console.log(booksRow[k])
+        // console.log("k",k)
       }
       // console.log("row", row)
       Rows.push({id: j,row: row})

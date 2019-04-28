@@ -63,6 +63,35 @@ const Phoneform = Form.create({
       </Form>
     );
   });
+
+  const Receiverform = Form.create({
+    name: 'global_state',
+    onFieldsChange(props, changedFields) {
+      props.onChange(changedFields);
+    },
+    mapPropsToFields(props) {
+      return {
+        receiver: Form.createFormField({
+          ...props.receiver,
+          value: props.receiver.value,
+        }),
+      };
+    },
+    onValuesChange(_, values) {
+      console.log(values);
+    },
+  })((props) => {
+    const { getFieldDecorator } = props.form;
+    return (
+      <Form layout="inline">
+        <Form.Item label="receiver">
+          {getFieldDecorator('receiver', {
+            rules: [{ required: true, message: 'receiver is required!' }],
+          })(<Input />)}
+        </Form.Item>
+      </Form>
+    );
+  });
   
 
 class Dealcfm extends Component {
@@ -72,6 +101,9 @@ class Dealcfm extends Component {
             value: "",
           },
           address: {
+              value: ""
+          },
+          receiver: {
               value: ""
           },
         },
@@ -89,13 +121,14 @@ class Dealcfm extends Component {
           console.log("cfm")
           let phone = this.state.fields.phone.value
           let addr = this.state.fields.address.value
+          let receiver = this.state.fields.receiver.value
           let price = this.state.costsum
           if (phone === "" || addr === "") {
               alert("信息不全！确认失败。请填写信息")
               return
           }
           console.log(addr)
-          const formData = JSON.stringify({"phone": phone, "address": addr, "tot_price": price})
+          const formData = JSON.stringify({"phone": phone, "address": addr, "tot_price": price, "receiver": receiver})
           console.log(formData)
           fetch(
             window.backpath + "/deal/create", {
@@ -108,6 +141,7 @@ class Dealcfm extends Component {
             }).then((response) => {
                 console.log(response)
                 if (response.status === 200) {
+                    window.location.href = window.location.href;
                 //   this.props.history.push("/")
                 } else {
                     console.log("error")
@@ -122,6 +156,7 @@ class Dealcfm extends Component {
         fetch(
           'http://localhost:8080/cart', {
             method:'GET',
+            credentials: 'include'         //解决跨域问题
           }).then((response) => {
             console.log(response)
             response.json().then((data) => {
@@ -166,15 +201,20 @@ class Dealcfm extends Component {
                         <BookItem /> */}
                         <div className="price-card">
                             <Card>
-                                <p>总计：<span className='cur-cost'>{costsum}</span></p>
+                                <p>总计：<span className='cur-cost'>{costsum.toFixed(2)}</span></p>
                             </Card>
                         </div>
                         <div className="deal-form">
                         <Row>
+                            <div className="receiver">
+                            <Col span={6}>
+                            <Receiverform {...fields} onChange={this.handleFormChange} />
+                            </Col>
+                            </div>
                             <Col span={8}>
                             <Phoneform {...fields} onChange={this.handleFormChange} />
                             </Col>
-                            <Col span={16}>
+                            <Col span={10}>
                             <div className="addr">
                             <Addressform {...fields} onChange={this.handleFormChange} />
                             </div>

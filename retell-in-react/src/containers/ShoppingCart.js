@@ -4,6 +4,7 @@ import CartItem from './../components/CartItem'
 import Footer from './../components/Footer'
 import { Button, Icon, Col} from 'antd'
 import './ShoppingCart.css'
+import SearchBar from '../components/SearchBar';
 
 class ShoppingCart extends Component {
     state = {
@@ -26,6 +27,7 @@ class ShoppingCart extends Component {
         fetch(
           'http://localhost:8080/cart', {
             method:'GET',
+            credentials: 'include'         //解决跨域问题
           }).then((response) => {
             console.log(response)
             response.json().then((data) => {
@@ -59,6 +61,7 @@ class ShoppingCart extends Component {
                 <div className='img-decoration'>
                     <img src={require('./../assets/imgs/cart.jpg')} alt='retell-2'/>
                 </div>
+                <SearchBar />
                 <div className='cart-items'>
                 {
                     items.map((item) => (
