@@ -10,7 +10,7 @@ class DealItem extends Component {
             <div className = "dealitem">
             <Card
               title={"订单号："+ 1}
-              extra={<a href="#">More</a>}
+            //   extra={<a href="#">More</a>}
             >
               <BookItem />
               <BookItem />
@@ -27,7 +27,7 @@ class DealItem extends Component {
                     <p>下单时间：{"2019-04-24 18:00:00"}</p>
                 </Col>
                 <Col span={8}>
-                    <span>总价:{14.00}</span>
+                    <span>总价:<span className='cur-cost'>{14}</span></span>
                 </Col>
                 </div>
               </Row>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import CartItem from './../components/CartItem'
 import Footer from './../components/Footer'
 import { Button, Icon, Col} from 'antd'
@@ -7,7 +8,7 @@ import './ShoppingCart.css'
 class ShoppingCart extends Component {
     state = {
         items: [],
-        costsum: 0
+        costsum: 0,
     }
     setCostsum = (cost, flag) => {
         if (flag === 0) {
@@ -28,7 +29,7 @@ class ShoppingCart extends Component {
           }).then((response) => {
             console.log(response)
             response.json().then((data) => {
-            //   console.log(data['items']);
+              console.log(data['items']);
               let items = data['items']
               let sum = 0;
               for (var i = 0; i < items.length; i++) {
@@ -68,6 +69,7 @@ class ShoppingCart extends Component {
                         author = {item.author}
                         ammount = {item.ammount}
                         front_page = {item.front_page}
+                        cartID = {item.ID}
                         setSum = {this.setCostsum}
                         key = {item.bookID}
                         />
@@ -83,7 +85,7 @@ class ShoppingCart extends Component {
                         <p>总价：<span className='cur-cost'>{this.state.costsum.toFixed(2)}</span></p>
                     </div>
                     </Col>
-                    <Button type="primary">进入结算中心 <Icon type="arrow-right" /></Button>
+                    <Button type="primary"><Link to="/dealcfm">进入结算中心 <Icon type="arrow-right" /></Link></Button>
                 </div>
                 <div className='white-space'>&nbsp;</div>
                 <Footer />

@@ -11,9 +11,11 @@ import ShoppingCart from './containers/ShoppingCart'
 import Navigator from './components/Navigator'
 import Admin from './containers/Admin'
 import Deal from './containers/Deal'
+import Dealcfm from './containers/Dealcfm'
 import PrivateRoute from './utils/PrivateRoute'
 
 
+window.backpath = "http://localhost:8080"
 
 const areaList = [
   {name: '北京'},{name: '天津'},{name: '河北'},{name: '山西'},{name: '内蒙古'},
@@ -44,7 +46,6 @@ class App extends Component {        //react component 组件。
   componentDidUpdate(prevProps, prevState) {
         console.log("prevState.curArea", prevState.curArea);
         console.log("this.state.curArea", this.state.curArea);
-        console.log("this.state.cateQuery", this.state.cateQuery)
 }
   render() {
     return (
@@ -53,7 +54,7 @@ class App extends Component {        //react component 组件。
           <Navigator 
           areas = {areaList}
           curArea = {this.state.curArea}
-          onChangeArea = {this.setState}
+          onChangeArea = {this.setArea}
           />
         <Route exact path='/react' render={() => (
           <header className="App-header">
@@ -92,6 +93,8 @@ class App extends Component {        //react component 组件。
         <Route exact path='/cart' component={ShoppingCart}/>
 
         <Route exact path='/deal' component={Deal}/>
+
+        <Route exact path='/dealcfm' component={Dealcfm}/>
 
         <Route exact path='/admin' render={() => (
           <Admin

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import {Row} from 'antd'
 import "./Deal.css"
 import DealItem from "../components/Deal/DealItem"

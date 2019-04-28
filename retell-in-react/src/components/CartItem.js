@@ -67,7 +67,27 @@ class CartItem extends Component {
 
     handleDelete = (e) => {
         e.preventDefault()
-        alert("删除")
+        fetch(
+            window.backpath + "/cart/delete/" + this.props.cartID, {
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              method:'POST',
+              // body: formData.toString(),
+              credentials: 'include'         //解决跨域问题
+            }).then((response) => {
+                console.log(response)
+                if (response.status === 200) {
+                //   this.props.history.push("/cart")
+                  alert("删除成功")
+                    window.location.href = window.location.href;
+                } else {
+                    console.log("error")
+                }
+            })
+            .catch(e => console.log('错误:', e)
+            )
+        // alert("删除")
     }
 
     handleCollect = (e) => {

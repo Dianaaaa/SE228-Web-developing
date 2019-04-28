@@ -5,6 +5,7 @@ import {Col, Input, Row, Divider, Rate, Tooltip, Button, Tabs} from 'antd'
 import './BookDetails.css'
 
 const TabPane = Tabs.TabPane;
+window.backpath = "http://localhost:8080"
 
 function formatNumber(value) {
     value += '';
@@ -26,8 +27,9 @@ function formatNumber(value) {
     onChange = (e) => {
       const { value } = e.target;
       const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
-      if ((!Number.isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+      if ((!Number.isNaN(value) && reg.test(value)) || value === '' || value === '-' || value < 1 || value > 99) {
         this.props.onChange(value);
+        this.props.setammount(value);
       }
     }
   
@@ -80,7 +82,7 @@ function formatNumber(value) {
     }
   
     render() {
-      return <NumericInput style={{ width: 120 }} value={this.state.value} onChange={this.onChange} />;
+      return <NumericInput style={{ width: 120 }} value={this.state.value} onChange={this.onChange} setammount = {this.props.setammount}/>;
     }
   }
 
@@ -94,7 +96,38 @@ class BookDetails extends Component {
     book_detail: '',
     author_detail: '',
     img_url: './../assets/imgs/book-4.jpg',
-    comments: []
+    comments: [],
+    ammount: 1
+  }
+
+  setammount = (value) => {
+    this.setState(() => ({
+      ammount: value
+    }))
+  }
+
+  handleCart = () => {
+    let bookID = this.props.match.params.id;
+    fetch(
+      window.backpath + "/cart/add/" + bookID + "/" + this.state.ammount, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method:'POST',
+        // body: formData.toString(),
+        credentials: 'include'         //解决跨域问题
+      }).then((response) => {
+          console.log(response)
+          if (response.status === 200) {
+            // this.props.history.push("/")
+            alert("成功加入购物车")
+          } else {
+              console.log("error")
+          }
+      })
+      .catch(e => console.log('错误:', e)
+      )
+
   }
 
 
@@ -186,9 +219,11 @@ class BookDetails extends Component {
                                     </div>
                                     <div className='book-buttons'>
                                         <p>数量:</p>
-                                        <NumericInputDemo />
-                                        <Button type="primary">加入购物车</Button>
-                                        <Button type="primary">立即购买</Button>
+                                        <NumericInputDemo 
+                                        setammount = {this.setammount}
+                                        />
+                                        <Button type="primary" onClick={this.handleCart}>加入购物车</Button>
+                                        <Button type="primary" onClick={this.handleDeal}>立即购买</Button>
                                     </div>
                                 </Col>
                                 

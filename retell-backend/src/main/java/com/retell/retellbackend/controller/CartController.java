@@ -33,4 +33,22 @@ public class CartController {
         res.put("result", result);
         return res.toString();
     }
+
+    @RequestMapping(value="/cart/add/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String changeAmmount(@PathVariable Integer bookID, @PathVariable Integer ammount){
+        service.addToCart(1, bookID, ammount);
+        JSONObject res = new JSONObject();
+        res.put("status", 200);
+        res.put("msg", "OK");
+        return res.toString();
+    }
+
+    @RequestMapping(value="/cart/delete/{cartID}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public String deleteCart(@PathVariable Integer cartID){
+        service.deleteCart(cartID);
+        JSONObject res = new JSONObject();
+        res.put("status", 200);
+        res.put("msg", "OK");
+        return res.toString();
+    }
 }

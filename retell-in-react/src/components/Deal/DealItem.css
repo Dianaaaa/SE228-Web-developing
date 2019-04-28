@@ -7,10 +7,12 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+.dealitem
 .ant-card-bordered {
     border-color:#8f1537;
 }
 
+.dealitem
 .ant-card-head {
     border-bottom: 1px solid #8f1537;
 }
