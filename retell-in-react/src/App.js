@@ -32,7 +32,8 @@ const areaList = [
 
 class App extends Component {        //react component 组件。
   state = {
-      curArea: '北京'
+      curArea: '北京',
+      searchkey: "",
   }
   setArea = (name) => {
     // e.preventDefault()
@@ -42,12 +43,19 @@ class App extends Component {        //react component 组件。
     }))
   }
 
+  setSearchKey = (key) => {
+    this.setState(() => ({
+      searchkey: key
+    }))
+  }
+
 
 
 
   componentDidUpdate(prevProps, prevState) {
         console.log("prevState.curArea", prevState.curArea);
         console.log("this.state.curArea", this.state.curArea);
+        console.log("this.state.curArea", this.state.searchkey);
 }
   render() {
     return (

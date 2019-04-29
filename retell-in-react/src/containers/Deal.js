@@ -36,7 +36,9 @@ class Deal extends Component {
             <div className='img-decoration'>
                     <img src={require('./../assets/imgs/deal.jpg')} alt='deal'/>
             </div>
+
             <SearchBar />
+            
             {
                 items.map((item) => (
                     <Row key={item.ID}>

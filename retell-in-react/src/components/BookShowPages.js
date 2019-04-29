@@ -39,11 +39,16 @@ class BookShowPages extends Component {
       
     
     render () {
-        const { booklist } = this.props
+        const { booklist, query } = this.props
+        const showedBooks = query === ''
+        ? booklist
+        : booklist.filter((c) => (
+            c.name.toLowerCase().includes(query.toLowerCase()) || c.author.toLowerCase().includes(query.toLowerCase())
+        ))
         return (
             <div className='book-pages'>
                 <div className='book-section'>
-                {BookRow(booklist)}
+                {BookRow(showedBooks)}
                 </div>
                 <div className='page-section'>
                 <Pagination showQuickJumper pageSize={16} defaultCurrent={1} total={1} onChange={this.onChange} />

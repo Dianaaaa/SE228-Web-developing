@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import {withRouter } from 'react-router-dom'
 import './Footer.css'
-import {Row, Col, Icon, Input} from 'antd'
+import {Col,Input} from 'antd'
 
 class SearchBar extends Component {
+
+    handleSearch = (value) => {
+        this.props.history.push("/book-view/"+value)
+        window.location.href = window.location.href;
+    }
     render () {
         return (
                     <div className='retell-search-bar'>
@@ -12,7 +18,7 @@ class SearchBar extends Component {
                         <Col span={6} offset={12}>
                             <Input.Search
                               placeholder="input search text"
-                              onSearch={value => console.log(value)}
+                              onSearch={value => this.handleSearch(value)}
                               enterButton
                             />
                         </Col>
@@ -21,4 +27,4 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar
+export default withRouter(SearchBar)

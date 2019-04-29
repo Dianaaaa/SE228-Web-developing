@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import BookShowPages from './../components/BookShowPages'
 import Footer from './../components/Footer'
-import {Col, Input, Row, Collapse, Divider} from 'antd'
+import {Col,Row, Collapse, Divider} from 'antd'
 import './BookView.css'
+import SearchBar from '../components/SearchBar';
 
 
 const Panel = Collapse.Panel;
@@ -12,7 +13,8 @@ const Panel = Collapse.Panel;
 class BookSearchView extends Component {
   state = {
     booklist: [],
-    cate: []
+    cate: [],
+    query: this.props.match.params.key
   }
 
   setCateQuery = (e) => {
@@ -22,8 +24,9 @@ class BookSearchView extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match.params.key)
     fetch(
-      'http://localhost:8080/book/cate/' + this.props.match.params.id, {
+      'http://localhost:8080/book/cate/10086', {
         method:'GET',
       }).then((response) => {
         // console.log(response)
@@ -55,7 +58,7 @@ class BookSearchView extends Component {
     
     render () {
         // const { areas, curArea, onChangeArea } = this.props
-        const {booklist, cate} = this.state
+        const {booklist, cate, query} = this.state
         return (
             <div className='book-view'>
                 {/* <Navigator 
@@ -66,18 +69,7 @@ class BookSearchView extends Component {
                 <div className='img-decoration'>
                     <img src={require('./../assets/imgs/retell-2.jpg')} alt='retell-2'/>
                 </div>
-                <div className='retell-view-search-bar'>
-                    <Col span={4}>
-                        <img src={require('./../assets/logo.png')} alt='logo' className='retell-logo'/>
-                    </Col>
-                    <Col span={4} offset={8}>
-                        <Input.Search
-                          placeholder="input search text"
-                          onSearch={value => console.log(value)}
-                          enterButton
-                        />
-                    </Col>
-                </div>
+                <SearchBar />
                 <div className='white-space'> &nbsp;</div>
 
                 <div className='book-view-area'>
@@ -105,6 +97,7 @@ class BookSearchView extends Component {
                         <div className='book-show-pages'>
                             <BookShowPages
                             booklist = {booklist}
+                            query = {query}
                             />
                             
                         </div>

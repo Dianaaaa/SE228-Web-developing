@@ -3,8 +3,9 @@ import Catagories from './../components/Catagories'
 import BookShow from './../components/BookShow'
 import BookTab from './../components/BookTab'
 import Footer from './../components/Footer'
-import { Carousel, Input, Row, Col } from 'antd';
+import { Carousel, Row, Col } from 'antd';
 import './Home.css'
+import SearchBar from '../components/SearchBar';
 
 class Home extends Component {
     state = {
@@ -47,20 +48,9 @@ class Home extends Component {
                     </div>
                 </Carousel>
                 
-                <Row>
-                    <div className='retell-search-bar'>
-                        <Col span={4}>
-                            <img src={require('./../assets/logo.png')} alt='logo' className='retell-logo'/>
-                        </Col>
-                        <Col span={6} offset={12}>
-                            <Input.Search
-                              placeholder="input search text"
-                              onSearch={value => console.log(value)}
-                              enterButton
-                            />
-                        </Col>
-                    </div>.
-                </Row>
+                <SearchBar />
+
+                <br/>
 
                 <Row>
                     <Col span={8}>

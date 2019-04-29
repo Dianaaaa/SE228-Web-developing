@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import BookShowPages from './../components/BookShowPages'
 import Footer from './../components/Footer'
 import SearchBar from './../components/SearchBar'
-import {Col, Input, Row, Collapse, Divider} from 'antd'
+import {Col,Row, Collapse, Divider} from 'antd'
 import './BookView.css'
 
 

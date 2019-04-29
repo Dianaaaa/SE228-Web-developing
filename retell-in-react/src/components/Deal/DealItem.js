@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import {Card, Divider, Row, Col} from 'antd'
 import "./DealItem.css"
 import BookItem from "./BookItem"
