@@ -5,6 +5,9 @@ import { Menu, Dropdown, Icon, Row, Col } from 'antd'
 import './Navigator.css';
 
 class Navigator extends Component {
+    state = {
+        username: "未登录"
+    }
     
     ChangeArea = (e) => {
         e.preventDefault()
@@ -14,6 +17,30 @@ class Navigator extends Component {
 
     pvtDefault = (e) => {
         e.preventDefault()
+    }
+
+    componentDidMount() {
+        fetch(
+            'http://localhost:8080/getname', {
+              method:'GET',
+              credentials: 'include'         //解决跨域问题
+            }).then((response) => {
+              console.log(response)
+              if (response.status === 200) {
+                response.json().then((data) => {
+                    console.log(data['name']);
+                    this.setState(() => ({
+                      username: data['name']
+                    }))
+                    
+                  });
+              } else {
+                  console.log("未登录")
+              }
+              
+            })
+            .catch(e => console.log('错误:', e)
+            )
     }
 
     render () {
@@ -63,7 +90,7 @@ class Navigator extends Component {
                     <Breadcrumb.Item>
                         <Dropdown overlay={accountMenu} >
                             <Link className="ant-dropdown-link" to="/login">
-                              我的RETELL <Icon type="down" />
+                              {this.state.username} <Icon type="down" />
                             </Link>
                         </Dropdown>
                     </Breadcrumb.Item>

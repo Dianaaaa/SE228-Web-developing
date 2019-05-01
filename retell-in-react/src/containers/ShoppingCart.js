@@ -73,6 +73,7 @@ class ShoppingCart extends Component {
                         ammount = {item.ammount}
                         front_page = {item.front_page}
                         cartID = {item.ID}
+                        stock = {item.stock}
                         setSum = {this.setCostsum}
                         key = {item.bookID}
                         />

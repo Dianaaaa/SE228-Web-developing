@@ -14,6 +14,7 @@ import Navigator from './components/Navigator'
 import Admin from './containers/Admin'
 import Deal from './containers/Deal'
 import Dealcfm from './containers/Dealcfm'
+import SingleDealcfm from './containers/SingleDealcfm'
 import PrivateRoute from './utils/PrivateRoute'
 
 
@@ -107,6 +108,8 @@ class App extends Component {        //react component 组件。
         <Route exact path='/deal' component={Deal}/>
 
         <Route exact path='/dealcfm' component={Dealcfm}/>
+        
+        <Route exact path='/dealcfmsingle' component={SingleDealcfm}/>
 
         <Route exact path='/admin' render={() => (
           <Admin

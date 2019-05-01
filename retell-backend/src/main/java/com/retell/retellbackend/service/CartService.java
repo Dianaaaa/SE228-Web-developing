@@ -16,7 +16,7 @@ public class CartService {
     private JdbcTemplate jdbc;
 
     public List  getCartByUser(Integer userID) {
-        String sql = "select cart.ID, cart.ammount, cart.bookID, book.cur_cost, book.name, book.front_page, book.author From book JOIN cart ON book.ID = Cart.bookID WHERE cart.userID = ?";
+        String sql = "select cart.ID, cart.ammount, cart.bookID, book.cur_cost, book.name, book.front_page, book.author, book.stock From book JOIN cart ON book.ID = Cart.bookID WHERE cart.userID = ?";
         List<Map<String, Object>> results = jdbc.queryForList(sql, userID);
 
         List objects = new ArrayList();
@@ -29,6 +29,7 @@ public class CartService {
             obj.put("front_page", results.get(i).get("front_page"));
             obj.put("author", results.get(i).get("author"));
             obj.put("cartID", results.get(i).get("ID"));
+            obj.put("stock", results.get(i).get("stock"));
 
             objects.add(obj);
         }

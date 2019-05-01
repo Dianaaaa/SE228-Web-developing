@@ -42,13 +42,13 @@ public class RetellBackendController {
 //    }
 
     @RequestMapping(value="/cate", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getCate(){
+    public JSONObject getCate(){
         List cates = service.getCategory();
         JSONObject result = new JSONObject();
         result.put("status", 200);
         result.put("msg", "OK");
         result.put("cate", cates);
-        return result.toJSONString();
+        return result;
     }
 
 

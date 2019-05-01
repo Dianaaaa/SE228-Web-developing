@@ -98,6 +98,7 @@ class BookSearchView extends Component {
                             <BookShowPages
                             booklist = {booklist}
                             query = {query}
+                            search = {1}
                             />
                             
                         </div>

@@ -36,6 +36,7 @@ public class BookService {
         cur_book.setPrevCost((BigDecimal)result.get("prev_cost"));
         cur_book.setBookDetail((String)result.get("book_detail"));
         cur_book.setAuthorDetail((String)result.get("author_detail"));
+        cur_book.setStock((Integer) result.get("stock"));
 
         return cur_book;
     }

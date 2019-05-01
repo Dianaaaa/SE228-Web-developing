@@ -35,9 +35,26 @@ public class DealService {
             jdbc.execute(sqlDealBook);
             String sqlDeleteCart = "DELETE FROM cart WHERE ID = " + cartItems.get(i).get("ID");
             jdbc.execute(sqlDeleteCart);
+            String sqlDeleteBook = "UPDATE book SET stock = stock - " + cartItems.get(i).get("ammount") + " WHERE ID = " + cartItems.get(i).get("bookID");
+            jdbc.execute(sqlDeleteBook);
         }
 
         return Boolean.TRUE;
+    }
+
+    public void createDealOneBook(String phone, String address, String receiver,BigDecimal total_price, Integer bookID, Integer ammount, Integer userID) {
+        String sqlDeal = "INSERT INTO deal(phone, address, receiver, total_price, userID) values (\"" + phone + "\",\"" + address + "\",\"" + receiver + "\", " + total_price.toString() + "," + userID + ")";
+        jdbc.execute(sqlDeal);
+        String sqlID = "SELECT LAST_INSERT_ID()";
+        Map<String, Object> ID = jdbc.queryForMap(sqlID);
+        Integer dealID = Integer.valueOf(ID.get("LAST_INSERT_ID()").toString());
+        String sqlDealBook = "INSERT INTO deal_book(bookID, ammount, dealID) values(" + bookID.toString() + "," + ammount.toString() + "," + dealID + ")";
+        jdbc.execute(sqlDealBook);
+        String sqlDeleteBook = "UPDATE book SET stock = stock - " + ammount.toString() + " where ID = " + bookID.toString();
+        System.out.print("\""+sqlDeleteBook+"\"");
+        jdbc.execute(sqlDeleteBook);
+
+        return;
     }
 
     public List  getDealByUser(Integer userID) {

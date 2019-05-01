@@ -31,6 +31,7 @@ class BookView extends Component {
         response.json().then((data) => {
           console.log(data);
           let list = data['books']
+          console.log(list)
           this.setState(() => ({
             booklist: list
           }))
@@ -39,9 +40,9 @@ class BookView extends Component {
           'http://localhost:8080/cate', {
             method:'GET',
           }).then((response) => {
-            console.log(response)
+            // console.log(response)
             response.json().then((data) => {
-              console.log(data['cate']);
+              // console.log(data['cate']);
               this.setState(() => ({
                 cate: data['cate']
               }))
@@ -95,6 +96,7 @@ class BookView extends Component {
                         <div className='book-show-pages'>
                             <BookShowPages
                             booklist = {booklist}
+                            search = {0}
                             />
                             
                         </div>

@@ -22,7 +22,7 @@ public class DealController {
     public UserService userService;
 
     @RequestMapping(value="/deal/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String createDeal(@RequestBody JSONObject s, Principal principal){
+    public JSONObject createDeal(@RequestBody JSONObject s, Principal principal){
         String username = principal.getName();
         Integer userID = userService.getIDByName(username);
         String phone = (String) s.get("phone");
@@ -41,11 +41,29 @@ public class DealController {
             result.put("status", 400);
             result.put("msg", "You shopping cart is empty");
         }
-        return result.toJSONString();
+        return result;
+    }
+
+    @RequestMapping(value="/deal/create/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JSONObject createDealOneBook(@RequestBody JSONObject s,@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
+        String username = principal.getName();
+        Integer userID = userService.getIDByName(username);
+
+        String phone = (String) s.get("phone");
+        String address = (String) s.get("address");
+        String receiver = (String) s.get("receiver");
+        BigDecimal total_price = BigDecimal.valueOf(Double.valueOf(s.get("tot_price").toString()));
+
+        service.createDealOneBook(phone, address, receiver, total_price,bookID, ammount, userID);
+        JSONObject result = new JSONObject();
+        System.out.print("ok");
+        result.put("status", 200);
+        result.put("msg", "ok");
+        return result;
     }
 
     @RequestMapping(value="/deal", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getCart(Principal principal){
+    public JSONObject getCart(Principal principal){
         String username = principal.getName();
         Integer userID = userService.getIDByName(username);
 
@@ -54,6 +72,6 @@ public class DealController {
         result.put("status", 200);
         result.put("msg", "OK");
         result.put("dealitems", deals);
-        return result.toJSONString();
+        return result;
     }
 }

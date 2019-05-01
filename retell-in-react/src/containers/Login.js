@@ -35,6 +35,7 @@ import {
                 console.log(response)
                 if (response.status === 200) {
                   this.props.history.push("/")
+                  window.location.href = window.location.href;
                 } else {
                     console.log("error")
                 }

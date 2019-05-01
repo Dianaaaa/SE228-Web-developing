@@ -39,12 +39,17 @@ class BookShowPages extends Component {
       
     
     render () {
-        const { booklist, query } = this.props
-        const showedBooks = query === ''
-        ? booklist
-        : booklist.filter((c) => (
-            c.name.toLowerCase().includes(query.toLowerCase()) || c.author.toLowerCase().includes(query.toLowerCase())
-        ))
+        const { booklist, query, search } = this.props
+        let showedBooks = booklist
+        if (search === 1) {
+          showedBooks = query === ''
+          ? booklist
+          : booklist.filter((c) => (
+              c.name.toLowerCase().includes(query.toLowerCase()) || c.author.toLowerCase().includes(query.toLowerCase())
+          ))
+
+        }
+        
         return (
             <div className='book-pages'>
                 <div className='book-section'>

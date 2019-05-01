@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {Card, Form, Input, Row, Col, Button} from 'antd'
-import './Dealcfm.css'
+import './SingleDealcfm.css'
 import Footer from "../components/Footer"
 import BookItem from "../components/Deal/BookItem"
 
@@ -94,7 +95,7 @@ const Phoneform = Form.create({
   });
   
 
-class Dealcfm extends Component {
+class SingleDealcfm extends Component {
     state = {
         fields: {
           phone: {
@@ -107,7 +108,7 @@ class Dealcfm extends Component {
               value: ""
           },
         },
-        items: [],
+        item: {},
         costsum: 0,
       };
 
@@ -119,10 +120,14 @@ class Dealcfm extends Component {
 
       handleDealcfm = () => {
           console.log("cfm")
+          const {item} = this.props.location.state
+          console.log(item)
+          let bookID = item.bookID
+          let ammount = item.ammount
           let phone = this.state.fields.phone.value
           let addr = this.state.fields.address.value
           let receiver = this.state.fields.receiver.value
-          let price = this.state.costsum
+          let price = item.costsum
           if (phone === "" || addr === "") {
               alert("信息不全！确认失败。请填写信息")
               return
@@ -131,7 +136,7 @@ class Dealcfm extends Component {
           const formData = JSON.stringify({"phone": phone, "address": addr, "tot_price": price, "receiver": receiver})
           console.log(formData)
           fetch(
-            window.backpath + "/deal/create", {
+            window.backpath + "/deal/create/" + bookID + "/" + ammount, {
               headers: {
                   'Content-Type': 'application/json'
               },
@@ -142,8 +147,7 @@ class Dealcfm extends Component {
                 console.log(response)
                 if (response.status === 200) {
                     alert("购买成功！")
-                    // window.location.href = window.location.href;
-                    this.props.history.push("/deal")
+                  this.props.history.push("/deal")
                 } else {
                     console.log("error")
                     alert(response.msg)
@@ -153,56 +157,29 @@ class Dealcfm extends Component {
             )
       }
 
-      componentDidMount() {
-        fetch(
-          'http://localhost:8080/cart', {
-            method:'GET',
-            credentials: 'include'         //解决跨域问题
-          }).then((response) => {
-            console.log(response)
-            response.json().then((data) => {
-              console.log(data['items']);
-              let items = data['items']
-              let sum = 0;
-              for (var i = 0; i < items.length; i++) {
-                  sum += items[i].ammount * items[i].cur_cost
-              }
-              console.log("sum", sum)
-              this.setState(() => ({
-                items: data['items'],
-                costsum: sum
-              }))
-            });
-          })
-          .catch(e => console.log('错误:', e)
-          )
-        }
     render() {
-        const {fields, costsum, items} = this.state;
+        const {fields} = this.state;
+        const {item} = this.props.location.state
+        // const costsum = item.cur_cost * item.ammount
+        // console.log("item", item)
         return (
             <div className="dealcfm">
                 <div className="dealcfm-card">
                     <Card
                       title="请确认订单"
                     >
-                        {
-                            items.map((item) => (
-                                <BookItem 
-                                bookID = {item.bookID}
-                                cur_cost = {item.cur_cost}
-                                name = {item.name}
-                                author = {item.author}
-                                ammount = {item.ammount}
-                                front_page = {item.front_page}
-                                key = {item.bookID}
-                                />
-                            ))
-                        }
-                        {/* <BookItem />
-                        <BookItem /> */}
+                        <BookItem 
+                        bookID = {item.bookID}
+                        cur_cost = {item.cur_cost}
+                        name = {item.name}
+                        author = {item.author}
+                        ammount = {item.ammount}
+                        front_page = {item.front_page}
+                        key = {item.bookID}
+                        />
                         <div className="price-card">
                             <Card>
-                                <p>总计：<span className='cur-cost'>{costsum.toFixed(2)}</span></p>
+                                <p>总计：<span className='cur-cost'>{item.costsum.toFixed(2)}</span></p>
                             </Card>
                         </div>
                         <div className="deal-form">
@@ -234,4 +211,4 @@ class Dealcfm extends Component {
 
 }
 
-export default Dealcfm
+export default withRouter(SingleDealcfm)

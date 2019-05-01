@@ -20,7 +20,7 @@ public class CartController {
 
 
     @RequestMapping(value="/cart", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getCart(Principal principal){
+    public JSONObject getCart(Principal principal){
         String username = principal.getName();
         Integer userID = userService.getIDByName(username);
         List items = service.getCartByUser(userID);
@@ -28,11 +28,11 @@ public class CartController {
         result.put("status", 200);
         result.put("msg", "OK");
         result.put("items", items);
-        return result.toString();
+        return result;
     }
 
     @RequestMapping(value="/cart/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String changeAmmount(@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
+    public JSONObject changeAmmount(@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
         String username = principal.getName();
         Integer userID = userService.getIDByName(username);
 
@@ -41,11 +41,11 @@ public class CartController {
         res.put("status", 200);
         res.put("msg", "OK");
         res.put("result", result);
-        return res.toString();
+        return res;
     }
 
     @RequestMapping(value="/cart/add/{bookID}/{ammount}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String addBookToCart(@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
+    public JSONObject addBookToCart(@PathVariable Integer bookID, @PathVariable Integer ammount, Principal principal){
         String username = principal.getName();
         Integer userID = userService.getIDByName(username);
 
@@ -53,15 +53,15 @@ public class CartController {
         JSONObject res = new JSONObject();
         res.put("status", 200);
         res.put("msg", "OK");
-        return res.toString();
+        return res;
     }
 
     @RequestMapping(value="/cart/delete/{cartID}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String deleteCart(@PathVariable Integer cartID){
+    public JSONObject deleteCart(@PathVariable Integer cartID){
         service.deleteCart(cartID);
         JSONObject res = new JSONObject();
         res.put("status", 200);
         res.put("msg", "OK");
-        return res.toString();
+        return res;
     }
 }

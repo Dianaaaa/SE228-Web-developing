@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserController {
@@ -17,13 +19,13 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/signin", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String signIn(@RequestBody UserEntity user){
+    public JSONObject signIn(@RequestBody UserEntity user){
         JSONObject result = new JSONObject();
         Boolean check = service.checkUserName(user.getUsername());
         if (!check) {
             result.put("status", 400);
             result.put("msg", "Username used already");
-            return result.toJSONString();
+            return result;
         }
 //        JSONObject userinfo = new JSONObject();
 //        userinfo.put("username", user.getUsername());
@@ -35,16 +37,25 @@ public class UserController {
         service.createUser(user);
         result.put("status", 200);
         result.put("msg", "User created");
-        return result.toJSONString();
+        return result;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @ResponseBody
-    @RequestMapping(value="/login", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
-        public String Login(@RequestBody UserEntity user){
-        JSONObject result = new JSONObject();
-        result.put("status", 200);
-        result.put("msg", "User created");
-        return result.toJSONString();
-    }
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    @ResponseBody
+//    @RequestMapping(value="/login", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+//        public String Login(@RequestBody UserEntity user){
+//        JSONObject result = new JSONObject();
+//        result.put("status", 200);
+//        result.put("msg", "User created");
+//        return result.toJSONString();
+//    }
+@RequestMapping(value="/getname", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+public JSONObject getUserName(Principal principal){
+    String username = principal.getName();
+    JSONObject result = new JSONObject();
+    result.put("status", 200);
+    result.put("name", username);
+    return result;
+}
+
 }

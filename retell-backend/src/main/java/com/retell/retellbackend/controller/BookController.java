@@ -24,10 +24,10 @@ public class BookController {
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getBook(@PathVariable Integer ID){
+    public JSONObject getBook(@PathVariable Integer ID){
         Book curBook = service.getBookByID(ID);
         if (curBook == null) {
-            return "no such bool";
+            return null;
         }
         JSONObject book = new JSONObject();
         book.put("book-name", curBook.getName());
@@ -38,29 +38,30 @@ public class BookController {
         book.put("author-detail", curBook.getAuthorDetail());
         book.put("img-url", curBook.getFrontpage());
         book.put("id", curBook.getID());
-        return book.toJSONString();
+        book.put("stock", curBook.getStock());
+        return book;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/carousel", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getBookCar(){
+    public JSONObject getBookCar(){
         List<Map<String, Object>> books = service.getBookCarousel();
         if (books.size() == 0) {
-            return "no books";
+            return null;
         }
         JSONObject response = new JSONObject();
         List objects = service.bookDump(books);
-        response.put("status", 200);
+        response.put("status", 201);
         response.put("msg", "OK");
         response.put("books", objects);
-        return response.toJSONString();
+        return response;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/cate/limit/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getBookByCateLimit(@PathVariable Integer ID){
+    public JSONObject getBookByCateLimit(@PathVariable Integer ID){
         List<Map<String, Object>> books = service.getBookByCateIDLimited(ID);
 
         List objects = service.bookDump(books);
@@ -69,13 +70,13 @@ public class BookController {
         response.put("status", 200);
         response.put("msg", "OK");
         response.put("books", objects);
-        return response.toJSONString();
+        return response;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/cate/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String getBookByCate(@PathVariable Integer ID){
+    public JSONObject getBookByCate(@PathVariable Integer ID){
         List objects;
         if (ID == 10086) {
             List<Map<String, Object>> books = service.getAllBook();
@@ -90,13 +91,13 @@ public class BookController {
         response.put("books", objects);
         response.put("status", 200);
         response.put("msg", "OK");
-        return response.toJSONString();
+        return response;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
     @RequestMapping(value="/book/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String getBook(HttpServletRequest request, @RequestBody JSONObject s){
+    public JSONObject getBook(HttpServletRequest request, @RequestBody JSONObject s){
         BigDecimal curCost = BigDecimal.valueOf((Double) s.get("cur_cost"));
         BigDecimal prevCost = BigDecimal.valueOf((Double) s.get("prev_cost"));
         Book book = new Book();
@@ -117,7 +118,7 @@ public class BookController {
         result.put("status", 200);
         result.put("msg", s);
 
-        return result.toJSONString();
+        return result;
     }
 
     @RequestMapping(value="/msg", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")

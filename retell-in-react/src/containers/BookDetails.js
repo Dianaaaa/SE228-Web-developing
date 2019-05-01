@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
 import Comment from './../components/Comment'
 import Footer from './../components/Footer'
 import {Col, Input, Row, Divider, Rate, Tooltip, Button, Tabs} from 'antd'
@@ -99,6 +100,7 @@ class BookDetails extends Component {
     author_detail: '',
     img_url: './../assets/imgs/book-4.jpg',
     comments: [],
+    stock:0,
     ammount: 1,
     starvalue: 0,
     content: ""
@@ -111,6 +113,10 @@ class BookDetails extends Component {
   }
 
   handleCart = () => {
+    if (this.state.stock === 0 || this.state.stock < this.state.ammount) {
+      alert("库存不足！")
+      return
+    }
     let bookID = this.props.match.params.id;
     fetch(
       window.backpath + "/cart/add/" + bookID + "/" + this.state.ammount, {
@@ -132,6 +138,24 @@ class BookDetails extends Component {
       .catch(e => console.log('错误:', e)
       )
 
+  }
+
+  handleDeal = () => {
+    let ammount = this.state.ammount
+    let stock = this.state.stock
+    if (ammount > stock || stock === 0) {
+      alert("库存不足！")
+      return
+    }
+
+    let bookID = this.props.match.params.id;
+    let name = this.state.book_name
+    let author = this.state.author
+    let cur_cost = this.state.cur_cost
+    let front_page = this.state.img_url
+    let costsum = ammount * cur_cost
+    const item = {bookID: bookID, name: name, author: author, ammount: ammount, cur_cost: cur_cost, front_page: front_page, costsum: costsum}
+    this.props.history.push({ pathname : '/dealcfmsingle' ,state : { item: item} })
   }
 
   handleComment = () => {
@@ -186,7 +210,8 @@ class BookDetails extends Component {
           cur_cost: data['cur-cost'],
           book_detail: data['book-detail'],
           author_detail: data['author-detail'],
-          img_url: data['img-url']
+          img_url: data['img-url'],
+          stock: data['stock']
         }))
 
       });
@@ -212,7 +237,7 @@ class BookDetails extends Component {
   }
 
     render () {
-      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments, starvalue, content } = this.state
+      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments, starvalue, content, stock } = this.state
         // console.log(this.props);
         return (
             <div className='book-details'>
@@ -259,6 +284,7 @@ class BookDetails extends Component {
 
                                     </div>
                                     <div className='book-buttons'>
+                                        <p>库存: {stock}</p>
                                         <p>数量:</p>
                                         <NumericInputDemo 
                                         setammount = {this.setammount}
@@ -335,4 +361,4 @@ class BookDetails extends Component {
     }
 }
 
-export default BookDetails
+export default withRouter(BookDetails)

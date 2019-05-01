@@ -70,7 +70,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**").permitAll()
-                .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment").hasRole("USER")
+                .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment", "/getname").hasRole("USER")
                 .and()
                 .formLogin().loginPage("/user")
                 .successHandler(new AuthenticationSuccessHandler() {

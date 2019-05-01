@@ -11,6 +11,10 @@ class CartItem extends Component {
 
     incr = () => {
         if (this.state.amount < 99) {
+            if (this.state.amount + 1 > this.props.stock) {
+                alert("库存不足！")
+                return
+            }
             this.props.setSum(this.state.cur_cost, 1)
             this.setState((currentState) => ({
                 amount: currentState.amount + 1
@@ -44,7 +48,7 @@ class CartItem extends Component {
                 amount: currentState.amount - 1
             }))
             fetch(
-                "http://localhost:8080/cart/1/" + this.props.bookID + "/" + (this.state.amount-1), {
+                "http://localhost:8080/cart/" + this.props.bookID + "/" + (this.state.amount-1), {
                   headers: {
                       'Content-Type': 'application/x-www-form-urlencoded'
                   },
@@ -96,7 +100,7 @@ class CartItem extends Component {
     }
 
     render () {
-        const {bookID, cur_cost, name, author, front_page} = this.props
+        const {bookID, cur_cost, name, author, front_page, stock} = this.props
         return (
             <div className='cart-item'>
                 <Divider />
@@ -121,6 +125,7 @@ class CartItem extends Component {
                     <Col span={4}>
                         <div className='cost'>
                             <p>单价: <span className='cur-cost'>{cur_cost}</span> </p>
+                            <p>库存{stock}</p>
                         </div>
                     </Col>
                     <Col span={6}>
