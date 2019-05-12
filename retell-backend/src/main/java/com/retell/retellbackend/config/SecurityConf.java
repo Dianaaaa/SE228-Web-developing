@@ -39,18 +39,6 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService service;
 
-//    @Autowired
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        List<UserEntity> allUsers = service.getAllUser();
-//        for (int i = 0; i < allUsers.size(); i++) {
-//            System.out.print(allUsers.get(i).getUsername());
-//            System.out.print(allUsers.get(i).getPassword());
-//            auth.inMemoryAuthentication()
-//                    .passwordEncoder(new BCryptPasswordEncoder())
-//                    .withUser(allUsers.get(i).getUsername()).password(new BCryptPasswordEncoder().encode(allUsers.get(i).getPassword())).roles(allUsers.get(i).getRole());
-//        }
-//
-//    }
     @Bean
     UserDetailsService UserServiceConf(){ //注册UserDetailsService 的bean
         return new UserServiceConf();

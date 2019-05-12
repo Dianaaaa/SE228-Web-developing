@@ -1,25 +1,38 @@
 package com.retell.retellbackend.domain;
 
+import javax.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class UserEntity {
+import javax.persistence.Table;
+import java.io.Serializable;
+
+@Entity
+@Table(name="users")
+public class UserEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
+    @Column(name="username", unique=true)
     private String username;
+    @Column(name="password")
     private String password;
+    @Column(name="email")
     private String email;
+    @Column(name="role")
     private String role;
+    @Column(name="status")
     private Integer status;
 
     public UserEntity(){}
 
-    public UserEntity(Integer ID, String username, String password, String email, String role, Integer status) {
-        this.ID = ID;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-        this.status = status;
-    }
+//    public UserEntity(Integer ID, String username, String password, String email, String role, Integer status) {
+//        this.ID = ID;
+//        this.username = username;
+//        this.password = password;
+//        this.email = email;
+//        this.role = role;
+//        this.status = status;
+//    }
 
 
     public Integer getID() {

@@ -2,7 +2,6 @@ package com.retell.retellbackend.controller;
 
 
 import com.retell.retellbackend.domain.Book;
-import com.retell.retellbackend.domain.User;
 import com.retell.retellbackend.service.BookService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,12 +107,12 @@ public class BookController {
         book.setStock((Integer) s.get("stock"));
         book.setCurCost(curCost);
         book.setPrevCost(prevCost);
-        book.setCategory((Integer) s.get("category"));
+//        book.setCategory((Integer) s.get("category"));
         book.setFrontpage((String) s.get("front_page"));
         book.setISBN((String) s.get("ISBN"));
 
         JSONObject result = new JSONObject();
-        service.createBook(book);
+//        service.createBook(book);
 
         result.put("status", 200);
         result.put("msg", s);

@@ -1,19 +1,32 @@
 package com.retell.retellbackend.domain;
 
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "carts")
 public class Cart {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Integer ID;
-    private Integer userID;
-    private Integer bookID;
-    private Integer ammount;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private Set<CartItem> item;
+
 
     public Cart() {}
 
-    public Cart(Integer ID, Integer userID, Integer bookID, Integer ammount) {
-        this.ID = ID;
-        this.userID = userID;
-        this.bookID = bookID;
-        this.ammount = ammount;
-    }
+//    public Cart(Integer ID, UserEntity user, Book book, Integer amount) {
+//        this.ID = ID;
+//        this.user = user;
+//        this.book = book;
+//        this.amount = amount;
+//    }
 
     public Integer getID() {
         return ID;
@@ -23,27 +36,19 @@ public class Cart {
         this.ID = ID;
     }
 
-    public Integer getUserID() {
-        return userID;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public Integer getBookID() {
-        return bookID;
+    public Set<CartItem> getItem() {
+        return item;
     }
 
-    public void setBookID(Integer bookID) {
-        this.bookID = bookID;
-    }
-
-    public Integer getAmmount() {
-        return ammount;
-    }
-
-    public void setAmmount(Integer ammount) {
-        this.ammount = ammount;
+    public void setItem(Set<CartItem> item) {
+        this.item = item;
     }
 }

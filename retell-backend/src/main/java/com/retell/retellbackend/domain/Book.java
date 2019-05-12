@@ -1,31 +1,50 @@
 package com.retell.retellbackend.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+import javax.persistence.Table;
+
+@Entity
+@Table(name="books")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Integer ID;
+    @Column(name="name", nullable = false, length = 128)
     private String name;
+    @Column(name="author",  nullable = false, length = 128)
     private String author;
+    @Column(name="ISBN",  nullable = false, length = 128)
     private String ISBN;
+    @Column(name="stock",  nullable = false)
     private Integer stock;
+    @Column(name="front_page", length = 128)
     private String frontpage;
-    private Integer category;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cate_id", referencedColumnName = "id")
+    private Category category;
+    @Column(name="cur_cost",  nullable = false)
     private BigDecimal curCost;
+    @Column(name="prev_cost",  nullable = false)
     private BigDecimal prevCost;
+    @Column(name="book_detail", columnDefinition="text")
     private String bookDetail;
+    @Column(name="author_detail", columnDefinition="text")
     private String authorDetail;
 
     public Book() { }
 
-    public Book(Integer ID, String name, String author, String ISBN, Integer stock, String frontpage, Integer category) {
-        this.ID = ID;
-        this.name = name;
-        this.author = author;
-        this.ISBN = ISBN;
-        this.stock = stock;
-        this.frontpage = frontpage;
-        this.category = category;
-    }
+//    public Book(Integer ID, String name, String author, String ISBN, Integer stock, String frontpage, Integer category) {
+//        this.ID = ID;
+//        this.name = name;
+//        this.author = author;
+//        this.ISBN = ISBN;
+//        this.stock = stock;
+//        this.frontpage = frontpage;
+//        this.category = category;
+//    }
 
     public Integer getID(){return  this.ID; }
     public void setID(Integer ID) {this.ID = ID; }
@@ -39,8 +58,15 @@ public class Book {
     public void setStock(Integer stock) {this.stock=stock;}
     public String getFrontpage() {return this.frontpage;}
     public void setFrontpage(String frontpage) {this.frontpage = frontpage;}
-    public Integer getCategory() {return this.category;}
-    public void setCategory(Integer category) {this.category=category;}
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public BigDecimal getCurCost() {return this.curCost;}
     public void setCurCost(BigDecimal curCost) {this.curCost=curCost;}
     public BigDecimal getPrevCost() {return this.prevCost;}

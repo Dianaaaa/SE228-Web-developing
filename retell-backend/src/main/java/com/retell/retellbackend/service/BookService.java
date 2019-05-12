@@ -31,7 +31,7 @@ public class BookService {
         cur_book.setISBN((String)result.get("ISBN"));
         cur_book.setStock((Integer)result.get("stock"));
         cur_book.setFrontpage((String)result.get("front_page"));
-        cur_book.setCategory((Integer)result.get("category"));
+//        cur_book.setCategory((Integer)result.get("category"));
         cur_book.setCurCost((BigDecimal)result.get("cur_cost"));
         cur_book.setPrevCost((BigDecimal)result.get("prev_cost"));
         cur_book.setBookDetail((String)result.get("book_detail"));
@@ -41,10 +41,10 @@ public class BookService {
         return cur_book;
     }
 
-    public void createBook(Book book) {
-        String sql = "insert into book (name, author, ISBN, stock, front_page, book_detail, author_detail, category, cur_cost, prev_cost) values(\"" + book.getName() + "\",\"" +  book.getAuthor() + "\",\"" + book.getISBN() + "\"," + book.getStock() + ",\"" + book.getFrontpage() + "\",\"" +  book.getBookDetail() + "\",\"" +  book.getAuthorDetail() + "\",\"" + book.getCategory() + "\"," +  book.getCurCost()  +  "," + book.getPrevCost() + ")";
-        jdbc.execute(sql);
-    }
+//    public void createBook(Book book) {
+//        String sql = "insert into book (name, author, ISBN, stock, front_page, book_detail, author_detail, category, cur_cost, prev_cost) values(\"" + book.getName() + "\",\"" +  book.getAuthor() + "\",\"" + book.getISBN() + "\"," + book.getStock() + ",\"" + book.getFrontpage() + "\",\"" +  book.getBookDetail() + "\",\"" +  book.getAuthorDetail() + "\",\"" + book.getCategory() + "\"," +  book.getCurCost()  +  "," + book.getPrevCost() + ")";
+//        jdbc.execute(sql);
+//    }
 
     public List getBookCarousel() {
         String sql = "SELECT ID, name, author, prev_cost, cur_cost, front_page FROM book limit 16";

@@ -1,25 +1,38 @@
 package com.retell.retellbackend.domain;
 
 import java.sql.Timestamp;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "comments")
 public class Comment {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Integer ID;
+    @Column(name="content", nullable = false, columnDefinition="text")
     private String content;
+    @Column(name="time", nullable = false)
     private Timestamp time;
+    @Column(name="score", nullable = false)
     private Integer score;
-    private Integer userID;
-    private Integer bookID;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book book;
 
     public Comment() {}
 
-    public Comment(Integer ID, String content, Timestamp time, Integer score, Integer userID, Integer bookID) {
-        this.ID = ID;
-        this.content = content;
-        this.time = time;
-        this.score = score;
-        this.userID = userID;
-        this.bookID = bookID;
-    }
+//    public Comment(Integer ID, String content, Timestamp time, Integer score, UserEntity user, Book book) {
+//        this.ID = ID;
+//        this.content = content;
+//        this.time = time;
+//        this.score = score;
+//        this.user = user;
+//        this.book = book;
+//    }
 
     public Integer getID() {
         return ID;
@@ -53,19 +66,19 @@ public class Comment {
         this.score = score;
     }
 
-    public Integer getUserID() {
-        return userID;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public Integer getBookID() {
-        return bookID;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookID(Integer bookID) {
-        this.bookID = bookID;
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

@@ -2,25 +2,42 @@ package com.retell.retellbackend.domain;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="deals")
 public class Deal {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     private Integer ID;
-    private Integer userID;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
+    @Column(name = "phone", nullable = false, length = 50)
     private String phone;
+    @Column(name = "address", nullable = false, length = 128)
     private String address;
+    @Column(name = "time", nullable = false)
     private Timestamp time;
+    @Column(name = "total_price", nullable = false)
     private BigDecimal total_price;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private Set<CartItem> item;
 
     public Deal () {}
 
-    public Deal (Integer ID, Integer userID, String phone, String address, Timestamp time, BigDecimal total_price) {
-        this.ID = ID;
-        this.userID = userID;
-        this.phone = phone;
-        this.address = address;
-        this.time = time;
-        this.total_price = total_price;
-    }
+//    public Deal (Integer ID, UserEntity user, Book book, String phone, String address, Timestamp time, BigDecimal total_price) {
+//        this.ID = ID;
+//        this.userID = userID;
+//        this.phone = phone;
+//        this.address = address;
+//        this.time = time;
+//        this.total_price = total_price;
+//    }
 
     public Integer getID() {
         return ID;
@@ -30,12 +47,12 @@ public class Deal {
         this.ID = ID;
     }
 
-    public Integer getUserID() {
-        return userID;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     public String getPhone() {
@@ -68,5 +85,13 @@ public class Deal {
 
     public void setTotal_price(BigDecimal total_price) {
         this.total_price = total_price;
+    }
+
+    public Set<CartItem> getItem() {
+        return item;
+    }
+
+    public void setItem(Set<CartItem> item) {
+        this.item = item;
     }
 }
