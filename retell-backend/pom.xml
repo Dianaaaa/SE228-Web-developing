@@ -91,7 +91,7 @@
                     <user>root</user>
                     <password></password>
                     <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/retell?serverTimezone=UTC</url>
+                    <url>jdbc:mysql://localhost:3306/test2?serverTimezone=UTC</url>
                     <!--<baseDir>db/migration</baseDir>-->
                 </configuration>
             </plugin>

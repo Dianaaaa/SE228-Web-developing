@@ -1,16 +1,65 @@
-INSERT INTO `book_category` (`id`, `name`) VALUES
-(1, '计算机'),
-(2, '小说'),
-(3, '文学'),
-(4, '人文社科'),
-(5, '医学'),
-(6, '教辅'),
-(7, '艺术'),
-(8, '生活'),
-(9, '进口原版');
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- 主机： 127.0.0.1
+-- 生成日期： 2019-05-12 03:28:23
+-- 服务器版本： 10.1.35-MariaDB
+-- PHP 版本： 7.2.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-INSERT INTO `book` (`id`, `name`, `author`, `isbn`, `stock`, `front_page`, `book_detail`, `author_detail`, `category`, `cur_cost`, `prev_cost`) VALUES
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- 数据库： `retell`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ad_carousel`
+--
+
+CREATE TABLE `ad_carousel` (
+  `ID` int(11) NOT NULL,
+  `content` int(11) NOT NULL,
+  `img` blob NOT NULL,
+  `url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `book`
+--
+
+CREATE TABLE `book` (
+  `ID` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ISBN` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stock` int(10) NOT NULL,
+  `front_page` varchar(255) NOT NULL,
+  `book_detail` text,
+  `author_detail` text,
+  `category` int(11) NOT NULL,
+  `cur_cost` decimal(5,2) NOT NULL,
+  `prev_cost` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `book`
+--
+
+INSERT INTO `book` (`ID`, `name`, `author`, `ISBN`, `stock`, `front_page`, `book_detail`, `author_detail`, `category`, `cur_cost`, `prev_cost`) VALUES
 (1, '机器学习', '周志华', '123456', 98, 'http://localhost:8080/resources/ml.jpg', 'ACM数据挖掘中国分会点评周志华教授的专著《机器学习》\\n2016-02-05 KDD China CKDD\\n南京大学周志华教授撰写的《机器学习》（清华大学出版社）上架不到一周即成为亚马逊*\\n畅销商品，各网站上现货被抢购一空，一时间“洛阳纸贵”。技术类书籍热卖到此程度，相\\n\\n当罕见。ACM数据挖掘中国分会部分专家仔细研读了这本专著，给出如下评价：\\n\\n\\n全书16章，附带相关矩阵、优化、概率知识的附录，共425页，62.6万字。中国计算机学会\\n终身成就奖得主陆汝钤院士作序，书后有作者自撰后记。该书有以下特点：\\n1. 内容系统全面。全书16章，覆盖了机器学习几乎所有的主要分支领域，覆盖面超过了该\\n领域国际著名书籍如ESL与PRML：** 部分（**-3 章）介绍机器学习的基础知识；第2 部', '周志华，南京大学计算机系教授，ACM杰出科学家，IEEE Fellow, IAPR Fellow, IET/IEE Fellow, 中国计算机学会会士。国家杰出青年科学基金获得者、长江学者特聘教授。先后担任多种SCI(E)期刊执行主编、副主编、副编辑、编委等。中国计算机学会人工智能与模式识别专业委员会主任，中国人工智能学会机器学习专业委员会主任，IEEE计算智能学会数据挖掘技术委员会副主席。', 1, '22.00', '45.00'),
 (2, '算法（第4版）（图灵图书）', 'Robert Sedgewick, Kevin Wayne', '9787115293800', 98, 'http://localhost:8080/resources/2.jpg', '《图灵程序设计丛书:算法(第4版)》编辑推荐：Sedgewick之巨著，与高德纳TAOCP一脉相承，几十年多次修订，经久不衰的畅销书，涵盖所有程序员必须掌握的50种算法。《图灵程序设计丛书:算法(第4版)》全面讲述算法和数据结构的必备知识，具有以下几大特色：\r\n算法领域的经典参考书：Sedgewick畅销著作的最新版，反映了经过几十年演化而成的算法核心知识体系。\r\n内容全面：全面论述排序、搜索、图处理和字符串处理的算法和数据结构，涵盖每位程序员应知应会的50种算法。\r\n全新修订的代码：全新的Java实现代码，采用模块化的编程风格，所有代码均可供读者使用。\r\n与实际应用相结合：在重要的科学、工程和商业应用环境下探讨算法，给出了算法的实际代码，而非同类著作常用的伪代码。\r\n富于智力趣味性：简明扼要的内容，用丰富的视觉元素展示的示例，精心设计的代码，详尽的历史和科学背景知识，各种难度的练习，这一切都将使读者手不释卷。\r\n科学的方法：用合适的数学模型精确地讨论算法性能，这些模型是在真实环境中得到验证的。\r\n与网络相结合：配套网站algs4.cs.princeton.edu提供了本书内容的摘要及相关的代码、测试数据、编程练习、教学课件等资源。', '作者：（美国）塞奇威克（Robert Sedgewick）^韦恩（Kevin Wayne） 译者：谢路云\r\n\r\n塞奇威克（Robert Sedgewick），斯坦福大学博士，导师为Donald E. Knuth，从1985年开始一直担任普林斯顿大学计算机科学系教授，曾任该系主任，也是Adobe Systems公司董事会成员，曾在Xerox PARC、国防分析研究所（institute for Defense Analyses）和法国国家信息与自动化研究所（INRIA）从事研究工作。他的研究方向包括解析组合学、数据结构和算法的分析与设计、程序可视化等。\r\n韦恩（Kevin Wayne），康奈尔大学博士，普林斯顿大学计算机科学系高级讲师，研究方向包括算法的设计、分析和实现，特别是图和离散优化。', 1, '80.60', '99.00'),
 (3, '深度学习：智能时代的核心驱动力量', '谢诺夫斯基', '9787508698359', 83, 'http://localhost:8080/resources/3.jpg', '编辑推荐\r\n★ 【不是所有写深度学习的书你都能读得懂。】以堪比文学书的流畅，引领你了解人工智能井喷式发展的真相。\r\n★ 【深度学习会扩大你的认知，人工智能不是生存威胁。】这本书所讲的内容，与每个人的生活息息相关。AlphaGo、自动驾驶、语音识别、智能翻译、AI医疗、图像识别……你所看到的各种形式的人工智能，背后都是深度学习在发挥作用。这本书将告诉你，深度学习有哪些神奇之处，并对你产生哪些影响。\r\n★ 【人工智能大牛作者重磅作品】世界十大AI科学家之一、美国“四院院士”（全美在世仅3位）、全球人工智能专业会议NIPS基金会主席特伦斯·谢诺夫斯基（Terrence/Terry Sejnowski）力作。\r\n★ 【AI女神、AI教父联袂推荐】谷歌前云AI负责人、斯坦福大学HAI研究院联合创始人 李飞飞、AI教父杰弗里·辛顿诚挚推荐\r\n★ 【风靡全球，多语种同步上市】风靡全球的智能时代前沿读本，全景展示深度学习的发展与应用。被翻译成多国语言，300万+用户一致好评。\r\n★ 【想了解深度学习，读这本就够了。】很多信息都在传递AI会给我们带来革命性的巨变，却只点出了表象，而这本书将从AI的源头——深度学习开始，讲述这个智能时代核心驱动力量如何一步步影响科技、商业乃至整个世界的进步。\r\n名人推荐\r\n\"特伦斯是一名杰出的神经科学家，我们于1986年共同发明了玻尔兹曼机。\r\n——AI教父 杰弗里·辛顿\r\n\r\n人工智能是科技王冠上的钻石，而深度学习代表了其中一个承上启下的重要阶段。这本书有助于在我们心目中更加清晰准确地绘制人工智能的未来图景。你可以从本书中了解到那些令人惊讶，甚至于有些担忧的科技进展，大致了解它们背后的原理。这展现了人工智能相对于人类而言的单方面优势。你也能看到许多真实事例，反映了人工智能相对于人类而言的“笨拙”。在现实中，这种“笨拙”的情况往往更加普遍。这些事例有时令人忍俊不禁，它恰恰体现了我们人类的大脑是多么精妙的设计。\r\n——微软小冰之父、微软（亚洲）互联网工程院副院长 李笛 \r\n\r\n特伦斯·谢诺夫斯基作为深度学习领域的先驱，带领该领域由理论命题走向实证科学。这是一大飞跃。\r\n——诺贝尔生理学或医学奖得主 埃里克·坎德尔\r\n\r\n作为深度学习领域的亲历者，以及深度学习灵魂人物的同行者，谢诺夫斯基分享了这一技术发展过程中的洞见和轶事。这本书记录了人工智能这场狂飙运动，字里行间都能感受到作者的兴奋和投入。\r\n——互联网之父、谷歌副总裁 文顿·瑟夫\r\n\r\n人工智能正在觉醒，世界正在被重塑。深度学习正是这一变化背后的驱动力。特伦斯·谢诺夫斯基扎根该领域研究30年，是绝对的先驱。如果你想了解人工智能，必读此书。\r\n——麻省理工学院斯隆商学院教授 埃里克·布林约尔夫松', '特伦斯·谢诺夫斯基 Terrence (Terry) Sejnowski \r\n\r\n世界十大AI科学家之一，美国四大国家学院（国家科学院、国家医学院、国家工程院、国家艺术与科学学院）在世仅3位的“四院院士”之一，全球AI专业会议NIPS基金会主席。\r\n\r\n作为神经网络的先驱，早在1986年，特伦斯就与杰弗里·辛顿共同发明了玻尔兹曼机，把神经网络带入到研究与应用的热潮，将深度学习从边缘课题变成了互联网科技公司仰赖的核心技术，实现了人工智能井喷式的发展。\r\n\r\n特伦斯现任美国索尔克生物研究所(美国生命科学领域成果最多的研究机构) 计算神经生物学实验室主任，是美国政府注资50亿美元“脑计划”项目（BRAIN，the Brain Research through Advancing Innovative Neurotechnologies）领军人物。\r\n\r\n特伦斯同时是全球最大在线学习平台Coursera很受欢迎课程《学习如何学习》（Learning how to learn）主理人，通过系统讲解大脑认知的底层知识，让学习者可以改变思维模式，提高学习的能力和效率。目前该课程学习人数已经超过了300万。', 1, '51.92', '88.00'),
@@ -41,5 +90,313 @@ INSERT INTO `book` (`id`, `name`, `author`, `isbn`, `stock`, `front_page`, `book
 (28, 'Harry Potter: The Complete Collection (English Edition)', 'J.K. Rowling', '1408856786', 50, 'http://localhost:8080/resources/29.jpg', 'I\'ve yet to meet a ten-year-old who hasn\'t been entranced by its witty, complex plot and the character of the eponymous Harry * Independent * Spellbinding, enchanting, bewitching stuff * Mirror * Teachers say a chapter can silence the most rowdy of classes * Guardian * One of the greatest literary adventures of modern times * Sunday Telegraph * The Harry Potter stories will join that small group of children\'s books which are read and reread into adulthood * TLS *', 'Harry Potter and the Philosopher\'s Stone was J.K. Rowling\'s first novel, followed by the subsequent six titles in the Harry Potter series, as well as three books written for charity: Fantastic Beasts and Where to Find Them, Quidditch Through the Ages and The Tales of Beedle the Bard. The Harry Potter novels have now sold over 450 million copies worldwide and been translated into 77 languages.', 9, '697.00', '697.00'),
 (29, 'A Game of Thrones 5-Book Boxed Set ', 'George R.R. Martin', '0007477155', 100, 'http://localhost:8080/resources/30.jpg', 'Of those who work in the grand epic fantasy tradition, Martin is by far the best’\r\nTime Magazine\r\n\r\n‘Colossal, staggering… Martin captures all the intoxicating complexity of the Wars of the Roses or Imperial Rome’\r\nSFX\r\n\r\n‘The sheer-mind-boggling scope of this epic has sent other fantasy writers away shaking their heads… Its ambition: to construct the Twelve Caesars of fantasy fiction, with characters so venomous they could eat the Borgias.’\r\nGuardian', 'George R.R. Martin is the author of fourteen novels, including five volumes of A SONG OF ICE AND FIRE, several collections of short stories and numerous screen plays for television drama and feature films. He lives in Santa Fe, New Mexico.', 9, '219.90', '209.00');
 
-INSERT INTO `user` (id`, `username`, `password`, `email`, `role`, `status`) VALUES
-(1, 'admin', '$2a$10$jDikfFD4CnON0lonl08/2e1cZEOfdG58EbTfUQly0jlXo1tePui0S', '1035254583@qq.com', 'ADMIN', 1);
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `book_carousel`
+--
+
+CREATE TABLE `book_carousel` (
+  `ID` int(11) NOT NULL,
+  `bookID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `book_category`
+--
+
+CREATE TABLE `book_category` (
+  `ID` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `book_category`
+--
+
+INSERT INTO `book_category` (`ID`, `name`) VALUES
+(1, '计算机'),
+(2, '小说'),
+(3, '文学'),
+(4, '人文社科'),
+(5, '医学'),
+(6, '教辅'),
+(7, '艺术'),
+(8, '生活'),
+(9, '进口原版');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `book_tab`
+--
+
+CREATE TABLE `book_tab` (
+  `ID` int(11) NOT NULL,
+  `bookID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cart`
+--
+
+CREATE TABLE `cart` (
+  `ID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `bookID` int(11) NOT NULL,
+  `ammount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `cart`
+--
+
+INSERT INTO `cart` (`ID`, `userID`, `bookID`, `ammount`) VALUES
+(2, 17, 27, 4),
+(14, 1, 2, 6);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `comment`
+--
+
+CREATE TABLE `comment` (
+  `ID` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `score` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `bookID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `comment`
+--
+
+INSERT INTO `comment` (`ID`, `content`, `time`, `score`, `userID`, `bookID`) VALUES
+(1, '我很喜欢这本书啊', '2019-04-21 22:00:00', 5, 1, 1),
+(2, '买了买了', '2019-04-21 22:00:00', 5, 1, 1),
+(3, '很好的一本书。', '2019-04-28 13:57:28', 4, 1, 2),
+(4, '很棒', '2019-04-28 16:48:35', 4, 1, 3),
+(5, '太喜欢了', '2019-04-28 16:49:40', 5, 1, 3),
+(6, '可以', '2019-04-29 07:00:16', 4, 17, 3);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `deal`
+--
+
+CREATE TABLE `deal` (
+  `ID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `total_price` decimal(10,2) NOT NULL,
+  `receiver` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `deal`
+--
+
+INSERT INTO `deal` (`ID`, `userID`, `phone`, `address`, `time`, `total_price`, `receiver`) VALUES
+(1, 1, '18217508975', '上海市闵行区东川路800号交通大学东16', '2019-04-22 22:00:00', '80.00', 'admin'),
+(6, 1, '18217508975', '上海市闵行区东川路800号交通大学', '2019-04-28 03:14:13', '84.00', 'admin'),
+(7, 1, '18217508975', '交通大学', '2019-04-28 06:25:59', '213.92', 'admin'),
+(8, 1, '13339666038', '交通大学', '2019-04-28 11:46:59', '80.60', 'admin'),
+(9, 1, '18217508975', '交通大学', '2019-04-28 11:50:51', '1557.60', 'admin'),
+(10, 1, '12345872934', '交通大学', '2019-04-28 12:08:27', '80.60', 'admin'),
+(11, 1, '18217508975', '交通大学', '2019-04-28 12:35:24', '322.40', 'admin'),
+(12, 1, '12345872934', '交通大学', '2019-04-28 12:53:13', '108.92', '翠花'),
+(14, 17, '18217508975', '交通大学', '2019-04-29 07:50:19', '660.00', '翠花'),
+(15, 1, '12345872934', '交通大学', '2019-04-29 08:16:16', '33.04', '翠花'),
+(19, 1, '18217508975', '交通大学', '2019-04-29 11:27:15', '188.80', '翠花'),
+(20, 1, '18217508975', '交通大学', '2019-04-29 11:42:00', '887.72', '翠花'),
+(21, 1, '12345872934', '交通大学', '2019-04-29 11:43:53', '80.60', '翠花'),
+(22, 1, '18217508975', '交通大学', '2019-04-29 11:44:20', '37.76', '翠花'),
+(23, 1, '18217508975', '交通大学', '2019-04-29 12:49:49', '207.24', 'sjtu');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `deal_book`
+--
+
+CREATE TABLE `deal_book` (
+  `ID` int(11) NOT NULL,
+  `bookID` int(11) NOT NULL,
+  `ammount` int(11) NOT NULL,
+  `dealID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `deal_book`
+--
+
+INSERT INTO `deal_book` (`ID`, `bookID`, `ammount`, `dealID`) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(5, 1, 2, 6),
+(6, 3, 1, 6),
+(7, 3, 1, 7),
+(8, 2, 1, 7),
+(9, 6, 1, 7),
+(10, 2, 1, 8),
+(11, 3, 30, 9),
+(12, 2, 1, 10),
+(13, 2, 4, 11),
+(14, 2, 1, 12),
+(15, 16, 1, 12),
+(17, 1, 30, 14),
+(18, 18, 1, 15),
+(22, 4, 10, 19),
+(23, 3, 15, 20),
+(24, 2, 1, 20),
+(25, 16, 1, 20),
+(26, 2, 1, 21),
+(27, 4, 2, 22),
+(28, 3, 2, 23),
+(29, 6, 1, 23),
+(30, 1, 1, 23);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user`
+--
+
+CREATE TABLE `user` (
+  `ID` int(11) NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+  `role` varchar(255) NOT NULL DEFAULT 'USER',
+  `status` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `user`
+--
+
+INSERT INTO `user` (`ID`, `username`, `password`, `email`, `role`, `status`) VALUES
+(1, 'admin', '$2a$10$jDikfFD4CnON0lonl08/2e1cZEOfdG58EbTfUQly0jlXo1tePui0S', '1035254583@qq.com', 'ADMIN', 1),
+(15, 'user1', '$2a$10$e8OK/Wuq.cgiG9HCKZs51.n1AKoqxVNvg5zg5Di2j6d1aSdaEgVpS', '1035254583@qq.com', 'USER', 1),
+(16, 'user2', '$2a$10$YHyl9./tE9Ya1.3lTHTor.YUBio9ShyO/z0g5l7KIgBBEFbDLLcdi', '1035254583@qq.com', 'USER', 1),
+(17, '翠花', '$2a$10$eO.xAIBTPQ8/pvMHQy2YF.tcf9FkEMRIirPhWQ4ueFHmvLjZw82Vi', '1035254583@qq.com', 'USER', 1);
+
+--
+-- 转储表的索引
+--
+
+--
+-- 表的索引 `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `book_carousel`
+--
+ALTER TABLE `book_carousel`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `book_category`
+--
+ALTER TABLE `book_category`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `book_tab`
+--
+ALTER TABLE `book_tab`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `deal`
+--
+ALTER TABLE `deal`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `deal_book`
+--
+ALTER TABLE `deal_book`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- 表的索引 `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `book`
+--
+ALTER TABLE `book`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- 使用表AUTO_INCREMENT `book_category`
+--
+ALTER TABLE `book_category`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- 使用表AUTO_INCREMENT `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- 使用表AUTO_INCREMENT `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- 使用表AUTO_INCREMENT `deal`
+--
+ALTER TABLE `deal`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- 使用表AUTO_INCREMENT `deal_book`
+--
+ALTER TABLE `deal_book`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- 使用表AUTO_INCREMENT `user`
+--
+ALTER TABLE `user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,12 +1,15 @@
 package com.retell.retellbackend.controller;
 
 
+import com.retell.retellbackend.dao.CategoryRepository;
 import com.retell.retellbackend.domain.Book;
+import com.retell.retellbackend.domain.Category;
 import com.retell.retellbackend.service.BookService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,6 +22,9 @@ public class BookController {
 
     @Autowired
     public BookService service;
+
+    @Resource
+    private CategoryRepository cateRepository;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
@@ -45,7 +51,8 @@ public class BookController {
     @ResponseBody
     @RequestMapping(value="/book/carousel", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public JSONObject getBookCar(){
-        List<Map<String, Object>> books = service.getBookCarousel();
+//        List<Map<String, Object>> books = service.getBookCarousel();
+        List<Book> books = service.getBookCarousel();
         if (books.size() == 0) {
             return null;
         }
@@ -61,8 +68,8 @@ public class BookController {
     @ResponseBody
     @RequestMapping(value="/book/cate/limit/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public JSONObject getBookByCateLimit(@PathVariable Integer ID){
-        List<Map<String, Object>> books = service.getBookByCateIDLimited(ID);
-
+//        List<Map<String, Object>> books = service.getBookByCateIDLimited(ID);
+        List<Book> books = service.getBookByCateIDLimited(ID);
         List objects = service.bookDump(books);
         JSONObject response = new JSONObject();
 
@@ -78,10 +85,12 @@ public class BookController {
     public JSONObject getBookByCate(@PathVariable Integer ID){
         List objects;
         if (ID == 10086) {
-            List<Map<String, Object>> books = service.getAllBook();
+//            List<Map<String, Object>> books = service.getAllBook();
+            List<Book> books = service.getAllBook();
             objects = service.bookDump(books);
         } else {
-            List<Map<String, Object>> books = service.getBookByCateID(ID);
+//            List<Map<String, Object>> books = service.getBookByCateID(ID);
+            List<Book> books = service.getBookByCateID(ID);
             objects = service.bookDump(books);
         }
 
@@ -107,12 +116,13 @@ public class BookController {
         book.setStock((Integer) s.get("stock"));
         book.setCurCost(curCost);
         book.setPrevCost(prevCost);
-//        book.setCategory((Integer) s.get("category"));
+        Category cate = cateRepository.getCateByID((Integer) s.get("cate"));
+        book.setCategory(cate);
         book.setFrontpage((String) s.get("front_page"));
         book.setISBN((String) s.get("ISBN"));
 
         JSONObject result = new JSONObject();
-//        service.createBook(book);
+        service.createBook(book);
 
         result.put("status", 200);
         result.put("msg", s);

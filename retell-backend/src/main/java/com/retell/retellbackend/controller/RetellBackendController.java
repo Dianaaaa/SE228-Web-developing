@@ -3,6 +3,7 @@ package com.retell.retellbackend.controller;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.retell.retellbackend.domain.Book;
 import com.retell.retellbackend.service.CategoryService;
+import com.retell.retellbackend.service.SeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class RetellBackendController {
     @Autowired
     public CategoryService service;
 
+    @Autowired
+    public SeedService seed;
 //    @CrossOrigin(origins = "http://localhost:3000")
 //    @ResponseBody
 //    @RequestMapping(value="/book/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
@@ -51,5 +54,10 @@ public class RetellBackendController {
         return result;
     }
 
+    @RequestMapping(value="/seed", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public void Seeddb(){
+        seed.seed();
+        return;
+    }
 
 }

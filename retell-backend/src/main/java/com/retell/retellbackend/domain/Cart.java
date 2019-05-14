@@ -2,6 +2,7 @@ package com.retell.retellbackend.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class Cart {
     private UserEntity user;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id", referencedColumnName = "id")
-    private Set<CartItem> item;
+    private List<CartItem> item;
 
 
     public Cart() {}
@@ -44,11 +45,11 @@ public class Cart {
         this.user = user;
     }
 
-    public Set<CartItem> getItem() {
+    public List<CartItem> getItem() {
         return item;
     }
 
-    public void setItem(Set<CartItem> item) {
+    public void setItem(List<CartItem> item) {
         this.item = item;
     }
 }

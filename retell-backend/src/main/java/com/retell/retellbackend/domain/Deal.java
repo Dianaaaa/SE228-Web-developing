@@ -1,7 +1,10 @@
 package com.retell.retellbackend.domain;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -20,13 +23,16 @@ public class Deal {
     private String phone;
     @Column(name = "address", nullable = false, length = 128)
     private String address;
+    @CreatedDate
     @Column(name = "time", nullable = false)
     private Timestamp time;
+    @Column(name = "receiver", nullable = false, length = 50)
+    private String receiver;
     @Column(name = "total_price", nullable = false)
     private BigDecimal total_price;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id", referencedColumnName = "id")
-    private Set<CartItem> item;
+    private List<CartItem> item;
 
     public Deal () {}
 
@@ -38,6 +44,15 @@ public class Deal {
 //        this.time = time;
 //        this.total_price = total_price;
 //    }
+
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
 
     public Integer getID() {
         return ID;
@@ -87,11 +102,11 @@ public class Deal {
         this.total_price = total_price;
     }
 
-    public Set<CartItem> getItem() {
+    public List<CartItem> getItem() {
         return item;
     }
 
-    public void setItem(Set<CartItem> item) {
+    public void setItem(List<CartItem> item) {
         this.item = item;
     }
 }

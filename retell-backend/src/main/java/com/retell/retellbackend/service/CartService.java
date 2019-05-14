@@ -1,65 +1,94 @@
 package com.retell.retellbackend.service;
 
+import com.retell.retellbackend.dao.BookRepository;
+import com.retell.retellbackend.dao.CartItemRepository;
+import com.retell.retellbackend.dao.CartRepository;
+import com.retell.retellbackend.domain.Book;
+import com.retell.retellbackend.domain.Cart;
+import com.retell.retellbackend.domain.CartItem;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class CartService {
-    @Autowired
-    private JdbcTemplate jdbc;
+    @Resource
+    private CartRepository cartRepository;
+
+    @Resource
+    private CartItemRepository cartItemRepository;
+
+    @Resource
+    private BookRepository bookRepository;
 
     public List  getCartByUser(Integer userID) {
-        String sql = "select cart.ID, cart.ammount, cart.bookID, book.cur_cost, book.name, book.front_page, book.author, book.stock From book JOIN cart ON book.ID = Cart.bookID WHERE cart.userID = ?";
-        List<Map<String, Object>> results = jdbc.queryForList(sql, userID);
-
+        Cart cart = cartRepository.getCartByUser(userID);
+        List<CartItem> results = cart.getItem();
         List objects = new ArrayList();
         for (int i = 0; i < results.size(); i++) {
             JSONObject obj = new JSONObject();
-            obj.put("ammount", results.get(i).get("ammount"));
-            obj.put("bookID", results.get(i).get("bookID"));
-            obj.put("cur_cost", results.get(i).get("cur_cost"));
-            obj.put("name", results.get(i).get("name"));
-            obj.put("front_page", results.get(i).get("front_page"));
-            obj.put("author", results.get(i).get("author"));
-            obj.put("cartID", results.get(i).get("ID"));
-            obj.put("stock", results.get(i).get("stock"));
+            obj.put("ammount", results.get(i).getAmount());
+            obj.put("cartID", results.get(i).getID());
+            Book book = results.get(i).getBook();
+            obj.put("bookID", book.getID());
+            obj.put("cur_cost", book.getCurCost());
+            obj.put("name", book.getName());
+            obj.put("front_page", book.getFrontpage());
+            obj.put("author", book.getAuthor());
+            obj.put("stock", book.getStock());
 
             objects.add(obj);
         }
         return results;
     }
 
-    public void addToCart(Integer userID, Integer bookID, Integer ammount) {
-        String check = "SELECT * FROM cart WHERE userID = ? AND bookID = ?";
-        List checkQuery = jdbc.queryForList(check, userID, bookID);
-        if (checkQuery.size() == 0) {
-            String sql = "INSERT INTO cart(userID, bookID, ammount) values(" + userID + "," + bookID + "," + ammount + ")";
-            jdbc.execute(sql);
-        } else {
-            String sqlADD = "UPDATE cart SET ammount = ammount + " + ammount.toString() + " WHERE userID = " + userID.toString() + " AND bookID = " + bookID.toString();
-            jdbc.execute(sqlADD);
+    public void addToCart(Integer userID, Integer bookID, Integer amount) {
+        Cart cart = cartRepository.getCartByUser(userID);
+        List<CartItem> items = cart.getItem();
+        for (int i = 0; i < items.size(); i++) {
+            Book book = items.get(i).getBook();
+            if (book.getID() == bookID) {
+                Integer tot = items.get(i).getAmount() + amount;
+                cartItemRepository.updateCartItem(tot, items.get(i).getID());
+//                items.get(i).setAmount(items.get(i).getAmount() + amount);
+//                cartItemRepository.save(items.get(i));
+                return;
+            }
         }
+        CartItem newItem = new CartItem();
+        Book newBook = bookRepository.getBook(bookID);
+        newItem.setAmount(amount);
+        newItem.setBook(newBook);
+        cartItemRepository.save(newItem);
 
         return;
     }
 
+    @Transactional
     public void deleteCart(Integer ID) {
-        String sql = "DELETE FROM cart WHERE ID = " + ID;
-        jdbc.execute(sql);
+        cartItemRepository.deleteCartItem(ID);
         return;
     }
 
-    public Boolean updateAmmount(Integer userID, Integer bookID, Integer ammount) {
-        String sql = "UPDATE cart set ammount = "  + ammount.toString() + " where userID = " + userID.toString()+ " and bookID = " + bookID.toString();
-        jdbc.execute(sql);
-
-        return Boolean.TRUE;
+    public Boolean updateAmmount(Integer userID, Integer bookID, Integer amount) {
+        Cart cart = cartRepository.getCartByUser(userID);
+        List<CartItem> items = cart.getItem();
+        for (int i = 0; i < items.size(); i++) {
+            Book book = items.get(i).getBook();
+            if (book.getID() == bookID) {
+                items.get(i).setAmount(amount);
+                cartItemRepository.updateCartItem(amount, items.get(i).getID());
+                return Boolean.TRUE;
+            }
+        }
+        return Boolean.FALSE;
     }
 }
