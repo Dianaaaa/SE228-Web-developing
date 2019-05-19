@@ -1,11 +1,9 @@
-package com.retell.retellbackend.dao;
+package com.retell.retellbackend.repository;
 
-import com.retell.retellbackend.domain.UserEntity;
+import com.retell.retellbackend.entity.UserEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 
 public interface UserRepository extends CrudRepository<UserEntity, Long> {

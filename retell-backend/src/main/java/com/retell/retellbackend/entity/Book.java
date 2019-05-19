@@ -1,4 +1,4 @@
-package com.retell.retellbackend.domain;
+package com.retell.retellbackend.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

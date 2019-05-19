@@ -1,12 +1,9 @@
-package com.retell.retellbackend.dao;
+package com.retell.retellbackend.repository;
 
-import com.retell.retellbackend.domain.Cart;
-import org.hibernate.annotations.Parameter;
+import com.retell.retellbackend.entity.Cart;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface CartRepository extends CrudRepository<Cart, Long> {
 

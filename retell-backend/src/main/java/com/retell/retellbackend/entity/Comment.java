@@ -1,4 +1,4 @@
-package com.retell.retellbackend.domain;
+package com.retell.retellbackend.entity;
 
 import java.sql.Timestamp;
 import javax.persistence.*;

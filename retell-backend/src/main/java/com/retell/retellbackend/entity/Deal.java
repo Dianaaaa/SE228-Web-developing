@@ -1,14 +1,15 @@
-package com.retell.retellbackend.domain;
+package com.retell.retellbackend.entity;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name="deals")
 public class Deal {
@@ -24,14 +25,14 @@ public class Deal {
     @Column(name = "address", nullable = false, length = 128)
     private String address;
     @CreatedDate
-    @Column(name = "time", nullable = false)
+    @Column(name = "time")
     private Timestamp time;
     @Column(name = "receiver", nullable = false, length = 50)
     private String receiver;
     @Column(name = "total_price", nullable = false)
     private BigDecimal total_price;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    @JoinColumn(name = "deal_id", referencedColumnName = "id")
     private List<CartItem> item;
 
     public Deal () {}

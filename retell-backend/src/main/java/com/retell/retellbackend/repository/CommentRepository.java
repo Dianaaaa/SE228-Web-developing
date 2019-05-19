@@ -1,6 +1,6 @@
-package com.retell.retellbackend.dao;
+package com.retell.retellbackend.repository;
 
-import com.retell.retellbackend.domain.Comment;
+import com.retell.retellbackend.entity.Comment;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,9 +1,8 @@
-package com.retell.retellbackend.domain;
+package com.retell.retellbackend.entity;
 
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "carts")
@@ -15,8 +14,8 @@ public class Cart {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private List<CartItem> item;
 
 

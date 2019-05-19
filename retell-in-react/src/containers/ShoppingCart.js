@@ -31,11 +31,11 @@ class ShoppingCart extends Component {
           }).then((response) => {
             console.log(response)
             response.json().then((data) => {
-              console.log(data['items']);
+              console.log("items:", data['items']);
               let items = data['items']
               let sum = 0;
               for (var i = 0; i < items.length; i++) {
-                  sum += items[i].ammount * items[i].cur_cost
+                  sum += items[i].amount * items[i].book.curCost
               }
               console.log("sum", sum)
               this.setState(() => ({
@@ -66,16 +66,16 @@ class ShoppingCart extends Component {
                 {
                     items.map((item) => (
                         <CartItem
-                        bookID = {item.bookID}
-                        cur_cost = {item.cur_cost}
-                        name = {item.name}
-                        author = {item.author}
-                        ammount = {item.ammount}
-                        front_page = {item.front_page}
-                        cartID = {item.ID}
-                        stock = {item.stock}
+                        bookID = {item.book.id}
+                        cur_cost = {item.book.curCost}
+                        name = {item.book.name}
+                        author = {item.book.author}
+                        ammount = {item.amount}
+                        front_page = {item.book.frontpage}
+                        cartID = {item.id}
+                        stock = {item.book.stock}
                         setSum = {this.setCostsum}
-                        key = {item.bookID}
+                        key = {item.book.id}
                         />
                     ))
                 }

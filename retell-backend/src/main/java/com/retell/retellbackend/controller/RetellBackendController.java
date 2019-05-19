@@ -1,19 +1,11 @@
 package com.retell.retellbackend.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.retell.retellbackend.domain.Book;
-import com.retell.retellbackend.service.CategoryService;
-import com.retell.retellbackend.service.SeedService;
+import com.retell.retellbackend.serviceimpl.CategoryServiceImpl;
+import com.retell.retellbackend.serviceimpl.SeedServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.json.simple.JSONObject;
 
-import com.retell.retellbackend.service.BookService;
-
-import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,10 +13,10 @@ import java.util.List;
 public class RetellBackendController {
 
     @Autowired
-    public CategoryService service;
+    public CategoryServiceImpl service;
 
     @Autowired
-    public SeedService seed;
+    public SeedServiceImpl seed;
 //    @CrossOrigin(origins = "http://localhost:3000")
 //    @ResponseBody
 //    @RequestMapping(value="/book/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")

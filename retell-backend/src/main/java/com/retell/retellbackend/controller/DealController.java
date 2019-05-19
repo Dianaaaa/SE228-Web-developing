@@ -1,8 +1,8 @@
 package com.retell.retellbackend.controller;
 
 
-import com.retell.retellbackend.service.DealService;
-import com.retell.retellbackend.service.UserService;
+import com.retell.retellbackend.serviceimpl.DealServiceImpl;
+import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ import java.util.List;
 public class DealController {
 
     @Autowired
-    public DealService service;
+    public DealServiceImpl service;
 
     @Autowired
-    public UserService userService;
+    public UserServiceImpl userService;
 
     @RequestMapping(value="/deal/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JSONObject createDeal(@RequestBody JSONObject s, Principal principal){

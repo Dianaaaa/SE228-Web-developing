@@ -1,7 +1,7 @@
 package com.retell.retellbackend.controller;
 
-import com.retell.retellbackend.domain.UserEntity;
-import com.retell.retellbackend.service.UserService;
+import com.retell.retellbackend.entity.UserEntity;
+import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +14,7 @@ import java.security.Principal;
 public class UserController {
 
     @Autowired
-    public UserService service;
+    public UserServiceImpl service;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody

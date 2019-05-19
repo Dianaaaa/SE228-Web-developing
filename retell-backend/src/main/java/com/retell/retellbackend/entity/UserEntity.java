@@ -1,7 +1,6 @@
-package com.retell.retellbackend.domain;
+package com.retell.retellbackend.entity;
 
 import javax.persistence.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Table;
 import java.io.Serializable;

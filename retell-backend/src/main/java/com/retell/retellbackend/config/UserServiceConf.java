@@ -1,6 +1,6 @@
 package com.retell.retellbackend.config;
 
-import com.retell.retellbackend.domain.UserEntity;
+import com.retell.retellbackend.entity.UserEntity;
 import com.retell.retellbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

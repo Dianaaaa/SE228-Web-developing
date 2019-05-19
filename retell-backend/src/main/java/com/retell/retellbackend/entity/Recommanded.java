@@ -1,6 +1,4 @@
-package com.retell.retellbackend.domain;
-
-import org.omg.PortableInterceptor.INACTIVE;
+package com.retell.retellbackend.entity;
 
 import javax.persistence.*;
 

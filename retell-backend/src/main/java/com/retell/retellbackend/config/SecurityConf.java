@@ -1,10 +1,7 @@
 package com.retell.retellbackend.config;
 
-import com.retell.retellbackend.domain.UserEntity;
 import com.retell.retellbackend.service.UserService;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -58,7 +55,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**").permitAll()
-                .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment", "/getname").hasRole("USER")
+                .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment", "/getname", "/dealcfmsingle").hasRole("USER")
                 .and()
                 .formLogin().loginPage("/user")
                 .successHandler(new AuthenticationSuccessHandler() {

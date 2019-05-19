@@ -165,7 +165,7 @@ class Dealcfm extends Component {
               let items = data['items']
               let sum = 0;
               for (var i = 0; i < items.length; i++) {
-                  sum += items[i].ammount * items[i].cur_cost
+                  sum += items[i].amount * items[i].book.curCost
               }
               console.log("sum", sum)
               this.setState(() => ({
@@ -188,13 +188,13 @@ class Dealcfm extends Component {
                         {
                             items.map((item) => (
                                 <BookItem 
-                                bookID = {item.bookID}
-                                cur_cost = {item.cur_cost}
-                                name = {item.name}
-                                author = {item.author}
-                                ammount = {item.ammount}
-                                front_page = {item.front_page}
-                                key = {item.bookID}
+                                bookID = {item.book.id}
+                                cur_cost = {item.book.curCost}
+                                name = {item.book.name}
+                                author = {item.book.author}
+                                ammount = {item.amount}
+                                front_page = {item.book.frontpage}
+                                key = {item.book.id}
                                 />
                             ))
                         }

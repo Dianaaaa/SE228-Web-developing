@@ -1,10 +1,10 @@
 package com.retell.retellbackend.controller;
 
 
-import com.retell.retellbackend.dao.CategoryRepository;
-import com.retell.retellbackend.domain.Book;
-import com.retell.retellbackend.domain.Category;
-import com.retell.retellbackend.service.BookService;
+import com.retell.retellbackend.repository.CategoryRepository;
+import com.retell.retellbackend.entity.Book;
+import com.retell.retellbackend.entity.Category;
+import com.retell.retellbackend.serviceimpl.BookServiceImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class BookController {
 
     @Autowired
-    public BookService service;
+    public BookServiceImpl service;
 
     @Resource
     private CategoryRepository cateRepository;

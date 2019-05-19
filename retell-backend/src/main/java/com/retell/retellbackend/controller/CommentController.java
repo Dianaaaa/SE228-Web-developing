@@ -1,7 +1,7 @@
 package com.retell.retellbackend.controller;
 
-import com.retell.retellbackend.service.CommentService;
-import com.retell.retellbackend.service.UserService;
+import com.retell.retellbackend.serviceimpl.CommentServiceImpl;
+import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,10 @@ import java.util.List;
 @RestController
 public class CommentController {
     @Autowired
-    public CommentService service;
+    public CommentServiceImpl service;
 
     @Autowired
-    public UserService userService;
+    public UserServiceImpl userService;
 
 
     @RequestMapping(value="/comment/{bookID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
