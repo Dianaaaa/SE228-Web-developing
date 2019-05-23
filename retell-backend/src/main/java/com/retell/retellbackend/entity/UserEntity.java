@@ -21,6 +21,8 @@ public class UserEntity implements Serializable {
     private String role;
     @Column(name="status")
     private Integer status;
+    @Column(name="avator")
+    private String avator;
 
     public UserEntity(){}
 
@@ -80,5 +82,13 @@ public class UserEntity implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getAvator() {
+        return avator;
+    }
+
+    public void setAvator(String avator) {
+        this.avator = avator;
     }
 }

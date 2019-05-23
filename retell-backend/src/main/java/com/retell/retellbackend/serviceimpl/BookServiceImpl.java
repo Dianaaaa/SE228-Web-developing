@@ -85,6 +85,8 @@ public class BookServiceImpl implements BookService {
             result.put("front_page", books.get(i).getFrontpage());
             result.put("name", books.get(i).getName());
             result.put("id", books.get(i).getID());
+            result.put("ISBN", books.get(i).getISBN());
+            result.put("stock", books.get(i).getStock());
 
             objects.add(result);
         }

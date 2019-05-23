@@ -1,44 +1,17 @@
 import React, { Component } from 'react'
-import { Row, Col} from 'antd'
+import { Row, Col, Tabs} from 'antd'
 import './Admin.css'
 import BookEdit from './../components/BookEdit'
+import UserEdit from './../components/UserEdit'
 
-const contacts=[
-    {
-    'id': 1,
-    'title': '偷书贼',
-    'writer': 'Markus Zursak',
-    'bookUrl': 'E:/SE/SE228-Web-developing/retell-in-react/src/assets/imgs/book-4.jpg'
-    },
-    {
-    'id': 2,
-    'title': '步履不停',
-    'writer': 'blablabla',
-    'bookUrl': 'E:/SE/SE228-Web-developing/retell-in-react/src/assets/imgs/book-4.jpg'
-    },
-    {
-    'id': 3,
-    'title': 'csapp',
-    'writer': 'dalao',
-    'bookUrl': 'E:/SE/SE228-Web-developing/retell-in-react/src/assets/imgs/book-4.jpg'
-    },
-    {
-    'id': 4,
-    'title': '数学分析教程',
-    'writer': '史济怀',
-    'bookUrl': 'E:/SE/SE228-Web-developing/retell-in-react/src/assets/imgs/book-4.jpg'
-    }
-]
+const TabPane = Tabs.TabPane
 
 class Admin extends Component {
-    state = {
-        contacts: contacts
-    }
 
-    removeContact = (contact) => {
+    removeBook = (contact) => {
         console.log("555")
         this.setState((currentState) => ({
-          contacts: currentState.contacts.filter((c)=>{
+          books: currentState.books.filter((c)=>{
             return c.id !== contact.id
           })
         }))
@@ -46,29 +19,26 @@ class Admin extends Component {
     
       createContact = (contact) => {
           this.setState((currentState) => ({
-            contacts: currentState.contacts.concat([contact])
+            books: currentState.books.concat([contact])
         }))
       }
 
     render() {
         return (
             <div>
-                <Row>
-                    <Col span={4}>
-                        <div className='control-panel'>
-
-                        </div>
-                    </Col>
-                    <Col span={2}/>
-                    <Col span={16}>
-                        <div className='workspace'>
-                        <BookEdit
-                        contacts={this.state.contacts}
-                        onDeleteContact={this.removeContact}
-                        />
-                        </div>
-                    </Col>
-                </Row>
+                <Tabs tabPosition="left">
+              <TabPane tab="书籍管理" key="1">
+                <div className='workspace'>
+                <BookEdit/>
+                </div>
+              </TabPane>
+              <TabPane tab="用户管理" key="2">
+                <UserEdit/>
+              </TabPane>
+              <TabPane tab="Tab 3" key="3">
+                Content of Tab 3
+              </TabPane>
+            </Tabs>
             </div>
         )
     }

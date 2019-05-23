@@ -42,6 +42,7 @@ public class BookController {
         book.put("img-url", curBook.getFrontpage());
         book.put("id", curBook.getID());
         book.put("stock", curBook.getStock());
+        book.put("ISBN", curBook.getISBN());
         return book;
     }
 
@@ -126,11 +127,6 @@ public class BookController {
         result.put("msg", s);
 
         return result;
-    }
-
-    @RequestMapping(value="/msg", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public String msg(){
-        return "hello world";
     }
 
 }

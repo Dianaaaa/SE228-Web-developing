@@ -103,7 +103,8 @@ class BookDetails extends Component {
     stock:0,
     ammount: 1,
     starvalue: 0,
-    content: ""
+    content: "",
+    ISBN: ""
   }
 
   setammount = (value) => {
@@ -211,7 +212,8 @@ class BookDetails extends Component {
           book_detail: data['book-detail'],
           author_detail: data['author-detail'],
           img_url: data['img-url'],
-          stock: data['stock']
+          stock: data['stock'],
+          ISBN: data['ISBN']
         }))
 
       });
@@ -237,7 +239,7 @@ class BookDetails extends Component {
   }
 
     render () {
-      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments, starvalue, content, stock } = this.state
+      const { book_name, author, prev_cost, cur_cost, book_detail, author_detail, img_url, comments, starvalue, content, stock, ISBN } = this.state
         // console.log(this.props);
         return (
             <div className='book-details'>
@@ -284,6 +286,7 @@ class BookDetails extends Component {
 
                                     </div>
                                     <div className='book-buttons'>
+                                        <p>ISBN: {ISBN} </p>
                                         <p>库存: {stock}</p>
                                         <p>数量:</p>
                                         <NumericInputDemo 

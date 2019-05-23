@@ -34,8 +34,20 @@ import {
             }).then((response) => {
                 console.log(response)
                 if (response.status === 200) {
-                  this.props.history.push("/")
-                  window.location.href = window.location.href;
+                  fetch(
+                    "http://localhost:8080/msg", {
+                      method: "GET",
+                      credentials: 'include'
+                    }
+                  ).then((response) => {
+                    if (response.status === 200) {
+                      this.props.history.push("/")
+                    window.location.href = window.location.href;
+                    } else {
+                      alert("用户不存在或已被禁用")
+                    }
+                  })
+                  
                 } else {
                     console.log("error")
                 }

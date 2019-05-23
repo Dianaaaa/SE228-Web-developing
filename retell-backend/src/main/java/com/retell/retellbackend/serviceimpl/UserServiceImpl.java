@@ -7,6 +7,7 @@ import com.retell.retellbackend.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,7 +18,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     public Boolean checkUserName(String username) {
-        if (userRepository.getUser(username) != null) {
+        UserEntity user = userRepository.getUserByName(username);
+        if ( user == null) {
+            System.out.print(user);
             return Boolean.TRUE;
         }
 
@@ -29,39 +32,30 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserEntity getUserByName(String name) {
-        UserEntity user = userRepository.getUser(name);
-
-//        UserEntity obj = new UserEntity();
-//        obj.setID((Integer) user.get("ID"));
-//        obj.setUsername((String)user.get("username"));
-//        obj.setPassword((String)user.get("password"));
-//        obj.setEmail((String)user.get("email"));
-//        obj.setRole((String) user.get("role"));
-//        obj.setStatus((Integer) user.get("status"));
-//        System.out.print("get a user");
+        UserEntity user = userRepository.getUserByName(name);
+//        System.out.print(user);
         return user;
     }
 
-//    public List getAllUser() {
-//        String sql = "select * from user";
-//        List<Map<String, Object>> users = jdbc.queryForList(sql);
-//
-//        List results = new ArrayList();
-//        for (int i = 0; i < users.size(); i++) {
-//            UserEntity obj = new UserEntity();
-//            obj.setID((Integer) users.get(i).get("ID"));
-//            obj.setUsername((String)users.get(i).get("username"));
-//            obj.setPassword((String)users.get(i).get("password"));
-//            obj.setEmail((String)users.get(i).get("email"));
-//            obj.setRole((String) users.get(i).get("role"));
-//            obj.setStatus((Integer) users.get(i).get("status"));
-//            results.add(obj);
-//        }
-//        return results;
-//    }
+    public List getAllUser() {
+        String sql = "select * from user";
+        List<UserEntity> users = userRepository.getAllUsers();
+
+        return users;
+    }
 
     public Integer getIDByName(String username) {
         Integer id = userRepository.getIDByName(username);
         return id;
+    }
+
+    public void banUser(String username) {
+        userRepository.banUser(username);
+        return;
+    }
+
+    public void rebanUser(String username) {
+        userRepository.rebanUser(username);
+        return;
     }
 }

@@ -1,4 +1,4 @@
-.book-edit-search {
+.user-edit-search {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -6,11 +6,11 @@
     margin-bottom: 1rem;
 }
 
-.books-info {
+.users-info {
     margin-right: 2rem;
 }
 
-.books-list {
+.users-list {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -20,12 +20,12 @@
     height: 75vh;
 }
 
-.books-list-item {
+.users-list-item {
     margin-bottom: 1rem;
     border-width: 2px;
     border-color: blue;
 }
 
-.books-list-item-img img {
+.users-list-item-img img {
     width: 5rem;
 }

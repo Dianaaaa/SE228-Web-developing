@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react'
-import {Row, Col,Icon} from 'antd'
+import {Row, Col,Icon, Divider} from 'antd'
 import './BookEdit.css'
 
 class BookEdit extends Component {
     state = {
-        query: ''
+        query: '',
+        books: []
     }
 
     updateQuery = (query) => {
@@ -18,15 +19,38 @@ class BookEdit extends Component {
         this.updateQuery('')
     }
 
+    onDeleteBook = () => {
+        alert("delete!")
+    }
+
+    componentDidMount() {
+        fetch(
+          'http://localhost:8080/book/cate/10086', {
+            method:'GET',
+          }).then((response) => {
+            // console.log(response)
+            response.json().then((data) => {
+              console.log(data);
+              let list = data['books']
+              console.log(list)
+              this.setState(() => ({
+                books: list
+              }))
+            });
+          })
+          .catch(e => console.log('错误:', e)
+          )
+        }
+
     render() {
         console.log('Props', this.props)
-        const { query } = this.state
-        const { contacts, onDeleteContact } = this.props
+        const { query, books } = this.state
+        const {  onDeleteContact } = this.props
 
-        const showedContacts = query === ''
-        ? contacts
-        : contacts.filter((c) => (
-            c.title.toLowerCase().includes(query.toLowerCase()) || c.writer.toLowerCase().includes(query.toLowerCase())
+        const showedBooks = query === ''
+        ? books
+        : books.filter((c) => (
+            c.name.toLowerCase().includes(query.toLowerCase()) || c.author.toLowerCase().includes(query.toLowerCase())
         ))
 
         return (
@@ -42,9 +66,9 @@ class BookEdit extends Component {
                     />
                 </div>
 
-                {showedContacts.length !== contacts.length && (
+                {showedBooks.length !== books.length && (
                     <div className="showing-books-info">
-                        <span class='books-info'>Now showing {showedContacts.length} of {contacts.length} </span>
+                        <span class='books-info'>Now showing {showedBooks.length} of {books.length} </span>
                         <button
                             className='ant-btn'
                             onClick={()=>this.clearQuery()}
@@ -53,26 +77,33 @@ class BookEdit extends Component {
                 )}
 
                 <ol className='books-list'>
-                    {showedContacts.map((contact) => (
+                    {showedBooks.map((contact) => (
                         <li key={contact.id} className='books-list-item'>
                         <Row>
                             <Col span={4}>
                                 <div className='books-list-item-img'>
-                                    <img src={require('./../assets/imgs/book-4.jpg')} alt='book'/>
+                                    <img src={contact.front_page} alt='book'/>
                                 </div>
                             </Col>
-                            <Col span={12}>
+                            <Col span={6}>
                             <div className='contact-details'>
-                                <p>{contact.title}</p>
-                                <p>{contact.writer}</p>
+                                <p>{contact.name}</p>
+                                <p>{contact.author}</p>
+                            </div>
+                            </Col>
+                            <Col span={6}>
+                            <div className='contact-details'>
+                                <p>ISBN: {contact.ISBN}</p>
+                                <p>库存量: {contact.stock}</p>
                             </div>
                             </Col>
                             <Col span={8}>
                             <button className='contact-remove'
-                                onClick={() => onDeleteContact(contact)}
+                                onClick={() => this.onDeleteBook(contact)}
                             ><Icon type="close-circle" /></button>
                             </Col>
                         </Row>
+                        <Divider />
                         </li>
                     ))}
                 </ol>
@@ -81,9 +112,5 @@ class BookEdit extends Component {
     }    
 }
 
-// ListContacts.propTypes = {
-//     contacts: propTypes.array.isRequired,
-//     onDeleteContact: propTypes.func.isRequired,
-// }
 
 export default BookEdit

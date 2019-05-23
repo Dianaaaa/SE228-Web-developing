@@ -1,5 +1,25 @@
 .control-panel {
     background: #c7004c;
-    height: 100vh;
+    height: 95.1vh;
+}
+
+.ant-tabs-nav {
+    width: 18rem !important;
+    background: #c7004c;
+    font-size: 2rem;
+    height: 95.1vh;
+}
+
+.ant-tabs .ant-tabs-left-bar .ant-tabs-tab {
+    margin: .5rem 0 2rem 0;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+    color: #cdffeb;
+    border-color: #cdffeb;
+}
+
+.ant-tabs-nav .ant-tabs-tab:hover {
+    color: #cdffeb;
 }
 

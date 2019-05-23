@@ -39,6 +39,7 @@ public class SeedServiceImpl implements SeedService {
         admin.setRole("ADMIN");
         admin.setEmail("1035254583@qq.com");
         admin.setStatus(1);
+        admin.setAvator("http://localhost:8080/resources/avator2.jpg");
         userRepository.save(admin);
         Cart cart1 = new Cart();
         cart1.setID(1);

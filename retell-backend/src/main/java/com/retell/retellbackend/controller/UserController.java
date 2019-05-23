@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -27,13 +28,12 @@ public class UserController {
             result.put("msg", "Username used already");
             return result;
         }
-//        JSONObject userinfo = new JSONObject();
-//        userinfo.put("username", user.getUsername());
-//        userinfo.put("password", user.getPassword());
-//        userinfo.put("email", user.getEmail());
         String password = user.getPassword();
         password = new BCryptPasswordEncoder().encode(password);
         user.setPassword(password);
+        user.setRole("USER");
+        user.setStatus(1);
+        user.setAvator("http://localhost:8080/resources/avator3.jpg");
         service.createUser(user);
         result.put("status", 200);
         result.put("msg", "User created");
@@ -57,5 +57,35 @@ public JSONObject getUserName(Principal principal){
     result.put("name", username);
     return result;
 }
+
+    @RequestMapping(value="/user/all", method=RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public JSONObject getAllUsers(){
+        List<UserEntity> all = service.getAllUser();
+
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("users", all);
+        return result;
+    }
+
+    @RequestMapping(value="/user/ban/{username}", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JSONObject banUser(@PathVariable String username){
+        service.banUser(username);
+
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("msg", "ok");
+        return result;
+    }
+
+    @RequestMapping(value="/user/reban/{username}", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JSONObject rebanUser(@PathVariable String username){
+        service.rebanUser(username);
+
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("msg", "ok");
+        return result;
+    }
 
 }
