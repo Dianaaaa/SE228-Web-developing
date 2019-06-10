@@ -2,6 +2,8 @@ package com.retell.retellbackend.controller;
 
 import java.security.Principal;
 
+import com.retell.retellbackend.service.CartService;
+import com.retell.retellbackend.service.UserService;
 import com.retell.retellbackend.serviceimpl.CartServiceImpl;
 import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
@@ -14,10 +16,10 @@ import java.util.List;
 @RestController
 public class CartController {
     @Autowired
-    public CartServiceImpl service;
+    public CartService service;
 
     @Autowired
-    public UserServiceImpl userService;
+    public UserService userService;
 
 
     @RequestMapping(value="/cart", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")

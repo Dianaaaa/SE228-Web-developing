@@ -1,10 +1,10 @@
 package com.retell.retellbackend.controller;
 
 
-import com.retell.retellbackend.repository.CategoryRepository;
 import com.retell.retellbackend.entity.Book;
 import com.retell.retellbackend.entity.Category;
-import com.retell.retellbackend.serviceimpl.BookServiceImpl;
+import com.retell.retellbackend.service.BookService;
+import com.retell.retellbackend.service.CategoryService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +19,10 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    public BookServiceImpl service;
+    public BookService service;
 
-    @Resource
-    private CategoryRepository cateRepository;
+    @Autowired
+    private CategoryService cateservice;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
@@ -115,7 +115,7 @@ public class BookController {
         book.setStock((Integer) s.get("stock"));
         book.setCurCost(curCost);
         book.setPrevCost(prevCost);
-        Category cate = cateRepository.getCateByID((Integer) s.get("cate"));
+        Category cate = cateservice.getCateByID((Integer) s.get("cate"));
         book.setCategory(cate);
         book.setFrontpage((String) s.get("front_page"));
         book.setISBN((String) s.get("ISBN"));

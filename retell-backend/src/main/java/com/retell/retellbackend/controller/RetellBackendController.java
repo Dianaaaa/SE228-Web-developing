@@ -1,5 +1,7 @@
 package com.retell.retellbackend.controller;
 
+import com.retell.retellbackend.service.CategoryService;
+import com.retell.retellbackend.service.SeedService;
 import com.retell.retellbackend.serviceimpl.CategoryServiceImpl;
 import com.retell.retellbackend.serviceimpl.SeedServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,10 @@ import java.util.List;
 public class RetellBackendController {
 
     @Autowired
-    public CategoryServiceImpl service;
+    public CategoryService service;
 
     @Autowired
-    public SeedServiceImpl seed;
+    public SeedService seed;
 //    @CrossOrigin(origins = "http://localhost:3000")
 //    @ResponseBody
 //    @RequestMapping(value="/book/{ID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")

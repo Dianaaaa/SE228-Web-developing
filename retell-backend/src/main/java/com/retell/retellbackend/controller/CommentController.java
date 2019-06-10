@@ -1,5 +1,7 @@
 package com.retell.retellbackend.controller;
 
+import com.retell.retellbackend.service.CommentService;
+import com.retell.retellbackend.service.UserService;
 import com.retell.retellbackend.serviceimpl.CommentServiceImpl;
 import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
@@ -13,10 +15,10 @@ import java.util.List;
 @RestController
 public class CommentController {
     @Autowired
-    public CommentServiceImpl service;
+    public CommentService service;
 
     @Autowired
-    public UserServiceImpl userService;
+    public UserService userService;
 
 
     @RequestMapping(value="/comment/{bookID}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")

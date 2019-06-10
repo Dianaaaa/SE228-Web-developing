@@ -1,6 +1,7 @@
 package com.retell.retellbackend.controller;
 
 import com.retell.retellbackend.entity.UserEntity;
+import com.retell.retellbackend.service.UserService;
 import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    public UserServiceImpl service;
+    public UserService service;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody

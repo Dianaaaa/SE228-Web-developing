@@ -41,4 +41,9 @@ public class CategoryServiceImpl implements CategoryService {
         return id;
     }
 
+    public Category getCateByID(Integer id) {
+        Category cate = cateRepository.getCateByID(id);
+        return cate;
+    }
+
 }

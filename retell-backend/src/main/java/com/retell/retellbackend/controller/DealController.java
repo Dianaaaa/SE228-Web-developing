@@ -1,6 +1,8 @@
 package com.retell.retellbackend.controller;
 
 
+import com.retell.retellbackend.service.DealService;
+import com.retell.retellbackend.service.UserService;
 import com.retell.retellbackend.serviceimpl.DealServiceImpl;
 import com.retell.retellbackend.serviceimpl.UserServiceImpl;
 import org.json.simple.JSONObject;
@@ -16,10 +18,10 @@ import java.util.List;
 public class DealController {
 
     @Autowired
-    public DealServiceImpl service;
+    public DealService service;
 
     @Autowired
-    public UserServiceImpl userService;
+    public UserService userService;
 
     @RequestMapping(value="/deal/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JSONObject createDeal(@RequestBody JSONObject s, Principal principal){
