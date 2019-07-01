@@ -93,7 +93,7 @@ public class BookServiceImpl implements BookService {
         return objects;
     }
 
-//    public List getBookByCateID() {
-//
-//    }
+    public void saveBook(Book book) {
+        bookRepository.save(book);
+    }
 }

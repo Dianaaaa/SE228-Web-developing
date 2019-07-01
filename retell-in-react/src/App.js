@@ -15,6 +15,8 @@ import Admin from './containers/Admin'
 import Deal from './containers/Deal'
 import Dealcfm from './containers/Dealcfm'
 import SingleDealcfm from './containers/SingleDealcfm'
+import BookEdit from './containers/BookEdit'
+import BookCreate from './containers/BookCreate'
 import PrivateRoute from './utils/PrivateRoute'
 
 
@@ -118,6 +120,10 @@ class App extends Component {        //react component 组件。
           // onChangeArea={this.setArea}
           />
         )}/>
+
+        <Route exact path='/editbook/:id' component={BookEdit}/>
+
+        <Route exact path='/newbook' component={BookCreate}/>
       </div>
     );
   }

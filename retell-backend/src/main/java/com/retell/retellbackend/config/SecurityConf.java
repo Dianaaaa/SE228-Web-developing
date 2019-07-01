@@ -56,6 +56,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**", "user/all").permitAll()
                 .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment", "/getname", "/dealcfmsingle").hasRole("USER")
+                .antMatchers("/createbook", "/updatebook/**").hasRole("ADMIN")
                 .and()
                 .formLogin().loginPage("/user")
                 .successHandler(new AuthenticationSuccessHandler() {

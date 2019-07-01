@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react'
-import {Row, Col,Icon, Divider} from 'antd'
-import './BookEdit.css'
+import {Row, Col,Icon, Divider, Button} from 'antd'
+import { Link } from 'react-router-dom'
+import './BookManage.css'
 
-class BookEdit extends Component {
+class BookManage extends Component {
     state = {
         query: '',
         books: []
@@ -56,7 +57,16 @@ class BookEdit extends Component {
         return (
             <div className='book-edit'>
                 {/* {JSON.stringify(this.state)} */}
-                <div className = 'book-edit-search'>
+                
+                    <div className = 'book-edit-search'>
+                    <Row>
+                    <Col span={2}>
+                    <div>
+                        <Link to="/newbook">新建<Icon type="plus" /></Link>
+                    </div>
+                    </Col>
+                    <Col span={8}></Col>
+                    <Col span={22}>
                     <input 
                         className='ant-input'
                         type='text'
@@ -64,6 +74,9 @@ class BookEdit extends Component {
                         value={query}
                         onChange={(event) => this.updateQuery(event.target.value)}
                     />
+                    
+                    </Col>
+                </Row>
                 </div>
 
                 {showedBooks.length !== books.length && (
@@ -81,13 +94,17 @@ class BookEdit extends Component {
                         <li key={contact.id} className='books-list-item'>
                         <Row>
                             <Col span={4}>
+                                <Link to={'/book-details/'+ contact.id}>
                                 <div className='books-list-item-img'>
                                     <img src={contact.front_page} alt='book'/>
                                 </div>
+                                </Link>
                             </Col>
                             <Col span={6}>
                             <div className='contact-details'>
+                                <Link to={'/book-details/'+ contact.id}>
                                 <p>{contact.name}</p>
+                                </Link>
                                 <p>{contact.author}</p>
                             </div>
                             </Col>
@@ -98,9 +115,20 @@ class BookEdit extends Component {
                             </div>
                             </Col>
                             <Col span={8}>
-                            <button className='contact-remove'
-                                onClick={() => this.onDeleteBook(contact)}
-                            ><Icon type="close-circle" /></button>
+                                <Row>
+                                    <Col span={6}>
+                                    <Link to={"/editbook/" + contact.id}>修改</Link>
+                                    </Col>
+                                    <Col span={6}>
+                                    <Button shape="circle" icon="close-circle"
+                                    onClick={() => this.onDeleteBook(contact)}
+                                />
+                                    </Col>
+                                
+                                
+                                </Row>
+                            
+
                             </Col>
                         </Row>
                         <Divider />
@@ -113,4 +141,4 @@ class BookEdit extends Component {
 }
 
 
-export default BookEdit
+export default BookManage

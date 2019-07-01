@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Tabs} from 'antd'
 import './Admin.css'
-import BookEdit from './../components/BookEdit'
+import BookManage from './../components/BookManage'
 import UserEdit from './../components/UserEdit'
+import DealManage from './../components/DealManage'
 
 const TabPane = Tabs.TabPane
 
@@ -29,14 +30,14 @@ class Admin extends Component {
                 <Tabs tabPosition="left">
               <TabPane tab="书籍管理" key="1">
                 <div className='workspace'>
-                <BookEdit/>
+                <BookManage/>
                 </div>
               </TabPane>
               <TabPane tab="用户管理" key="2">
                 <UserEdit/>
               </TabPane>
-              <TabPane tab="Tab 3" key="3">
-                Content of Tab 3
+              <TabPane tab="订单管理" key="3">
+                <DealManage/>
               </TabPane>
             </Tabs>
             </div>

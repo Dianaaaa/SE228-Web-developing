@@ -18,4 +18,6 @@ public interface BookService {
     List getAllBook();
 
     List bookDump(List<Book> books);
+
+    void saveBook(Book book);
 }
