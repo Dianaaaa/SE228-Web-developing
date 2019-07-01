@@ -18,6 +18,7 @@ import SingleDealcfm from './containers/SingleDealcfm'
 import BookEdit from './containers/BookEdit'
 import BookCreate from './containers/BookCreate'
 import PrivateRoute from './utils/PrivateRoute'
+import MyStat from './containers/MyStat';
 
 
 window.backpath = "http://localhost:8080"
@@ -124,6 +125,8 @@ class App extends Component {        //react component 组件。
         <Route exact path='/editbook/:id' component={BookEdit}/>
 
         <Route exact path='/newbook' component={BookCreate}/>
+
+        <Route exact path='/mystat' component={MyStat}/>
       </div>
     );
   }

@@ -61,6 +61,7 @@ class UserItem extends Component {
                                 <p>用户名：{user.username}</p>
                                 <p>Role: {user.role}</p>
                                 <p>状态： {status === 1 ? "正常": "已禁用"}</p>
+                                <p>累计消费: {user.consumption.toFixed(2)}</p>
                             </div>
                             </Col>
                             <Col span={8}>

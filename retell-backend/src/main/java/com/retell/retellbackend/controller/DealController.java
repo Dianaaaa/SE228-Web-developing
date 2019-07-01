@@ -1,6 +1,7 @@
 package com.retell.retellbackend.controller;
 
 
+import com.retell.retellbackend.service.BookService;
 import com.retell.retellbackend.service.DealService;
 import com.retell.retellbackend.service.UserService;
 import com.retell.retellbackend.serviceimpl.DealServiceImpl;
@@ -23,6 +24,9 @@ public class DealController {
     @Autowired
     public UserService userService;
 
+    @Autowired
+    public BookService bookService;
+
     @RequestMapping(value="/deal/create", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JSONObject createDeal(@RequestBody JSONObject s, Principal principal){
         String username = principal.getName();
@@ -32,6 +36,7 @@ public class DealController {
         String receiver = (String) s.get("receiver");
         BigDecimal total_price = BigDecimal.valueOf(Double.valueOf(s.get("tot_price").toString()));
         Boolean flag = service.createDealByUserID(phone, address, receiver, total_price,userID);
+        userService.addConsumption(userID, total_price);
         JSONObject result = new JSONObject();
         System.out.print(flag);
         if (flag == true) {
@@ -57,6 +62,8 @@ public class DealController {
         BigDecimal total_price = BigDecimal.valueOf(Double.valueOf(s.get("tot_price").toString()));
 
         service.createDealOneBook(phone, address, receiver, total_price,bookID, ammount, userID);
+        bookService.addSales(bookID, ammount);
+        userService.addConsumption(userID, total_price);
         JSONObject result = new JSONObject();
         System.out.print("ok");
         result.put("status", 200);

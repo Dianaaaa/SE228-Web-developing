@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name="users")
@@ -23,6 +24,8 @@ public class UserEntity implements Serializable {
     private Integer status;
     @Column(name="avator")
     private String avator;
+    @Column(name="consumption")
+    private BigDecimal consumption = BigDecimal.valueOf(0);
 
     public UserEntity(){}
 
@@ -90,5 +93,13 @@ public class UserEntity implements Serializable {
 
     public void setAvator(String avator) {
         this.avator = avator;
+    }
+
+    public BigDecimal getConsumption() {
+        return consumption;
+    }
+
+    public void setConsumption(BigDecimal consumption) {
+        this.consumption = consumption;
     }
 }

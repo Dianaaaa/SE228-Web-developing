@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Row, Col} from 'antd'
-import "./Statistics.css"
+import "./MyStat.css"
 import { DatePicker } from 'antd';
 import { Link } from 'react-router-dom'
 
@@ -8,16 +8,16 @@ const { RangePicker } = DatePicker;
 
 
 
-class Statistics extends Component {
+class MyStat extends Component {
     state = {
         items: [],
-        users: []
+        cost: 0
     }
 
     onChange = (date, dateString) => {
         console.log(date, dateString);
         fetch(
-            'http://localhost:8080/statbook/' + dateString[0] + "/" + dateString[1], {
+            'http://localhost:8080/mystatbook/' + dateString[0] + "/" + dateString[1], {
               method:'GET',
               credentials: 'include'         //解决跨域问题
             }).then((response) => {
@@ -30,16 +30,16 @@ class Statistics extends Component {
                   }))
                 
                   fetch(
-                    'http://localhost:8080/statuser/' + dateString[0] + "/" + dateString[1], {
+                    'http://localhost:8080/mystat/' + dateString[0] + "/" + dateString[1], {
                       method:'GET',
                       credentials: 'include'         //解决跨域问题
                     }).then((response) => {
                       console.log(response)
                       response.json().then((data) => {
-                        console.log(data["stat"]);
-                        let items = data["stat"]
+                        console.log(data["cost"]);
+                        let cost = data["cost"]
                         this.setState(() => ({
-                            users: items
+                            cost: cost
                           }))
                       });
                     })
@@ -51,7 +51,7 @@ class Statistics extends Component {
             )
       }
     render() {
-        const {items, users} = this.state
+        const {items, cost} = this.state
         return (
             <div className = "deal">
                 <div className = "picker">
@@ -62,7 +62,7 @@ class Statistics extends Component {
                         <Col span={4}/>
                         <Col span={8}>
                             <div className="book-sale">
-                                <h2>书籍销售情况</h2>
+                                <h2>书籍购买情况</h2>
                             {items.length !== 0 &&
                                 (items.map((item) => (
                                 <div key={item.id}>
@@ -75,20 +75,7 @@ class Statistics extends Component {
                         </Col>
                         <Col span={8}>
                         <h2>用户消费情况</h2>
-                            {users.length !== 0 &&
-                                (users.map((item) => (
-                                <div key={item.name}>
-                                    <Row>
-                                        <Col span={12}>
-                                    <p>用户名：{item.name}</p>
-                                    </Col>
-                                    <Col span={12}>
-                                    <p>消费：{item.sale.toFixed(2)}</p>
-                                    </Col>
-                                    </Row>
-                                </div>
-                            )))
-                            }
+                                    <p>消费：{cost.toFixed(2)}</p>
                         </Col>
                     </Row>
                 </div>
@@ -97,4 +84,4 @@ class Statistics extends Component {
     }
 }
 
-export default Statistics
+export default MyStat

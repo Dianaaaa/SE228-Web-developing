@@ -56,9 +56,9 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/signin", "/cate", "/book/**", "/comment/**", "/resources/**", "user/all").permitAll()
                 .antMatchers("/msg",  "/deal/**","/cart/**", "/addcomment", "/getname", "/dealcfmsingle").hasRole("USER")
-                .antMatchers("/createbook", "/updatebook/**").hasRole("ADMIN")
+                .antMatchers("/createbook", "/updatebook/**", "/deletebook/**", "/user/**", "/deal/all", "/statuser/**", "/statbook/**", "/checkadmin").hasRole("ADMIN")
                 .and()
-                .formLogin().loginPage("/user")
+                .formLogin().loginPage("/check")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {

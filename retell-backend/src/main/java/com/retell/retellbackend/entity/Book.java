@@ -22,7 +22,7 @@ public class Book {
     private Integer stock;
     @Column(name="front_page", length = 128)
     private String frontpage;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     private Category category;
     @Column(name="cur_cost",  nullable = false)
@@ -33,6 +33,8 @@ public class Book {
     private String bookDetail;
     @Column(name="author_detail", columnDefinition="text")
     private String authorDetail;
+    @Column(name="sales", nullable = false)
+    private  Integer sales = 0;
 
     public Book() { }
 
@@ -75,4 +77,12 @@ public class Book {
     public void setBookDetail(String bookDetail) {this.bookDetail = bookDetail;}
     public String getAuthorDetail() {return this.authorDetail;}
     public void setAuthorDetail(String authorDetail) {this.authorDetail = authorDetail;}
+
+    public Integer getSales() {
+        return this.sales;
+    }
+
+    public void setSales(Integer sales) {
+        this.sales = sales;
+    }
 }

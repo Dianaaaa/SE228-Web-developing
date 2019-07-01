@@ -6,7 +6,8 @@ import './Navigator.css';
 
 class Navigator extends Component {
     state = {
-        username: "未登录"
+        username: "未登录",
+        flag: 0
     }
     
     ChangeArea = (e) => {
@@ -30,9 +31,28 @@ class Navigator extends Component {
                 response.json().then((data) => {
                     console.log(data['name']);
                     this.setState(() => ({
-                      username: data['name']
+                      username: data['name'],
                     }))
-                    
+                    fetch(
+                        'http://localhost:8080/checkadmin', {
+                          method:'GET',
+                          credentials: 'include'         //解决跨域问题
+                        }).then((response) => {
+                          console.log(response)
+                          if (response.status === 200) {
+                            response.json().then((data) => {
+                                this.setState(() => ({
+                                  flag: data['flag'],
+                                }))
+                                console.log(this.state.flag)
+                              });
+                          } else {
+                              console.log("未登录")
+                          }
+                          
+                        })
+                        .catch(e => console.log('错误:', e)
+                        )
                   });
               } else {
                   console.log("未登录")
@@ -46,7 +66,6 @@ class Navigator extends Component {
     render () {
 
         const { areas, curArea} = this.props
-
         
 
         const areaMenu = (
@@ -62,13 +81,10 @@ class Navigator extends Component {
         const accountMenu = (
             <Menu>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/Dianaaaa">我的账户</a>
+                <Link to="/mystat">我的统计</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to="/deal">我的订单</Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/Dianaaaa">我的收藏</a>
                 </Menu.Item>
             </Menu>
         )
@@ -95,7 +111,9 @@ class Navigator extends Component {
                         </Dropdown>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item><Link to="/cart"><Icon type="shopping-cart" /></Link></Breadcrumb.Item>
-                    <Breadcrumb.Item><Link to="/admin">卖家中心</Link></Breadcrumb.Item>
+                    {this.state.flag === 1 ?
+                            (<Breadcrumb.Item><Link to="/admin">管理中心</Link></Breadcrumb.Item>):
+                            (<div></div>)}
                 </Col>
                 </Breadcrumb>
             </Row>

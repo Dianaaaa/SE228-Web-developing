@@ -20,8 +20,26 @@ class BookManage extends Component {
         this.updateQuery('')
     }
 
-    onDeleteBook = () => {
-        alert("delete!")
+    onDeleteBook = (contact) => {
+        let path = 'http://localhost:8080/deletebook/' + contact.id;
+          fetch(
+            path, {
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              method:'POST',
+              credentials: 'include'         //解决跨域问题
+            }).then((response) => {
+                console.log(response)
+                if (response.status === 200) {
+                    alert("删除成功")
+                    window.location.href = window.location.href;
+                } else {
+                    console.log("error")
+                }
+            })
+            .catch(e => console.log('错误:', e)
+            )
     }
 
     componentDidMount() {
@@ -112,6 +130,7 @@ class BookManage extends Component {
                             <div className='contact-details'>
                                 <p>ISBN: {contact.ISBN}</p>
                                 <p>库存量: {contact.stock}</p>
+                                <p>销量: {contact.sales}</p>
                             </div>
                             </Col>
                             <Col span={8}>

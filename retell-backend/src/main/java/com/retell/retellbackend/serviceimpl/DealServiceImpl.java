@@ -43,6 +43,13 @@ public class DealServiceImpl implements DealService {
             CartItem item = new CartItem();
             item.setAmount(cartItems.get(i).getAmount());
             item.setBook(cartItems.get(i).getBook());
+
+            Book book = cartItems.get(i).getBook();
+            Integer sales = book.getSales();
+            sales = sales + cartItems.get(i).getAmount();
+            book.setSales(sales);
+            bookRepository.save(book);
+
             dealItems.add(item);
             cartItemRepository.deleteCartItem(cartItems.get(i).getID());
         }

@@ -1,10 +1,13 @@
 package com.retell.retellbackend.repository;
 
+import javafx.util.Pair;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import com.retell.retellbackend.entity.Book;
 import org.springframework.data.repository.query.Param;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
@@ -23,4 +26,5 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     @Query(value = "SELECT * FROM books", nativeQuery = true)
     public List<Book> getBookAll();
+
 }

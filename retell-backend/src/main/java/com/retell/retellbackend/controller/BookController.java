@@ -5,6 +5,7 @@ import com.retell.retellbackend.entity.Book;
 import com.retell.retellbackend.entity.Category;
 import com.retell.retellbackend.service.BookService;
 import com.retell.retellbackend.service.CategoryService;
+import com.retell.retellbackend.service.UserService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -23,6 +25,9 @@ public class BookController {
 
     @Autowired
     private CategoryService cateservice;
+
+    @Autowired
+    private UserService userService;
 
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
@@ -157,4 +162,44 @@ public class BookController {
         return result;
     }
 
+    @ResponseBody
+    @RequestMapping(value="/deletebook/{ID}", method= RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JSONObject deleteBook(@PathVariable Integer ID){
+        service.deleteBook(ID);
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("msg", "ok");
+
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/statbook/{begin}/{end}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public JSONObject stateBook(@PathVariable String begin,@PathVariable String end){
+        List<JSONObject> objects = service.statBookByTime(begin, end);
+        System.out.println(objects);
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("msg", "ok");
+        result.put("stat", objects);
+
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/mystatbook/{begin}/{end}", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public JSONObject myStateBook(@PathVariable String begin,@PathVariable String end, Principal principal){
+        String username = principal.getName();
+        Integer userID = userService.getIDByName(username);
+
+        List<JSONObject> objects = service.statBookByTimeUser(begin, end, userID);
+
+        System.out.println(objects);
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("msg", "ok");
+        result.put("stat", objects);
+
+        return result;
+    }
 }

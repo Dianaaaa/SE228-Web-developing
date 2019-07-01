@@ -1,16 +1,21 @@
 package com.retell.retellbackend.serviceimpl;
 
+import com.mongodb.util.JSON;
+import com.retell.retellbackend.entity.CartItem;
+import com.retell.retellbackend.entity.Deal;
 import com.retell.retellbackend.repository.BookRepository;
 import com.retell.retellbackend.repository.CategoryRepository;
 import com.retell.retellbackend.entity.Book;
 
+import com.retell.retellbackend.repository.DealRepository;
 import com.retell.retellbackend.service.BookService;
+import javafx.util.Pair;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -19,6 +24,9 @@ public class BookServiceImpl implements BookService {
 
     @Resource
     private CategoryRepository cateRepository;
+
+    @Resource
+    private DealRepository dealRepository;
 
     public Book getBookByID(Integer ID) {
         Book book = bookRepository.getBook(ID);
@@ -87,6 +95,7 @@ public class BookServiceImpl implements BookService {
             result.put("id", books.get(i).getID());
             result.put("ISBN", books.get(i).getISBN());
             result.put("stock", books.get(i).getStock());
+            result.put("sales", books.get(i).getSales());
 
             objects.add(result);
         }
@@ -95,5 +104,100 @@ public class BookServiceImpl implements BookService {
 
     public void saveBook(Book book) {
         bookRepository.save(book);
+    }
+
+    public void deleteBook(Integer ID) {
+        Book book = bookRepository.getBook(ID);
+        bookRepository.delete(book);
+    }
+
+    public void addSales(Integer ID, Integer amount) {
+        Book book = bookRepository.getBook(ID);
+        Integer sales = book.getSales();
+        sales = sales + amount;
+        book.setSales(sales);
+        bookRepository.save(book);
+    }
+
+    public List<JSONObject> statBookByTime(String begin, String end) {
+        begin = begin + " 00:00:00";
+        end = end + " 23:59:59";
+        System.out.println(begin);
+        System.out.println(end);
+        Timestamp betime = Timestamp.valueOf(begin);
+        Timestamp entime = Timestamp.valueOf(end);
+        List<Deal> deals =  dealRepository.getDealsByTime(end, begin);
+        System.out.println(deals);
+        Map<Integer, Integer> stat = new HashMap<>();
+
+        for (int i = 0; i < deals.size(); i++) {
+            List<CartItem> dealItems = deals.get(i).getItem();
+            for (int j = 0; j < dealItems.size(); j++) {
+                Integer key = dealItems.get(j).getID();
+                if (stat.containsKey(key)) {
+                    Integer sale = stat.get(key);
+                    sale = sale + dealItems.get(j).getAmount();
+                    stat.put(key, sale);
+                }
+                stat.put(key, dealItems.get(j).getAmount());
+            }
+        }
+
+        List<JSONObject> result = new ArrayList<>();
+
+        Iterator iter = stat.keySet().iterator();
+        while (iter.hasNext()) {
+            Object key = iter.next();
+            Object val = stat.get(key);
+            JSONObject obj = new JSONObject();
+            Book book = bookRepository.getBook((Integer) key);
+            obj.put("id", book.getID());
+            obj.put("name", book.getName());
+            obj.put("sale", (Integer) val);
+            result.add(obj);
+        }
+        return result;
+    }
+
+    public List<JSONObject> statBookByTimeUser(String begin, String end, Integer ID) {
+        begin = begin + " 00:00:00";
+        end = end + " 23:59:59";
+        System.out.println(begin);
+        System.out.println(end);
+        System.out.println(ID);
+        Timestamp betime = Timestamp.valueOf(begin);
+        Timestamp entime = Timestamp.valueOf(end);
+
+        List<Deal> deals =  dealRepository.getDealsByTimeUser(end, begin, ID);
+        System.out.println(deals);
+        Map<Integer, Integer> stat = new HashMap<>();
+
+        for (int i = 0; i < deals.size(); i++) {
+            List<CartItem> dealItems = deals.get(i).getItem();
+            for (int j = 0; j < dealItems.size(); j++) {
+                Integer key = dealItems.get(j).getID();
+                if (stat.containsKey(key)) {
+                    Integer sale = stat.get(key);
+                    sale = sale + dealItems.get(j).getAmount();
+                    stat.put(key, sale);
+                }
+                stat.put(key, dealItems.get(j).getAmount());
+            }
+        }
+
+        List<JSONObject> result = new ArrayList<>();
+
+        Iterator iter = stat.keySet().iterator();
+        while (iter.hasNext()) {
+            Object key = iter.next();
+            Object val = stat.get(key);
+            JSONObject obj = new JSONObject();
+            Book book = bookRepository.getBook((Integer) key);
+            obj.put("id", book.getID());
+            obj.put("name", book.getName());
+            obj.put("sale", (Integer) val);
+            result.add(obj);
+        }
+        return result;
     }
 }

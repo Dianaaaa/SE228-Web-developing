@@ -1,6 +1,8 @@
 package com.retell.retellbackend.service;
 
 import com.retell.retellbackend.entity.Book;
+import org.json.simple.JSONObject;
+
 import java.util.List;
 
 
@@ -20,4 +22,12 @@ public interface BookService {
     List bookDump(List<Book> books);
 
     void saveBook(Book book);
+
+    void deleteBook(Integer ID);
+
+    void addSales(Integer ID, Integer amount);
+
+    List<JSONObject> statBookByTime(String begin, String end);
+
+    List<JSONObject> statBookByTimeUser(String begin, String end, Integer ID);
 }
