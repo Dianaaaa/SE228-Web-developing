@@ -18,4 +18,6 @@ public interface DealService {
     void createDealOneBook(String phone, String address, String receiver,BigDecimal total_price, Integer bookID, Integer amount, Integer userID);
 
     List  getDealByUser(Integer userID);
+
+    List getAllDeals();
 }

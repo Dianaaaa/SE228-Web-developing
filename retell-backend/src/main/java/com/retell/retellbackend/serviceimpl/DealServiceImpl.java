@@ -157,4 +157,37 @@ public class DealServiceImpl implements DealService {
         }
         return objects;
     }
+
+    public List  getAllDeals() {
+        List<Deal> deals = dealRepository.getAllDeals();
+
+        List objects = new ArrayList();
+        for (int i = 0; i < deals.size(); i++) {
+            JSONObject obj = new JSONObject();
+            obj.put("ID", deals.get(i).getID());
+            obj.put("phone", deals.get(i).getPhone());
+            obj.put("address", deals.get(i).getAddress());
+            obj.put("time", deals.get(i).getTime());
+            obj.put("total_price", deals.get(i).getTotal_price());
+            obj.put("receiver", deals.get(i).getReceiver());
+            List<CartItem> items = deals.get(i).getItem();
+
+            List jsonbooks = new ArrayList();
+            for (int j = 0; j < items.size(); j++) {
+                JSONObject bok = new JSONObject();
+                bok.put("ammount", items.get(j).getAmount());
+                Book book = items.get(j).getBook();
+                bok.put("bookID", book.getID());
+                bok.put("name", book.getName());
+                bok.put("author", book.getAuthor());
+                bok.put("cur_cost", book.getCurCost());
+                bok.put("front_page", book.getFrontpage());
+                jsonbooks.add(bok);
+            }
+            obj.put("books", jsonbooks);
+
+            objects.add(obj);
+        }
+        return objects;
+    }
 }

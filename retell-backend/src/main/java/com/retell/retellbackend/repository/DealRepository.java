@@ -11,5 +11,8 @@ public interface DealRepository extends CrudRepository<Deal, Long> {
     @Query(value = "SELECT * From deals WHERE user_id = (:user_id)", nativeQuery = true)
     public List<Deal> getDeals(@Param("user_id") Integer user_id);
 
+    @Query(value = "SELECT * FROM deals", nativeQuery = true)
+    public List<Deal> getAllDeals();
+
 }
 

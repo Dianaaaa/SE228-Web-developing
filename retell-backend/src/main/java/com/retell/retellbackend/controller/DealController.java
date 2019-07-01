@@ -65,7 +65,7 @@ public class DealController {
     }
 
     @RequestMapping(value="/deal", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    public JSONObject getCart(Principal principal){
+    public JSONObject getDealByUser(Principal principal){
         String username = principal.getName();
         Integer userID = userService.getIDByName(username);
 
@@ -74,6 +74,17 @@ public class DealController {
         result.put("status", 200);
         result.put("msg", "OK");
         result.put("dealitems", deals);
+        return result;
+    }
+
+    @RequestMapping(value="/deal/all", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    public JSONObject getAllDeals(Principal principal){
+
+        List deals = service.getAllDeals();
+        JSONObject result = new JSONObject();
+        result.put("status", 200);
+        result.put("msg", "OK");
+        result.put("deals", deals);
         return result;
     }
 }

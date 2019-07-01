@@ -4,6 +4,7 @@ import './Admin.css'
 import BookManage from './../components/BookManage'
 import UserEdit from './../components/UserEdit'
 import DealManage from './../components/DealManage'
+import Statistics from './../components/Statistics'
 
 const TabPane = Tabs.TabPane
 
@@ -38,6 +39,9 @@ class Admin extends Component {
               </TabPane>
               <TabPane tab="订单管理" key="3">
                 <DealManage/>
+              </TabPane>
+              <TabPane tab="统计" key="4">
+                <Statistics/>
               </TabPane>
             </Tabs>
             </div>
