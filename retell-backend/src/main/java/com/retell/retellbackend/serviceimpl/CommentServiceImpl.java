@@ -1,6 +1,8 @@
 package com.retell.retellbackend.serviceimpl;
 
+import com.retell.retellbackend.entity.CommentM;
 import com.retell.retellbackend.repository.BookRepository;
+import com.retell.retellbackend.repository.CommentMRepository;
 import com.retell.retellbackend.repository.CommentRepository;
 import com.retell.retellbackend.repository.UserRepository;
 import com.retell.retellbackend.entity.Book;
@@ -25,6 +27,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Resource
     private UserRepository userRepository;
+
 
     public List getBookComment(Integer bookID) {
         List<Comment> comments = commRepository.getComments(bookID);

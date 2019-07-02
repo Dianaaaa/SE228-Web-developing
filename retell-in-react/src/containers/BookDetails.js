@@ -165,7 +165,7 @@ class BookDetails extends Component {
     let content = this.state.content
     const formData = JSON.stringify({"score": score, "bookID": bookID, "content": content})
     fetch(
-      window.backpath + "/addcomment", {
+      window.backpath + "/addcommentm", {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -218,7 +218,7 @@ class BookDetails extends Component {
 
       });
       fetch(
-        'http://localhost:8080/comment/' + this.props.match.params.id, {
+        'http://localhost:8080/commentm/' + this.props.match.params.id, {
           method:'GET',
         }).then((response) => {
           console.log(response)
